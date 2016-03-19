@@ -5,3 +5,4 @@ Yggdrasill Projectのリポジトリです。
 時間をください。
 自由も欲しい。
 てすとてすと
+loacl で編集
