@@ -12,3 +12,4 @@ loacl で編集
 編集2
 sekoテスト
 >>>>>>> origin/master
+manegotomanemane
