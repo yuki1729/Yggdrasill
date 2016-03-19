@@ -1,0 +1,14 @@
+.menu{
+  text-align: center;
+  color: #fff;
+  font-family: sans-serif;
+  margin: 30px auto;
+  widows: 100px;
+  height: 100px;
+  border-radius: 50%;
+  line-height: 100px;
+  font-size: 18px;
+  font-weight: bold;
+  background: sienna;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
