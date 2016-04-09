@@ -1,59 +1,65 @@
-document.getElementById("aForm").onsubmit = function(){
-	var now = new Date();
-	var date = document.getElementById('limit').word.value;
-	var year = now.getFullYear();
-	var month = now.getMonth() + 1;
-	var realdate = now.getDate();
-	moment.locale();
-	//    date.replace(/[０-９]/g,function(s){return String.fromCharCode(s.charCodeAt(0)-65248);});
-	var dd = /^([1-9]|[12][0-9]|3[01])$/
-	console.log("入力された文字は日付")
+document.getElementById("aForm").onsubmit = function() {
+	var dd = /^([12][0-9]|3[01]|0?[1-9])$/;
+	var mmdd = /^(0?[1-9]|1[0-2])(\/|-|)([12][0-9]|3[01]|0?[1-9])$/;
+	var yyyymmdd = /^([12]\d{3}|\d{2})(\/|-|)(0?[1-9]|1[0-2])(\/|-|)([12][0-9]|3[01]|0?[1-9])$/;
+	var hhmm = /^(0?[0-9]|1[0-9]|2[0-3])(:)([0-5]?[0-9])$/;
 
-	//入力された数字が1桁または2桁だった場合は，日付と認識してその時点の日と比較した上でその時点の年と月を補完
-	if (date.match(dd)) {
-		if (date < realdate) {
-			month = month + 1;
+	var dFormat = "YYYY/MM/DD HH:mm:ss";
+
+	var now = moment();
+	var vaildDate = $.extend(true, {}, now);
+	var vaildDate = moment().set('hour', 17).startOf('hour');
+
+	var datestr = document.getElementById('limit').value;
+	var dFormat = "YYYY/MM/DD HH:mm:ss";
+
+	// console.log("now: " + now.format(dFormat))
+	// console.log("Init vaildDate: " + vaildDate.format(dFormat))
+
+	if (datestr.match(dd)) {
+		console.log("match dd, datester: " + datestr + "now.date: " + now.date())
+		vaildDate.set('date', datestr);
+		if (datestr <= now.date()) {
+			vaildDate.add(1, 'M');
 		}
-		date = year + month + date
-		var date2 = moment(date).format("YYYY/MM/DD");
-		document.getElementById('limit').textContent = date2;
-		return false;
-	}
-	// 入力された数字が3桁または4桁だった場合は，月日と認識して年を補完
-	else if (date === /^([1-9][1[0-2])([1-9]|[12][0-9]|3[01])$/) {
-		if (month === /[1-9]/) {
-			month = "0" + month
+	} else if (datestr.match(mmdd)) {
+		// 2016/02/11 に 0201の入力があった場合、 2017/02/01で無く、2016/02/01になってしまう(日付での期日超過判定を追記する必要あり)
+		console.log("match mmdd, datester: " + datestr)
+		var result = datestr.match(mmdd);
+		m = result[1];
+		console.log(m);
+		d = result[3];
+		if ((m == now.month() && d < now.date()) || (m < now.month())) {
+			vaildDate.add(1, 'y');
 		}
-		date = year + date.substring(0, 2) + date.substring(2, 4)
-		var date2 = moment(date).format("YYYY/MM/DD");
-		document.getElementById('limit').textContent = date2;
-		return false;
+		vaildDate.set({
+			'month': m - 1,
+			'date': d
+		})
+
+	} else if (datestr.match(yyyymmdd)) {
+		var result = datestr.match(yyyymmdd);
+		y = Number(result[1]);
+		if (y < 99) {
+			y = 2000 + y;
+		}
+		vaildDate.set({
+			'year': y,
+			'month': result[3] - 1,
+			'date': result[5]
+		});
+
+	} else if (datestr.match(hhmm)) {
+		var result = datestr.match(hhmm);
+		vailDate.set({
+			'hour': result[1],
+			'minute': result[3]
+		})
+		if (vaildDate < now) {
+			vailDate.add(1, 'days')
+		}
 	}
-	//入力された数字が4桁だった場合
-	/*
-	    else if (date === ^([01-09][1[0-2])/([1-9]|[12][0-9]|3[01])$) {
-	      date = year + date.substring(0,2) + date.substring(2,4)
-	      var date2 = moment(date).format("YYYY/MM/DD");
-	  document.getElementById('output').textContent = date2;
-	  return false;
-	}
-	*/
-	//入力された数字が5桁または6桁だった場合は，頭に20をつけてフル西暦にした上で，3桁と同じ処理。3000年以降はどうする？
-	else if (date === /^(([1-9][0-9])([1-9][1[0-2])([1-9]|[12][0-9]|3[01])$/) {
-		date = '20' + date.substr(0, 2) + date.substr(2, 6)
-		var date2 = moment(date).format("YYYY/MM/DD");
-		document.getElementById('limit').textContent = date2;
-		return false;
-	}
-	//入力された数字が7桁または8桁だった場合
-	else if (date === /^([1-3][0-9][0-9][0-9][[1-9]|1[0-2][1-9]|[12][0-9]|3[01])$/) {
-		var date = moment(date).format("YYYY/MM/DD");
-		document.getElementById('limit').textContent = date;
-		return false;
-	}
-	//9桁以上の場合
-	else {
-		document.getElementById('8桁以内の数字を入力してください').textContent = date;
-		return false;
-	}
+	console.log(vaildDate.format(dFormat));
+	return vaildDate;
+
 }
