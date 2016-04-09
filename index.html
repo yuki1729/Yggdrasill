@@ -24,10 +24,8 @@
               <input type="text" id="task" class="form-control" placeholder="タスク">
             </div>
             <ul class="form-group">
-              <li><input type="text" ng-model="myLimit" id="limit1" class="form-control" placeholder="開始可能日"></li>
-              <li><input type="text" ng-model="myLimit" id="limit2" class="form-control" placeholder="開始可能時刻"></li>
-              <li><input type="text" ng-model="myLimit" id="limit3" class="form-control" placeholder="最終日"></li>
-              <li><input type="text" ng-model="myLimit" id="limit4" class="form-control" placeholder="延期不能時刻"></li>
+              <li><input type="text" ng-model="myLimit" id="limit1" class="form-control" placeholder="開始可能日時"></li>
+              <li><input type="text" ng-model="myLimit" id="limit2" class="form-control" placeholder="延期不能日時"></li>
             </ul>
             <div class="form-group">
               <input type="text" id="incharge" class="form-control" placeholder="割当先">
@@ -49,13 +47,14 @@
     </div>
     <div id="footer" class="container" style="background:palegreen;">footer</div>
 
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/date.js"></script>
     <script src="js/moment-with-locales.js"></script>
     <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+    <script src="js/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="./js/calendar.js"></script>
+
   </body>
 </html>

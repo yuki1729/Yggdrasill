@@ -1,7 +1,4 @@
 $(function() {
-	// $("#limit").datepicker();
-	$( "#limit" ).datepicker({
-	      numberOfMonths: 2,
-	      showButtonPanel: true
-	    });
-});
+	// $("#limit1").datepicker();
+	$('#limit1').datetimepicker();
+	});
