@@ -7,6 +7,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
+    <script src="js/jquery.js"></script>
+
   </head>
   <body>
     <div id="header" class="container" style="background:palegreen;">header</div>
@@ -24,8 +27,13 @@
               <input type="text" id="task" class="form-control" placeholder="タスク">
             </div>
             <ul class="form-group">
+<<<<<<< HEAD
+              <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時"></li>
+              <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時"></li>
+=======
               <li><input type="text" ng-model="myLimit" id="limit1" class="form-control" placeholder="開始可能日時"></li>
               <li><input type="text" ng-model="myLimit" id="limit2" class="form-control" placeholder="延期不能日時"></li>
+>>>>>>> master
             </ul>
             <div class="form-group">
               <input type="text" id="incharge" class="form-control" placeholder="割当先">
@@ -47,14 +55,30 @@
     </div>
     <div id="footer" class="container" style="background:palegreen;">footer</div>
 
+<<<<<<< HEAD
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
+=======
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+>>>>>>> master
     <script src="js/bootstrap.min.js"></script>
     <script src="js/date.js"></script>
-    <script src="js/moment-with-locales.js"></script>
     <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+<<<<<<< HEAD
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+
+<script type="text/javascript">
+$(function(){
+$('#limit1').datetimepicker({ dateFormat: 'yy-mm-dd' });
+$('#limit2').datetimepicker({ dateFormat: 'yy-mm-dd' });
+
+    });
+</script>
+=======
     <script src="js/jquery.datetimepicker.js"></script>
     <script type="text/javascript" src="./js/calendar.js"></script>
+>>>>>>> master
 
   </body>
 </html>

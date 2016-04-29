@@ -1278,8 +1278,25 @@
 					return !isNaN(d.getTime());
 				};
 
+<<<<<<< HEAD
+				_this.setCurrentTime = function (dTime, requireValidDate) {
+					if (typeof dTime === 'string') {
+						_this.currentTime = _this.strToDateTime(dTime);
+					}
+					else if (_this.isValidDate(dTime)) {
+						_this.currentTime = dTime;
+					}
+					else if (!dTime && !requireValidDate && options.allowBlank) {
+						_this.currentTime = null;
+					}
+					else {
+						_this.currentTime = _this.now();
+					}
+					
+=======
 				_this.setCurrentTime = function (dTime) {
 					_this.currentTime = (typeof dTime === 'string') ? _this.strToDateTime(dTime) : _this.isValidDate(dTime) ? dTime : _this.now();
+>>>>>>> master
 					datetimepicker.trigger('xchange.xdsoft');
 				};
 
@@ -1529,6 +1546,13 @@
 					xchangeTimer = setTimeout(function () {
 
 						if (_xdsoft_datetime.currentTime === undefined || _xdsoft_datetime.currentTime === null) {
+<<<<<<< HEAD
+							//In case blanks are allowed, delay construction until we have a valid date 
+							if (options.allowBlank)
+								return;
+								
+=======
+>>>>>>> master
 							_xdsoft_datetime.currentTime = _xdsoft_datetime.now();
 						}
 
@@ -2254,7 +2278,11 @@
 						}
 
 						triggerAfterOpen = true;
+<<<<<<< HEAD
+						_xdsoft_datetime.setCurrentTime(getCurrentValue(), true);
+=======
 						_xdsoft_datetime.setCurrentTime(getCurrentValue());
+>>>>>>> master
 						if(options.mask) {
 							setMask(options);
 						}
