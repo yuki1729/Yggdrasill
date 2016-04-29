@@ -50,7 +50,7 @@
     </div>
     <div id="footer" class="container" style="background:palegreen;">footer</div>
 
-    <script src="js/jquery.datetimepicker.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/date.js"></script>
     <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
@@ -60,7 +60,9 @@
 
 <script type="text/javascript">
 $(function(){
-    $('#limit1').datetimepicker();
+$('#limit1').datetimepicker({ dateFormat: 'yy-mm-dd' });
+$('#limit2').datetimepicker({ dateFormat: 'yy-mm-dd' });
+
     });
 </script>
 
