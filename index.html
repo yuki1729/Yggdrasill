@@ -7,6 +7,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
+    <script src="js/jquery.js"></script>
+
   </head>
   <body>
     <div id="header" class="container" style="background:palegreen;">header</div>
@@ -24,8 +27,8 @@
               <input type="text" id="task" class="form-control" placeholder="タスク">
             </div>
             <ul class="form-group">
-              <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control" placeholder="開始可能日時"></li>
-              <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control" placeholder="延期不能日時"></li>
+              <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時"></li>
+              <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時"></li>
             </ul>
             <div class="form-group">
               <input type="text" id="incharge" class="form-control" placeholder="割当先">
@@ -47,24 +50,18 @@
     </div>
     <div id="footer" class="container" style="background:palegreen;">footer</div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/jquery.datetimepicker.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/date.js"></script>
     <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
     <script src="js/moment-with-locales.js"></script>
-    <script src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/v4.0.0/src/js/bootstrap-datetimepicker.js"></script>
 
 <script type="text/javascript">
-$(function () {
-  $('.date').datetimepicker({
-    locale: 'ja',
-    format : 'YYYY-MM-DD HH:mm:ss'
-  });
-});
+$(function(){
+    $('#limit1').datetimepicker();
+    });
 </script>
 
   </body>
