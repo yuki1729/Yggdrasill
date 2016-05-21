@@ -111,10 +111,10 @@
           <div class="menu">プロジェクト</div>
         </div>
         <div class="col-sm-10" style="background:white;">
-          <form id="aForm">
+          <form id="aForm" action="/"  method="post">
             <div class="form-group">
               <label class="control-label" for="task">task</label>
-              <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task">
+              <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
             </div>
             <ul class="form-group">
               <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
