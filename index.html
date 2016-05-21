@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" ng-app>
+<html lang="ja" ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
   </head>
 
-  <body>
+  <body ng-controller="MyController">
       <div id="header" class="container">
           <nav class="navbar navbar-default navbar-fixed-top">
               <div class="navbar-header">
@@ -114,14 +114,14 @@
           <form id="aForm">
             <div class="form-group">
               <label class="control-label" for="task">task</label>
-              <input type="text" id="task" class="form-control" placeholder="タスク">
+              <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task">
             </div>
             <ul class="form-group">
-              <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時"></li>
-              <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時"></li>
+              <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
+              <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
             </ul>
             <div class="form-group">
-              <input type="text" id="incharge" class="form-control" placeholder="割当先">
+              <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
             </div>
             <div class="form-group">
               <input type="submit" value="登録" class="btn btn-primary">
@@ -130,11 +130,11 @@
 
 
             <div class="row">
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">area1</div>
+              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">タスク:{{task}}</div>
   <!--            <p>{{myLimit}}</p> -->
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">area2</div>
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">area3</div>
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">area4</div>
+              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">開始可能日時:{{start}}</div>
+              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">延期不能日時:{{end}}</div>
+              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">割当先:{{incharge}}</div>
             </div>
         </div>
       </div>
@@ -145,6 +145,7 @@
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <script src="js/jquery.datetimepicker.full.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/controller.js"</script>
     <!-- <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
     <script src="js/date.js"></script>
     <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
