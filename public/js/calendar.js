@@ -1,5 +1,10 @@
 $(function() {
-	$('#limit1').datetimepicker({
+	$('#limit0').datetimepicker({
+	  // format: 'Y-m-d H:i',
+	  // inline: true,
+	  // lang: 'ja'
+	});
+    $('#limit1').datetimepicker({
 	  // format: 'Y-m-d H:i',
 	  // inline: true,
 	  // lang: 'ja'
