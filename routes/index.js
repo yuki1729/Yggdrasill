@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
   var title = req.body.title;
   var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
   console.log("post")
-  var query = 'INSERT INTO boards (title, created_at) VALUES ("' + title + '", ' + '"' + createdAt + '")';
+  var query = 'INSERT INTO something (subject, created_by_user_id, primary_limit) VALUES ("'+ title +'", 3, "1000-01-01 00:00:00")';
   connection.query(query, function(err, rows) {
     res.redirect('/');
   });
