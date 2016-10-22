@@ -20,3 +20,4 @@ router.post('/', function(req, res, next) {
 });
 
 module.exports = router;
+// sync動作確認用
