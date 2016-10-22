@@ -3,21 +3,32 @@ var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ 
 
-/* GET home page. */
+/* GET home page. test */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'ExpressEEE' });
   console.log("title")
 });
 
 router.post('/', function(req, res, next) {
-  var title = req.body.title;
+  var subject = '"' + req.body.title + '", ';
   var createdAt = moment().format('YYYY-MM-DD HH:mm:ss');
-  console.log("post")
-  var query = 'INSERT INTO something (subject, created_by_user_id, primary_limit) VALUES ("'+ title +'", 3, "1000-01-01 00:00:00")';
+  var m = moment(req.body.primary_limit,"YYYY/MM/DD HH:mm")
+  var due_date =  '"' + m.format('YYYY-MM-DD HH:mm:ss') + '" ';
+  console.log("-------------------post-------------------")
+  console.log(req.body)
+  // var query = 'INSERT INTO something (subject, created_by_user_id, primary_limit) VALUES ("' + title + "', 00000000001, cast('2009-08-03' as date))";
+  var query =
+    'INSERT INTO something (subject, due_date, created_by_user_id, created_on, primary_limit) VALUES ('
+    + subject
+    + due_date + ','
+    + '3, '
+    + 'NOW() ,'
+    + due_date
+    + ')';
+
   connection.query(query, function(err, rows) {
     res.redirect('/');
   });
 });
 
 module.exports = router;
-// sync動作確認用

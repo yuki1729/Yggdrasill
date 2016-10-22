@@ -5,8 +5,7 @@ var dbConfig = {
   user: 'root',
   password: '',
   database: 'mydb',
-  debug: true
-
+  debug: ['ComQueryPacket', 'ErrorPacket']
 };
 
 var connection = mysql.createConnection(dbConfig);

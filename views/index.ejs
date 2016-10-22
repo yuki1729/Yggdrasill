@@ -38,7 +38,7 @@
               </ul>
               <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
                   <li>
-                      <a data-toggle="modal" href="#myModal1">Add Something</a>
+                      <a data-toggle="modal" href="#myModal1">Add Task</a>
                       <div class="modal fade" id="myModal1">
                           <div class="modal-dialog">
                               <div class="modal-content">
@@ -57,35 +57,30 @@
                                         <div class="tab-pane" id="Action">
                                             <br>
                                              <form id="aForm" action="/"  method="post">
-                                                <div class="form-group">
+                                                <ul class="form-group">
                                                   <label class="control-label" for="task">アクションの内容</label>
-                                                  <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
-                                                </div>
-                                                <div class="form-group">
-                                                  <input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target">
-                                                </div>
-                                                 
+                                                  <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required></li>
+                                                  <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li>
+
                                                 <div class="row">
-                                                <div class="col-sm-4">
+                                                <!-- <div class="col-sm-4">
                                                 <div class="form-group">
                                                   <label class="control-label" for="limit0">期限</label>
                                                   <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                </div>    
                                                 </div>
+                                                </div> -->
                                                 <div class="col-sm-8">
                                                 <ul class="form-group">
-                                                <label class="control-label" for="limit1">期間</label>
-                                                  <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
-                                                  <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
+                                                <label class="control-label" for="limit1">期限</label>
+                                                  <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name = "start_date"></li>
+                                                  <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name = "primary_limit"></li>
                                                 </ul>
                                                 </div>
                                                 </div>
-                                                 
                                                 <div class="form-group">
                                                 <label class="control-label" for="incharge">担当者</label>
-                                                  <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
+                                                  <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name = "assigned_to_user">
                                                 </div>
-                                                
                                                 <center>
                                                 <div class="form-group">
                                                   <input type="submit" value="この内容で追加する" class="btn btn-primary">
@@ -100,13 +95,12 @@
                                                   <label class="control-label" for="task">セッションのゴール</label>
                                                   <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
                                                 </div>
-                                                 
                                                 <div class="row">
                                                 <div class="col-sm-4">
                                                 <div class="form-group">
                                                   <label class="control-label" for="limit0">期限</label>
                                                   <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                </div>    
+                                                </div>
                                                 </div>
                                                 <div class="col-sm-8">
                                                 <ul class="form-group">
@@ -116,12 +110,12 @@
                                                 </ul>
                                                 </div>
                                                 </div>
-                                                 
+
                                                 <div class="form-group">
                                                 <label class="control-label" for="incharge">責任者</label>
                                                   <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
                                                 </div>
-                                                
+
                                                 <center>
                                                 <div class="form-group">
                                                   <input type="submit" value="この内容で追加する" class="btn btn-primary">
@@ -136,13 +130,13 @@
                                                   <label class="control-label" for="task">トランザクションのビジョン</label>
                                                   <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
                                                 </div>
-                                                 
+
                                                 <div class="row">
                                                 <div class="col-sm-4">
                                                 <div class="form-group">
                                                   <label class="control-label" for="limit0">期限</label>
                                                   <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                </div>    
+                                                </div>
                                                 </div>
                                                 <div class="col-sm-8">
                                                 <ul class="form-group">
@@ -152,12 +146,12 @@
                                                 </ul>
                                                 </div>
                                                 </div>
-                                                 
+
                                                 <div class="form-group">
                                                 <label class="control-label" for="incharge">統括責任者</label>
                                                   <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
                                                 </div>
-                                                
+
                                                 <center>
                                                 <div class="form-group">
                                                   <input type="submit" value="この内容で追加する" class="btn btn-primary">
@@ -174,7 +168,25 @@
                           </div>
                       </div>
                   </li>
-                  
+                  <li>
+                      <a data-toggle="modal" href="#myModal2">Add Project</a>
+                      <div class="modal fade" id="myModal2">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                              <div class="modal-header">
+                                  <button class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">My Modal</h4>
+                              </div>
+                              <div class="modal-body">
+                                  aaaaa
+                              </div>
+                              <div class="modal-footer">
+                                  <button class="btn btn-primary">OK!</button>
+                              </div>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
                   <li><a href="" class="dropdown-toggle" data-toggle="dropdown">Notification <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                               <li><a href="">Action</a></li>
