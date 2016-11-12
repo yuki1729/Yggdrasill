@@ -4,7 +4,8 @@ var dbConfig = {
   host: '127.0.0.1',
   user: 'root',
   password: '',
-  database: 'mydb'
+  database: 'mydb',
+  debug: true
 };
 
 var connection = mysql.createConnection(dbConfig);
