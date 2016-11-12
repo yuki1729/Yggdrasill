@@ -1,4 +1,4 @@
-// ono
+// がおー(「・ω・)「
 var mysql = require('mysql');
 
 var dbConfig = {
