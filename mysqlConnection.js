@@ -1,4 +1,4 @@
-// はなうさぎ
+// はなうさぎ2
 var mysql = require('mysql');
 
 var dbConfig = {
