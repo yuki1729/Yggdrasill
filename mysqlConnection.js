@@ -1,4 +1,4 @@
-// がおー(「・ω・)「
+// がおー(「・ω・)「がおー
 var mysql = require('mysql');
 
 var dbConfig = {
