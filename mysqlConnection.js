@@ -1,4 +1,3 @@
-// 以前のコミットまでブランチを巻き戻し
 var mysql = require('mysql');
 
 var dbConfig = {
