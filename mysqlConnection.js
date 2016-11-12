@@ -1,4 +1,4 @@
-// ono
+// はなうさぎ
 var mysql = require('mysql');
 
 var dbConfig = {
