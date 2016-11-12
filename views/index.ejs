@@ -537,6 +537,20 @@ $('#limit2').datetimepicker({ dateFormat: 'yy-mm-dd' });
         </div>
         <div class="col-sm-10" style="background:white;">
           <h2>タスク一覧</h2>
+
+        </form>
+<ul class="main-list">
+   <% boardList.forEach(function(boardItem) { %>
+       <li class="main-list__item">
+           <div class="board">
+               <p class="board__title"><%= boardItem.title %></p>
+               <p class="board__date"><%= boardItem.created_at %></p>
+           </div>
+       </li>
+   <% }); %>
+</ul>
+</div>
+
         </div>
         <div class="col-sm-10" style="background:white;">
           <form id="aForm" action="/"  method="post">

@@ -3,11 +3,6 @@ var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ 
 
-/* GET home page. test */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'ExpressEEE' });
-  console.log("title")
-});
 
 router.post('/', function(req, res, next) {
   var subject = '"' + req.body.title + '", ';
@@ -33,6 +28,27 @@ router.post('/', function(req, res, next) {
 
   connection.query(query, function(err, rows) {
     res.redirect('/');
+  });
+});
+
+/* GET home page. test */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+  console.log("title")
+});
+
+connection.query('SELECT * FROM mydb.something;', (err,rows,fields) =>{
+  if(err)throw err;
+  console.log('The solution is:', rows);
+});
+
+router.get('/', function(req, res, next) {
+  var query = 'SELECT *';
+  connection.query(query, function(err, rows) {
+    res.render('index', {
+      title: 'はじめてのNode.js',
+      boardList: rows
+    });
   });
 });
 
