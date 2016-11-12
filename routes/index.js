@@ -26,9 +26,6 @@ router.post('/', function(req, res, next) {
     + finish_date
     + ')';
 
-  connection.query(query, function(err, rows) {
-    res.redirect('/');
-  });
 });
 
 /* GET home page. test */
@@ -40,16 +37,6 @@ router.get('/', function(req, res, next) {
 connection.query('SELECT * FROM mydb.something;', (err,rows,fields) =>{
   if(err)throw err;
   console.log('The solution is:', rows);
-});
-
-router.get('/', function(req, res, next) {
-  var query = 'SELECT *';
-  connection.query(query, function(err, rows) {
-    res.render('index', {
-      title: 'はじめてのNode.js',
-      boardList: rows
-    });
-  });
 });
 
 module.exports = router;
