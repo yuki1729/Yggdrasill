@@ -319,6 +319,17 @@
                  </div>
              </div>
 
+             <div class="form-group">
+             <label class="control-label" for="incharge">担当者</label>
+               <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name = "assigned_to_user">
+               <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） --->
+             </div>
+             <div class="form-group">
+             <label class="control-label" for="memo">メモ</label><br>
+               <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea" name = "memo"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) --->
+             </div>
+
+
             <div class="form-group">
               <input type="submit" value="登録" class="btn btn-primary">
             </div>
