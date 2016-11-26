@@ -270,17 +270,55 @@
         </div>
         <div class="col-sm-10" style="background:white;">
           <form id="aForm" action="/"  method="post">
-            <div class="form-group">
-              <label class="control-label" for="task">task</label>
-              <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
-            </div>
-            <ul class="form-group">
-              <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
-              <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
-            </ul>
-            <div class="form-group">
-              <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
-            </div>
+             <ul class="form-group">
+               <label class="control-label" for="task">アクションの内容</label>
+               <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required></li>
+               <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
+             <div class="form-group">
+             <label class="control-label" for="limit1">期限</label>
+               <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name = "start_date"></li>
+               <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name = "finish_date"></li><br>
+             </div>
+             <div class="form-group">
+             <label class="control-label" for="limit1">繰り返し設定</label>
+                 <div class="col-sm-offset-2 col-sm-10">
+                     <div class="checkbox">
+                         <label>
+                             <input type="checkbox" value="checkboxA"> 毎月
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkboxB"> 毎週
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkboxC"> 毎日
+                         </label>
+                     </div>
+                     <div class="checkbox">
+                         <label>
+                             <input type="checkbox" value="checkbox1"> 月曜
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkbox2"> 火曜
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkbox3"> 水曜
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkbox4"> 木曜
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkbox5"> 金曜
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkbox6"> 土曜
+                         </label>
+                         <label>
+                             <input type="checkbox" value="checkbox7"> 日曜
+                         </label>
+                     </div>
+                 </div>
+             </div>
+
             <div class="form-group">
               <input type="submit" value="登録" class="btn btn-primary">
             </div>
