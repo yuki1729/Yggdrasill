@@ -350,8 +350,8 @@
                 </thead>
                 <tbody>
                 <% taskList.forEach(function(taskItem) { %>
-                  <tr>
-                    <th scope="row">1</th>
+                  <tr class="checkdone">
+                    <th scope="row"><div class="checkbox"><label><input type="checkbox" value=""></label></div></th>
                     <td><%= taskItem.subject %></td>
                     <td><%= taskItem.start_date %></td>
                     <td><%= taskItem.finish_date %></td>
@@ -387,6 +387,13 @@ $('#limit1').datetimepicker({ dateFormat: 'yy-mm-dd' });
 $('#limit2').datetimepicker({ dateFormat: 'yy-mm-dd' });
 
     });
+
+$(window).on("load", function() {
+  $("div.checkbox").on("click", function() {
+    $(this).parents(".checkdone").hide();
+  });
+});
+
 </script>
   </body>
 </html>
