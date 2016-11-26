@@ -21,16 +21,18 @@ router.post('/', function(req, res, next) {
   // var due_date =  '"' + m.format('YYYY-MM-DD HH:mm:ss') + '" ';
   var start_date =  '"' + m1.format('YYYY-MM-DD HH:mm:ss') + '" ';
   var finish_date =  '"' + m2.format('YYYY-MM-DD HH:mm:ss') + '" ';
+  var memo = '"' + req.body.memo + '"';
   console.log("-------------------post-------------------")
   console.log(req.body)
   var query =
-    'INSERT INTO something (subject, start_date, finish_date, created_by_user_id, created_on, primary_limit) VALUES ('
+    'INSERT INTO something (subject, start_date, finish_date, created_by_user_id, created_on, primary_limit,memo) VALUES ('
     + subject
     + start_date + ','
     + finish_date + ','
     + '3, '
     + 'NOW(), '
-    + finish_date
+    + finish_date + ','
+    + memo
     + ')';
 
   connection.query(query, function(err, rows) {
