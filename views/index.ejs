@@ -67,14 +67,14 @@
                                                   <label class="control-label" for="limit0">期限</label>
                                                   <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
                                                 </div> -->
-                                                <!-- <div class="col-sm-8"> --->
+                                                <!-- <div class="col-sm-8"> -->
                                                 <div class="form-group">
                                                 <label class="control-label" for="limit1">期限</label>
                                                   <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name = "start_date"></li>
                                                   <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name = "finish_date"></li><br>
                                                 </div>
                                                 <!-- </div>
-                                                </div> --->
+                                                </div> -->
                                                 <div class="form-group">
                                                 <label class="control-label" for="limit1">繰り返し設定</label>
                                                     <div class="col-sm-offset-2 col-sm-10">
@@ -117,11 +117,11 @@
                                                 <div class="form-group">
                                                 <label class="control-label" for="incharge">担当者</label>
                                                   <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name = "assigned_to_user">
-                                                  <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） --->
+                                                  <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
                                                 </div>
                                                 <div class="form-group">
                                                 <label class="control-label" for="incharge">メモ</label><br>
-                                                  <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) --->
+                                                  <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) -->
                                                 </div>
                                                 <center>
                                                 <div class="form-group">
@@ -287,25 +287,32 @@
           </form>
 
           <div>
-                        <h4>登録したタスク一覧</h4>
-                        <ul>
-                            <% taskList.forEach(function(taskItem) { %>
-                                <li>
-                                    <div class="board">
-                                        <p class="task_subject"><%= taskItem.subject %></p>
-                                        <p class="task_date"><%= taskItem.created_on %></p>
-                                    </div>
-                                </li>
-                            <% }); %>
-                        </ul>
-                    </div>
-            <div class="row">
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">タスク:{{task}}</div>
-  <!--            <p>{{myLimit}}</p> -->
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">開始可能日時:{{start}}</div>
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">延期不能日時:{{end}}</div>
-              <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">割当先:{{incharge}}</div>
-            </div>
+           <h4>登録したタスク一覧</h4>
+            <table class="table">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>#</th>
+                    <th>タスク</th>
+                    <th>開始可能日時</th>
+                    <th>延期不能日時</th>
+                    <th>担当</th>
+                    <th>メモ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% taskList.forEach(function(taskItem) { %>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td><%= taskItem.subject %></td>
+                    <td><%= taskItem.start_date %></td>
+                    <td><%= taskItem.finish_date %></td>
+                    <td>担当者</td>
+                    <td><%= taskItem.memo %></td>
+                  </tr>
+                <% }); %>
+                </tbody>
+              </table>
+          </div>
         </div>
       </div>
     </div>
