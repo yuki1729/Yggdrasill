@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
   // var due_date =  '"' + m.format('YYYY-MM-DD HH:mm:ss') + '" ';
   var start_date =  '"' + m1.format('YYYY-MM-DD HH:mm:ss') + '" ';
   var finish_date =  '"' + m2.format('YYYY-MM-DD HH:mm:ss') + '" ';
+  var memo = '"' + req.body.memo + '"';
   console.log("-------------------post-------------------")
   console.log(req.body)
   var query =
@@ -30,8 +31,8 @@ router.post('/', function(req, res, next) {
     + finish_date + ','
     + '3, '
     + 'NOW(), '
-    + finish_date
-    + InputTextarea
+    + finish_date + ','
+    + memo
     + ')';
 
   connection.query(query, function(err, rows) {
