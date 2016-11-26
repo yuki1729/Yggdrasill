@@ -1,8 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
-var connection = require('../mysqlConnection'); // è¿½åŠ 
+var connection = require('../mysqlConnection'); // è¿½åŠ
 
+router.get('/', function(req, res, next) {
+  var query = 'SELECT *, DATE_FORMAT(created_on, \'%Y年%m月%d日 %k時%i分%s秒\') AS created_on FROM something';
+  connection.query(query, function(err, rows) {
+    res.render('index', {
+      taskList: rows
+    });
+  });
+});
 
 router.post('/', function(req, res, next) {
   var subject = '"' + req.body.title + '", ';
@@ -15,7 +23,6 @@ router.post('/', function(req, res, next) {
   var finish_date =  '"' + m2.format('YYYY-MM-DD HH:mm:ss') + '" ';
   console.log("-------------------post-------------------")
   console.log(req.body)
-  // var query = 'INSERT INTO something (subject, created_by_user_id, primary_limit) VALUES ("' + title + "', 00000000001, cast('2009-08-03' as date))";
   var query =
     'INSERT INTO something (subject, start_date, finish_date, created_by_user_id, created_on, primary_limit) VALUES ('
     + subject
@@ -26,17 +33,9 @@ router.post('/', function(req, res, next) {
     + finish_date
     + ')';
 
-});
-
-/* GET home page. test */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-  console.log("title")
-});
-
-connection.query('SELECT * FROM mydb.something;', (err,rows,fields) =>{
-  if(err)throw err;
-  console.log('The solution is:', rows);
+  connection.query(query, function(err, rows) {
+    res.redirect('/');
+  });
 });
 
 module.exports = router;
