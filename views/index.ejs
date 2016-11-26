@@ -557,7 +557,19 @@ $('#limit2').datetimepicker({ dateFormat: 'yy-mm-dd' });
             </div>
           </form>
 
-
+          <div>
+                        <h4>登録したタスク一覧</h4>
+                        <ul>
+                            <% taskList.forEach(function(taskItem) { %>
+                                <li>
+                                    <div class="board">
+                                        <p class="task_subject"><%= taskItem.subject %></p>
+                                        <p class="task_date"><%= taskItem.created_on %></p>
+                                    </div>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </div>
             <div class="row">
               <div class="col-sm-12 col-xs-12 col-md-12" style="background:khaki;">タスク:{{task}}</div>
   <!--            <p>{{myLimit}}</p> -->
