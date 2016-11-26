@@ -1,10 +1,10 @@
 var mysql = require('mysql');
 
 var dbConfig = {
-  host: 'abc.cdzqam9fqkpc.us-west-2.rds.amazonaws.com',
-  user: 'abc',
-  password: 'footstamp',
-  database: 'abc',
+  host: 'mydb.cdzqam9fqkpc.us-west-2.rds.amazonaws.com',
+  user: 'root',
+  password: 'password08',
+  database: 'mydb',
   debug: true
 };
 
