@@ -259,18 +259,19 @@
       </div>
     <div class="container" style="padding-top:80px;">
       <div class="row">
-        <div class="col-sm-2 hidden-xs" style="background:khaki;">
-          <div class="menu">カレンダー</div>
-          <div class="menu">グループ</div>
-          <div class="menu">プロジェクト</div>
+        <div class="col-sm-2 hidden-xs">
+          <ul class="nav nav-pills nav-stacked">
+            <li><a class="text-success" href="#">カレンダー</a></li>
+            <li><a class="text-success" href="#">グループ</a></li>
+            <li><a class="text-success" href="#">プロジェクト</a></li>
+          </ul>
         </div>
-        <div class="col-sm-10" style="background:white;">
-          <h2>タスク一覧</h2>
 
-        </div>
-        <div class="col-sm-10" style="background:white;">
+        <div class="col-sm-10">
+        <div>
+          <h4>タスク登録</h4>
           <form id="aForm" action="/"  method="post">
-             <ul class="form-group">
+             <div class="form-group">
                <label class="control-label" for="task">アクションの内容</label>
                <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required></li>
                <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
@@ -322,11 +323,12 @@
              <div class="form-group">
              <label class="control-label" for="incharge">担当者</label>
                <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name = "assigned_to_user">
-               <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） --->
+               <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
              </div>
+
              <div class="form-group">
              <label class="control-label" for="memo">メモ</label><br>
-               <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea" name = "memo"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) --->
+               <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea" name = "memo"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) -->
              </div>
 
 
@@ -334,9 +336,10 @@
               <input type="submit" value="登録" class="btn btn-primary">
             </div>
           </form>
+          </div>
 
-          <div>
-           <h4>登録したタスク一覧</h4>
+          <div><br>
+           <h4>タスク一覧</h4>
             <table class="table">
                 <thead class="thead-inverse">
                   <tr>
@@ -362,10 +365,11 @@
                 </tbody>
               </table>
           </div>
+
         </div>
       </div>
     </div>
-    <div id="footer" class="container" style="background:palegreen;">footer</div>
+    <div id="footer" class="container"><center class="text-success">© 2016 Yggdrasill</center></div>
 
     <script src="js/jquery.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
@@ -378,6 +382,13 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script src="js/calendar.js"></script>
     <script src="js/moment-with-locales.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        $(document).ready(function() {
+            $('.navbar .container .btn.btn-navbar').sidr({
+                source: '.navbar .container .nav-collapse.collapse'
+            });
+        });
+    </script>
 
 
 <script type="text/javascript">
