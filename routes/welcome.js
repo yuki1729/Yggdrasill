@@ -11,8 +11,8 @@ router.post('/', function(req, res, next) {
   console.log(req.body)
   var query =
     'INSERT INTO something (user_name, password, mail) VALUES ('
-    + username
-    + password
+    + register_username
+    + register_password
     + '"test@mail.com", '
     + ')';
 
