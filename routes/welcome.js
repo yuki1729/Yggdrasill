@@ -10,14 +10,14 @@ router.post('/', function(req, res, next) {
   console.log("-------------------post-------------------")
   console.log(req.body)
   var query =
-    'INSERT INTO something (user_name, password, mail) VALUES ('
+    'INSERT INTO user (user_name, password, mail) VALUES ('
     + register_username
     + register_password
-    + '"testtest@mail.com", '
+    + '"testtest@mail.com"'
     + ')';
 
   connection.query(query, function(err, rows) {
-    res.redirect('/');
+    res.redirect('/welcome');
   });
 });
 
