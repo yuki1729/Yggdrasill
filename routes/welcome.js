@@ -4,10 +4,21 @@ var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ
 
 router.post('/', function(req, res, next) {
-  var register_username = req.body.register_username;
-  var register_password = req.body.register_password;
-  console.log("-------------------post1111111111111111")
+  var register_username = '"' + req.body.username + '", ';
+  var register_password = '"' + req.body.password + '", ';
+  var register_mail = '"' + req.body.mail + '", ';
+  console.log("-------------------post-------------------")
   console.log(req.body)
+  var query =
+    'INSERT INTO something (user_name, password, mail) VALUES ('
+    + username
+    + password
+    + '"test@mail.com", '
+    + ')';
+
+  connection.query(query, function(err, rows) {
+    res.redirect('/');
+  });
 });
 
 /* GET home page. */
