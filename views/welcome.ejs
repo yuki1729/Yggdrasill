@@ -1,36 +1,62 @@
-<div id = "auth_form" class = "clear">
-  <form id="login" action = "/welcome" method = "post" class = "box_effect">
-      <h2>Login</h2>
-        <div class="inputs">
-          <p><label for="login_username">username</label></p>
-          <p><input id="login_username" type="text" name="username" size="30" placeholder="username"</p>
+<!DOCTYPE html>
+<html lang="ja" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Yggdrasill</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  </head>
+  <body>
 
-          <p><label for="login_password">password</label></p>
-          <p><input id="login_password" type="password" name="password" size="30" placeholder="password"</p>
+  <form id="login" action = "/welcome" method = "post">
+  <ul class="form-group">
+  <label class="control-label" for="task">Login</label><br>
+          <label for="login_username" class="control-label">username</label>
+          <li><input id="login_username" type="text" name="username" size="30" placeholder="username" class="form-control" required></li>
 
-          <p><label for="login_rememberme">remember me</label></p>
-          <p><input id="login_rememberme" type="checkbox" name="rememberme"</p>
+          <label for="login_password" class="control-label">password</label>
+          <li><input id="login_password" type="password" name="password" size="30" placeholder="password" class="form-control" required></li>
 
-          <p><input type="submit" class="newpost" value="login"></p>
-        </div>
+          <label for="login_rememberme" class="control-label">remember me</label>
+          <li><input id="login_rememberme" type="checkbox" name="rememberme" class="form-control"></li>
+
+          <input type="submit" value="login" class="btn btn-primary">
+          </ul>
+  </form>
+
+  <form id = "register" action="/welcome" method="post">
+  <ul class="form-group">
+  <label class="control-label" for="task">Create Account</label><br>
+          <label for="register_username" class="control-label">username</label>
+          <li><input id="register_username" type="text" name="username" size="30" placeholder="username" class="form-control"></li>
+
+          <label for="register_password" class="control-label">password</label>
+          <li><input id="register_password" type="password" name="password" size="30" placeholder="password" class="form-control"></li>
+
+          <label for="register_password2" class="control-label">password(again)</label>
+          <li><input id="register_password2" type="password" name="password2" size="30" placeholder="password(again)" class="form-control"></li>
+          <label for="register_rememberme" class="control-label">remember me</label>
+          <li><input id="login_rememberme" type="checkbox" name="rememberme" class="form-control"></li>
+
+          <input type="submit" value="create account" class="btn btn-primary">
+          </ul>
       </form>
 
-      <form id = "register" action="/welcome" method="post" class = "box_effect">
-        <h2>Create Account</h2>
-        <div class="inputs">
-          <p><label for="register_username">username</label></p>
-          <p><input id="register_username" type="text" name="username" size="30" placeholder="username"</p>
-
-          <p><label for="register_password">password</label></p>
-          <p><input id="register_password" type="password" name="password" size="30" placeholder="password"</p>
-
-          <p><label for="register_password2">password(again)</label></p>
-          <p><input id="register_password2" type="password" name="password2" size="30" placeholder="password(again)"</p>
-
-          <p><label for="register_rememberme">remember me</label></p>
-          <p><input id="login_rememberme" type="checkbox" name="rememberme"</p>
-
-          <p><input type="submit" class="newpost" value="create account"></p>
-        </div>
-      </form>
-</div>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/controller.js"></script>
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        $(document).ready(function() {
+            $('.navbar .container .btn.btn-navbar').sidr({
+                source: '.navbar .container .nav-collapse.collapse'
+            });
+        });
+    </script>
+</body>
+</html>
