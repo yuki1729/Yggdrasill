@@ -6,18 +6,18 @@ var connection = require('../mysqlConnection'); // è¿½åŠ
 router.post('/', function(req, res, next) {
   var register_username = '"' + req.body.username + '", ';
   var register_password = '"' + req.body.password + '", ';
-  var register_mail = '"' + req.body.mail + '", ';
+  // var register_mail = '"' + req.body.mail + '", ';
   console.log("-------------------post-------------------")
   console.log(req.body)
   var query =
-    'INSERT INTO something (user_name, password, mail) VALUES ('
+    'INSERT INTO user (user_name, password, mail) VALUES ('
     + register_username
     + register_password
-    + '"test@mail.com", '
+    + '"testtest@mail.com"'
     + ')';
 
   connection.query(query, function(err, rows) {
-    res.redirect('/');
+    res.redirect('/welcome');
   });
 });
 
