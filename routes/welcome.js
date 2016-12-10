@@ -6,7 +6,7 @@ var connection = require('../mysqlConnection'); // è¿½åŠ
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('welcome',
-  { title: 'Express',
+  { title: 'welcome',
     task:'task'
   }
   //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
