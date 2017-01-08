@@ -59,6 +59,9 @@ router.post('/', function(req, res, next) {
     }
   });
 
+  req.session.user_id = register_username;
+  console.log("session user id: " + req.session.user_id);
+
 /*
   connection.query(query, function(err, rows) {
     res.redirect('/login');
