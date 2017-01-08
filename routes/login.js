@@ -63,16 +63,11 @@ router.post('/', function(req, res, next) {
     }
   });
 
-/*
-  connection.query(query, function(err, rows) {
-<<<<<<< HEAD
-    res.redirect('/');
-=======
-    res.redirect('/login');
->>>>>>> 160108ログイン機能実装
-  });
-*/
 
+  connection.query(query, function(err, rows) {
+    res.redirect('/');
+    res.redirect('/login');
+  });
 });
 
 
