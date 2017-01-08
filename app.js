@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session'); // 追加
 
 var routes = require('./routes/index');
-var welcome = require('./routes/welcome');
+var register = require('./routes/register');
 var login = require('./routes/login');
 
 
@@ -31,7 +31,7 @@ app.use(session({
 }));
 
 app.use('/', routes);
-app.use('/welcome', welcome);
+app.use('/register', register);
 app.use('/login', login);
 
 
