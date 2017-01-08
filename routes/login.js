@@ -30,9 +30,11 @@ router.post('/', function(req, res, next) {
 //INSERT INTO user (user_name, password, mail, created_at) VALUES (
 //'register_username' , 'crypto_password' , 'testtest@mail.com' , NOW());
 
+  req.session.user_id = register_username;
+  console.log("session user id: " + req.session.user_id);
 
   connection.query(query, function(err, rows) {
-    res.redirect('/welcome');
+    res.redirect('/');
   });
 });
 
