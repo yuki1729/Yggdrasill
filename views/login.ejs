@@ -27,6 +27,9 @@
           </ul>
   </form>
 
+  <% if (typeof emailExists !== 'undefined') { %>
+      <p class="error"><%= emailExists %></p>
+  <% } %>
 
     <script src="js/jquery.js"></script>
     <script src="js/jquery.datetimepicker.full.min.js"></script>
