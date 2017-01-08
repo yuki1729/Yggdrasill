@@ -11,6 +11,7 @@ router.post('/', function(req, res, next) {
   var getUserIdQuery = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
   connection.query(getUserIdQuery, function(err, result) {
     var sessionUserId =  result[0].id;
+    req.session.user_id = sessionUserId;
     console.log("---sessionUserId---")
     console.dir(result);
     console.log(result[0].id);
@@ -60,8 +61,6 @@ router.post('/', function(req, res, next) {
 //'register_username' , 'crypto_password' , 'testtest@mail.com' , NOW());
 
 
-  req.session.user_id = register_username;
-  console.log("session user id: " + req.session.user_id);
 
   router.get('/', function(req, res, next) {
     res.render('login', {
