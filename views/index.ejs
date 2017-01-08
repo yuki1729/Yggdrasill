@@ -352,6 +352,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                <% if (typeof taskList != 'undefined') { %>
                 <% taskList.forEach(function(taskItem) { %>
                   <tr class="checkdone">
                     <th scope="row"><div class="checkbox"><label><input type="checkbox" value=""></label></div></th>
@@ -361,7 +362,7 @@
                     <td>担当者</td>
                     <td><%= taskItem.memo %></td>
                   </tr>
-                <% }); %>
+                <% })}; %>
                 </tbody>
               </table>
           </div>
