@@ -8,7 +8,7 @@ router.post('/', function(req, res, next) {
   var register_username = req.body.username;
   var register_password = req.body.password;
 //register_passwordの暗号化
-　var cipher = crypto.createCipher('aes-256-cbc',register_password);
+  var cipher = crypto.createCipher('aes-256-cbc',register_password);
   var crypto_password = cipher.update(register_password, 'utf8', 'hex');
   crypto_password +=  cipher.final('hex') ;
 
@@ -32,14 +32,14 @@ router.post('/', function(req, res, next) {
 
 
   connection.query(query, function(err, rows) {
-    res.redirect('/welcome');
+    res.redirect('/register');
   });
 });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('welcome',
-  { title: 'welcome',
+  res.render('register',
+  { title: 'register',
     task:'task'
   }
   //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
@@ -47,4 +47,4 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-exports.welcome = require('./welcome');
+exports.register = require('./register');
