@@ -33,7 +33,7 @@ var emailExistsQuery = 'SELECT * FROM mydb.user WHERE mail = "' + register_mail 
 var nameExistsQuery = 'SELECT * FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
 
 connection.query(nameExistsQuery, function(err, user_name) {
-  var nameExists = user_name.length === 1;
+  nameExists = user_name.length === 1;
    if (nameExists) {
      res.render('register', {
          title: '新規会員登録',
@@ -41,29 +41,27 @@ connection.query(nameExistsQuery, function(err, user_name) {
      });
    }
     else {
-       nameExists = 0;
-     }
- });
+       connection.query(emailExistsQuery, function(err, mail) {
+          emailExists = mail.length === 1;
+          console.log("--------------" + nameExists + "-------------------");
+          console.log("--------------" + emailExists + "-------------------");
 
-connection.query(emailExistsQuery, function(err, mail) {
-   var emailExists = mail.length === 1;
-   if (emailExists) {
-     res.render('register', {
-       title: '新規会員登録',
-       emailExists: '既に登録されているメールアドレスです'
-     });
-   }
-    else if(emailExists === 0 && nameExists === 0){
-        connection.query(query, function(err, rows) {
-       res.redirect('/login');
-   });
-  }
- });
-
-
-
-
+          if (emailExists) {
+            res.render('register', {
+              title: '新規会員登録',
+              emailExists: '既に登録されているメールアドレスです'
+            });
+          }
+           else {
+             connection.query(query, function(err, rows) {
+            res.redirect('/login');
+        });
+           }
 });
+};
+});
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

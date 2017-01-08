@@ -34,12 +34,13 @@
           </ul>
       </form>
 
-      <% if (typeof emailExists !== 'undefined') { %>
-          <p class="error"><%= emailExists %></p>
-      <% } %>
 
       <% if (typeof nameExists !== 'undefined') { %>
           <p class="error"><%= nameExists %></p>
+      <% } %>
+
+      <% if (typeof emailExists !== 'undefined') { %>
+          <p class="error"><%= emailExists %></p>
       <% } %>
 
 
