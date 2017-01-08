@@ -38,8 +38,8 @@ router.post('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('welcome',
-  { title: 'welcome',
+  res.render('login',
+  { title: 'login',
     task:'task'
   }
   //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
@@ -47,4 +47,4 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
-exports.welcome = require('./welcome');
+exports.login = require('./login');
