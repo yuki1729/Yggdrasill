@@ -30,10 +30,20 @@ router.post('/', function(req, res, next) {
 //INSERT INTO user (user_name, password, mail, created_at) VALUES (
 //'register_username' , 'crypto_password' , 'testtest@mail.com' , NOW());
 
-
-  connection.query(query, function(err, rows) {
-    res.redirect('/register');
-  });
+var emailExistsQuery = 'SELECT * FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
+connection.query(emailExistsQuery, function(err, email) {
+   var emailExists = email.length === 1;
+   if (emailExists) {
+     res.render('register', {
+       title: '新規会員登録',
+       emailExists: '既に登録されているメールアドレスです'
+     });
+   } else {
+     connection.query(registerQuery, function(err, rows) {
+       res.redirect('/login');
+     });
+   }
+ });
 });
 
 /* GET home page. */

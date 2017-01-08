@@ -22,6 +22,7 @@ router.post('/', function(req, res, next) {
   console.log("-------------------post-------------------")
   console.log(req.body)
 
+/*
   var query =
     'INSERT INTO user (user_name, password, mail, created_at) VALUES ('
     + '"' + register_username + '" , '
@@ -29,7 +30,7 @@ router.post('/', function(req, res, next) {
     + '"' + register_mail + '" , '
     + 'NOW() '
     + ')';
-
+*/
 
 //MySQLで通ったSQL文
 //SELECT * FROM mydb.user;
@@ -41,25 +42,25 @@ router.post('/', function(req, res, next) {
   console.log("session user id: " + req.session.user_id);
 
   router.get('/', function(req, res, next) {
+    if(req.session.user_id){
+      res.redirect('/');
+    }else {
     res.render('login', {
       title: 'ログイン'
     });
-  });
+  }
+});
 
 
   connection.query(emailExistsQuery, function(err, mail) {
     var emailExists = mail.length === 1;
     if (emailExists) {
       res.redirect('/');
-
     } else {
-//      connection.query(query, function(err, rows) {
-//      });
     res.render('login', {
       title: 'ログイン',
-      emailExists: '既に登録されているメールアドレスです'
+      emailExists: '登録されていないメールアドレスです。'
     });
-
     }
   });
 
