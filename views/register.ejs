@@ -38,6 +38,12 @@
           <p class="error"><%= emailExists %></p>
       <% } %>
 
+      <% if (typeof nameExists !== 'undefined') { %>
+          <p class="error"><%= nameExists %></p>
+      <% } %>
+
+
+
     <script src="js/jquery.js"></script>
     <script src="js/jquery.datetimepicker.full.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
