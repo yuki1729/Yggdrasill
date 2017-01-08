@@ -7,6 +7,8 @@ var crypto = require('crypto');
 router.post('/', function(req, res, next) {
   var register_username = req.body.username;
   var register_password = req.body.password;
+  var emailExistsQuery = 'SELECT * FROM mydb.user WHERE mail = "' + mail + '" LIMIT 1';
+
 //register_passwordの暗号化
 　var cipher = crypto.createCipher('aes-256-cbc',register_password);
   var crypto_password = cipher.update(register_password, 'utf8', 'hex');
@@ -30,6 +32,27 @@ router.post('/', function(req, res, next) {
 //INSERT INTO user (user_name, password, mail, created_at) VALUES (
 //'register_username' , 'crypto_password' , 'testtest@mail.com' , NOW());
 
+/*  router.get('/', function(req, res, next) {
+    res.render('login', {
+      title: 'ログイン'
+    });
+  });
+
+
+  connection.query(emailExistsQuery, function(err, email) {
+    var emailExists = email.length === 1;
+    if (emailExists) {
+      res.render('login', {
+        title: 'ログイン',
+        emailExists: '既に登録されているメールアドレスです'
+      });
+    } else {
+      connection.query(query, function(err, rows) {
+        res.redirect('/login');
+      });
+    }
+  });
+*/
 
   connection.query(query, function(err, rows) {
     res.redirect('/welcome');
@@ -44,6 +67,7 @@ router.get('/', function(req, res, next) {
   }
   //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
 );
+});
 });
 
 module.exports = router;
