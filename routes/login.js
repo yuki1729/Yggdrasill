@@ -8,7 +8,8 @@ router.post('/', function(req, res, next) {
   var register_username = req.body.username;
   var register_mail = req.body.mail;
   var register_password = req.body.password;
-  var emailExistsQuery = 'SELECT * FROM mydb.user WHERE mail = "' + register_mail + '" LIMIT 1';
+  var emailExistsQuery = 'SELECT * FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
+
 
 //register_passwordの暗号化
 　var cipher = crypto.createCipher('aes-256-cbc',register_password);
@@ -20,6 +21,7 @@ router.post('/', function(req, res, next) {
 
   console.log("-------------------post-------------------")
   console.log(req.body)
+
   var query =
     'INSERT INTO user (user_name, password, mail, created_at) VALUES ('
     + '"' + register_username + '" , '
@@ -27,6 +29,7 @@ router.post('/', function(req, res, next) {
     + '"' + register_mail + '" , '
     + 'NOW() '
     + ')';
+
 
 //MySQLで通ったSQL文
 //SELECT * FROM mydb.user;
@@ -43,22 +46,27 @@ router.post('/', function(req, res, next) {
   connection.query(emailExistsQuery, function(err, mail) {
     var emailExists = mail.length === 1;
     if (emailExists) {
-      res.render('login', {
-        title: 'ログイン',
-        emailExists: '既に登録されているメールアドレスです'
-      });
+      res.redirect('/');
+
     } else {
-      connection.query(query, function(err, rows) {
-        res.redirect('/login');
-      });
+//      connection.query(query, function(err, rows) {
+//      });
+    res.render('login', {
+      title: 'ログイン',
+      emailExists: '既に登録されているメールアドレスです'
+    });
+
     }
   });
 
-
+/*
   connection.query(query, function(err, rows) {
     res.redirect('/login');
   });
+*/
+
 });
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
