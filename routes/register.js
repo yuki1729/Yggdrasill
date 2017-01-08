@@ -62,7 +62,6 @@ connection.query(nameExistsQuery, function(err, user_name) {
 });
 });
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('register',
