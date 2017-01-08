@@ -8,11 +8,14 @@ router.post('/', function(req, res, next) {
   var register_username = req.body.username;
   var register_mail = req.body.mail;
   var register_password = req.body.password;
-  var emailExistsQuery = 'SELECT * FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
+  var getUserIdQuery = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
+  var sessionUserId = connection.query(getUserIdQuery);
+  // console.log(sessionUserId);
+  var emailExistsQuery = 'SELECT * FROM mydb.user WHERE id = "' + sessionUserId + '" LIMIT 1';
 
 
 //register_passwordの暗号化
-　var cipher = crypto.createCipher('aes-256-cbc',register_password);
+  var cipher = crypto.createCipher('aes-256-cbc',register_password);
   var crypto_password = cipher.update(register_password, 'utf8', 'hex');
   crypto_password +=  cipher.final('hex') ;
 
@@ -57,7 +60,7 @@ router.post('/', function(req, res, next) {
 //      });
     res.render('login', {
       title: 'ログイン',
-      emailExists: '既に登録されているメールアドレスです'
+      emailExists: 'セッションユーザー ID' + sessionUserId + 'です'
     });
 
     }
