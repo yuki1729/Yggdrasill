@@ -5,7 +5,7 @@ var dbConfig = {
   user: 'root',
   password: 'password08',
   database: 'mydb',
-  debug: true
+  debug: false
 };
 
 var connection = mysql.createConnection(dbConfig);
