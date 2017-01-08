@@ -9,9 +9,29 @@ router.post('/', function(req, res, next) {
   var register_mail = req.body.mail;
   var register_password = req.body.password;
   var getUserIdQuery = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
-  var sessionUserId = connection.query(getUserIdQuery);
-  // console.log(sessionUserId);
-  var emailExistsQuery = 'SELECT * FROM mydb.user WHERE id = "' + sessionUserId + '" LIMIT 1';
+  connection.query(getUserIdQuery, function(err, result) {
+    var sessionUserId =  result[0].id;
+    console.log("---sessionUserId---")
+    console.dir(result);
+    console.log(result[0].id);
+    var emailExistsQuery = 'SELECT * FROM mydb.user WHERE id = "' + sessionUserId + '" LIMIT 1';
+    connection.query(emailExistsQuery, function(err, mail) {
+      var emailExists = mail.length === 1;
+      if (emailExists) {
+        res.redirect('/');
+
+      } else {
+  //      connection.query(query, function(err, rows) {
+  //      });
+      res.render('login', {
+        title: 'ログイン',
+        emailExists: 'セッションユーザー ID' + sessionUserId + 'です'
+      });
+
+      }
+    });
+  });
+
 
 
 //register_passwordの暗号化
@@ -50,21 +70,7 @@ router.post('/', function(req, res, next) {
   });
 
 
-  connection.query(emailExistsQuery, function(err, mail) {
-    var emailExists = mail.length === 1;
-    if (emailExists) {
-      res.redirect('/');
 
-    } else {
-//      connection.query(query, function(err, rows) {
-//      });
-    res.render('login', {
-      title: 'ログイン',
-      emailExists: 'セッションユーザー ID' + sessionUserId + 'です'
-    });
-
-    }
-  });
 
 /*
   connection.query(query, function(err, rows) {
