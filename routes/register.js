@@ -15,8 +15,7 @@ router.post('/', function(req, res, next) {
  console.log('passwordtest' + crypto_password);
 
   var register_mail = req.body.mail;
-  console.log("-------------------post-------------------")
-  console.log(req.body)
+
   var query =
     'INSERT INTO user (user_name, password, mail, created_at) VALUES ('
     + '"' + register_username + '" , '
@@ -30,10 +29,37 @@ router.post('/', function(req, res, next) {
 //INSERT INTO user (user_name, password, mail, created_at) VALUES (
 //'register_username' , 'crypto_password' , 'testtest@mail.com' , NOW());
 
+var emailExistsQuery = 'SELECT * FROM mydb.user WHERE mail = "' + register_mail + '" LIMIT 1';
+var nameExistsQuery = 'SELECT * FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
 
-  connection.query(query, function(err, rows) {
-    res.redirect('/register');
-  });
+connection.query(nameExistsQuery, function(err, user_name) {
+  nameExists = user_name.length === 1;
+   if (nameExists) {
+     res.render('register', {
+         title: '新規会員登録',
+         nameExists: '既に登録されているユーザー名です'
+     });
+   }
+    else {
+       connection.query(emailExistsQuery, function(err, mail) {
+          emailExists = mail.length === 1;
+          console.log("--------------" + nameExists + "-------------------");
+          console.log("--------------" + emailExists + "-------------------");
+
+          if (emailExists) {
+            res.render('register', {
+              title: '新規会員登録',
+              emailExists: '既に登録されているメールアドレスです'
+            });
+          }
+           else {
+             connection.query(query, function(err, rows) {
+            res.redirect('/login');
+        });
+           }
+});
+};
+});
 });
 
 /* GET home page. */
