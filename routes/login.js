@@ -53,6 +53,24 @@ connection.query(query, function(err, rows) {
   }
 });
 
+/*
+  connection.query(emailExistsQuery, function(err, mail) {
+    var emailExists = mail.length === 1;
+    if (emailExists) {
+      res.render('login', {
+        title: 'ログイン',
+        emailExists: '登録されていないメールアドレスです。'
+      });
+    } else {
+      res.redirect('/');
+    }
+  });
+*/
+/*
+  connection.query(query, function(err, rows) {
+    res.redirect('/login');
+  });
+*/
 
 });
 
