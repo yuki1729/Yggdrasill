@@ -6,7 +6,7 @@ var crypto = require('crypto');
 
 router.post('/', function(req, res, next) {
   var register_username = req.body.username;
-  var register_mail = req.body.mail;
+  var register_mail = req.body.username;
   var register_password = req.body.password;
 
 //register_passwordの暗号化
@@ -14,11 +14,13 @@ router.post('/', function(req, res, next) {
   var crypto_password = cipher.update(register_password, 'utf8', 'hex');
   crypto_password +=  cipher.final('hex') ;
 
-  var query = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" AND password = "' + crypto_password + '" LIMIT 1';
+console.log(register_mail + '*=*=*=*=*=*=*=*=*');
+
+  var query = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" OR mail = "' + register_mail +'" AND password = "' + crypto_password + '" LIMIT 1';
 
 /*MySQLで動くSQL文
 SELECT * FROM mydb.user;
-SELECT user_name FROM mydb.user WHERE user_name = 'igaki' AND password =  '7e953ce6ce197ab31f16facdc3f403f4' LIMIT 1;
+SELECT id FROM mydb.user WHERE user_name = 'igaki' OR mail = 'gymtaka@gmail.com' AND password =  '7e953ce6ce197ab31f16facdc3f403f4' LIMIT 1;
 */
 
   req.session.user_id = register_username;
