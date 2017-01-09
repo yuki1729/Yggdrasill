@@ -71,12 +71,6 @@ router.post('/', function(req, res, next) {
 
 
 
-/*
-  connection.query(query, function(err, rows) {
-    res.redirect('/login');
-  });
-*/
-
 });
 
 
