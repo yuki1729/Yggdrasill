@@ -35,6 +35,14 @@ app.use('/register', register);
 app.use('/login', login);
 
 
+var domain = require('express-domain-middleware');
+app.use(domain);
+
+// exception handlers
+app.use(function(err, req, res, next) {
+  logger.error.fatal(err);
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
