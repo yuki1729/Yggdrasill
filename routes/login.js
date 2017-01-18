@@ -9,73 +9,74 @@ router.post('/', function(req, res, next) {
   var register_mail = req.body.username;
   var register_password = req.body.password;
 
-//register_passwordの暗号化
-　var cipher = crypto.createCipher('aes-256-cbc',register_password);
-  var crypto_password = cipher.update(register_password, 'utf8', 'hex');
-  crypto_password +=  cipher.final('hex') ;
+  //register_passwordの暗号化
+    var cipher = crypto.createCipher('aes-256-cbc',register_password);
+    var crypto_password = cipher.update(register_password, 'utf8', 'hex');
+    crypto_password +=  cipher.final('hex') ;
 
-console.log(register_mail + '*=*=*=*=*=*=*=*=*');
+  console.log(register_mail + '*=*=*=*=*=*=*=*=*');
 
-  var query = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" OR mail = "' + register_mail +'" AND password = "' + crypto_password + '" LIMIT 1';
+    var query = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" OR mail = "' + register_mail +'" AND password = "' + crypto_password + '" LIMIT 1';
 
-/*MySQLで動くSQL文
-SELECT * FROM mydb.user;
-SELECT id FROM mydb.user WHERE user_name = 'igaki' OR mail = 'gymtaka@gmail.com' AND password =  '7e953ce6ce197ab31f16facdc3f403f4' LIMIT 1;
-*/
-
-  req.session.user_id = register_username;
-  console.log("session user id: " + req.session.user_id);
-
-connection.query(query, function(err, rows) {
-  var userId = rows.length? rows[0].id: false;
-  console.log(userId + '**************');
-  if (userId) {
-    req.session.user_id = userId;
-    res.redirect('/');
-  } else {
-    res.render('login', {
-      title: 'ログイン',
-      noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
-    });
-  }
- });
+  /*MySQLで動くSQL文
+  SELECT * FROM mydb.user;
+  SELECT id FROM mydb.user WHERE user_name = 'igaki' OR mail = 'gymtaka@gmail.com' AND password =  '7e953ce6ce197ab31f16facdc3f403f4' LIMIT 1;
+  */
 
 
-
-
-  router.get('/', function(req, res, next) {
-    if(req.session.user_id){
+  connection.query(query, function(err, rows) {
+    var userId = rows.length? rows[0].id: false;
+    console.log(userId + '**************');
+    if (userId) {
+      req.session.user_id = userId;
       res.redirect('/');
-    }else {
-    res.render('login', {
-      title: 'ログイン'
-    });
-  }
-});
-
-/*
-  connection.query(emailExistsQuery, function(err, mail) {
-    var emailExists = mail.length === 1;
-    if (emailExists) {
+      return;
+    } else {
       res.render('login', {
         title: 'ログイン',
-        emailExists: '登録されていないメールアドレスです。'
+        noUser: 'メールアドレスとパスワードが一致するユーザーはいません'
       });
-    } else {
-      res.redirect('/');
     }
-  });
-*/
-/*
-  connection.query(query, function(err, rows) {
-    res.redirect('/login');
-  });
-*/
 
-});
+    var getUserIdQuery = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
+    connection.query(getUserIdQuery, function(err, result) {
+      var sessionUserId =  result[0].id;
+      req.session.user_id = sessionUserId;
+      console.log("---sessionUserId---")
+      console.dir(result);
+      console.log(result[0].id);
+
+
+      var emailExistsQuery = 'SELECT * FROM mydb.user WHERE id = "' + sessionUserId + '" LIMIT 1';
+      connection.query(emailExistsQuery, function(err, mail) {
+        var emailExists = mail.length === 1;
+        if (emailExists) {
+          console.log(emailExists + 'errrrrrrrrrrrrrrrrrrrrr');
+
+          res.redirect('/');
+          return;
+        } else {
+    //      connection.query(query, function(err, rows) {
+    //      });
+        res.render('login', {
+          title: 'ログイン',
+          emailExists: 'セッションユーザー ID' + sessionUserId + 'です'
+        });
+
+        }
+      });
+
+
+  });
+
+  });
+
+   });
+
 
 
 /* GET home page. */
+
 router.get('/', function(req, res, next) {
   res.render('login',
   { title: 'login',
