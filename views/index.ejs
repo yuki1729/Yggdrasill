@@ -267,8 +267,9 @@
                     <form id="aForm" action="/" method="post">
                         <div class="form-group">
                             <label class="control-label" for="task">アクションの内容</label>
-                            <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required></li>
+                            <li><input ng-focus="focus($event)" ng-blur="blur($event)" type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required></li>
                             <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
+                            <div class="task-detail">
                             <div class="form-group">
                                 <label class="control-label" for="limit1">期限</label>
                                 <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name="start_date"></li>
@@ -331,6 +332,7 @@
                             <div class="form-group">
                                 <input type="submit" value="登録" class="btn btn-primary">
                             </div>
+                          </div>
                     </form>
                     </div>
 
