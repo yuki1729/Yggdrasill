@@ -4,8 +4,12 @@ var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ
 
 router.get('/', function(req, res, next) {
-  var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something where created_by_user_id = ' + req.session.user_id;
+  var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something';
   connection.query(query, function(err, rows) {
+    rows.sort(function(a,b){
+      if(a.done<b.done) return -1;
+      if(a.done>b.done) return 1;
+    })
     res.render('index', {
       taskList: rows
     });
