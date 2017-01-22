@@ -9,10 +9,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script type="text/javascript">
+    var taskList = <%- JSON.stringify(taskList) %>
+    </script>
     <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
 </head>
 
-<body ng-controller="MyController">
+<body ng-controller="MyController as list">
     <div id="header" class="container">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
@@ -337,45 +340,30 @@
                     </div>
 
                     <div><br>
-                        <h4>タスク一覧</h4>
-                        <table class="table">
-                            <thead class="thead-inverse">
-                                <tr>
-                                    <th>#</th>
-                                    <th>タスク</th>
-                                    <th>開始可能日時</th>
-                                    <th>延期不能日時</th>
-                                    <th>担当</th>
-                                    <th>メモ</th>
-                                    <th>状態</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% if (typeof taskList != 'undefined') { %>
-                                    <% taskList.forEach(function(taskItem) { %>
-                                        <tr class="checkdone">
-                                            <th scope="row">
-                                                <div class="checkbox"><label><input type="checkbox" value=""></label></div>
-                                            </th>
-                                            <td>
-                                                <%= taskItem.subject %>
-                                            </td>
-                                            <td>
-                                                <%= taskItem.start_date %>
-                                            </td>
-                                            <td>
-                                                <%= taskItem.finish_date %>
-                                            </td>
-                                            <td>
-                                                <%= taskItem.memo %>
-                                            </td>
-                                            <td>
-                                                <%= taskItem.done %>
-                                            </td>
-                                        </tr>
-                                        <% })}; %>
-                            </tbody>
-                        </table>
+                      <h4>タスク一覧</h4>
+                      <table class="table">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>タスク</th>
+                                <th>開始可能日時</th>
+                                <th>延期不能日時</th>
+                                <th>担当</th>
+                                <th>メモ</th>
+                                <th>状態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="todo in list.todos">
+                          <td><input type="checkbox" ng-model="todo.done" ng-true-value="1" ng-false-value="0"></td>
+                          <td class="done-{{todo.done}}">{{todo.subject}}</td>
+                          <td>{{todo.start_date}}</td>
+                          <td>{{todo.finish_date}}</td>
+                          <td>{{todo.memo}}</td>
+                          <td>{{todo.done}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                     </div>
 
                 </div>

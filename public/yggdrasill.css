@@ -24,3 +24,8 @@
 .task-detail{
   display: none;
 }
+
+.done-1 {
+  text-decoration: line-through;
+  color: grey;
+}
