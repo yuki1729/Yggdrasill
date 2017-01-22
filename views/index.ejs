@@ -347,6 +347,7 @@
                                     <th>延期不能日時</th>
                                     <th>担当</th>
                                     <th>メモ</th>
+                                    <th>状態</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -365,9 +366,11 @@
                                             <td>
                                                 <%= taskItem.finish_date %>
                                             </td>
-                                            <td>担当者</td>
                                             <td>
                                                 <%= taskItem.memo %>
+                                            </td>
+                                            <td>
+                                                <%= taskItem.done %>
                                             </td>
                                         </tr>
                                         <% })}; %>
