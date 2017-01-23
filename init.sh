@@ -1,3 +1,3 @@
 mysql.server start
-cd /Users/yuki/git/Yggdrasill/Yggdrasill
+cd $(dirname $0)
 nodemon ./bin/www
