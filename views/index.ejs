@@ -355,7 +355,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="todo in list.todos">
-                          <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange()" ng-true-value="1" ng-false-value="0"></td>
+                          <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange({{$index}})" ng-true-value="1" ng-false-value="0"></td>
                           <td class="done-{{todo.done}}">{{todo.subject}}</td>
                           <td>{{todo.start_date}}</td>
                           <td>{{todo.finish_date}}</td>
