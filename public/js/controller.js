@@ -13,4 +13,10 @@ $scope.blur = function(e) {
   }
 };
 
+$scope.onCheckBoxChange = function () {
+  console.log("onCheckBoxChange start");
+  console.log($scope.list.todos[32]);
+  // $scope.onCheckBoxChangeResult = "Check1 is " + ($scope.todo.done);
+};
+
 });
