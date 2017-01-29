@@ -45,10 +45,10 @@ router.post('/', function(req, res, next) {
   });
 });
 
-router.post('/a', function(req, res, next) {
+router.post('/update', function(req, res, next) {
   console.log("----------post----------");
   console.log(req.body.id);
-  var query = "UPDATE `something` SET `done`='1' WHERE `id`='" + req.body.id +"'";
+  var query = "UPDATE `something` SET `done`='" + req.body.done +"' WHERE `id`='" + req.body.id +"'";
   connection.query(query, function(err, rows) {
     console.log("----------task done database post----------");
   });

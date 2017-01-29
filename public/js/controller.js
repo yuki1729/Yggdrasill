@@ -22,8 +22,11 @@ $scope.onCheckBoxChange = function (a) {
   // $scope.onCheckBoxChangeResult = "Check1 is " + ($scope.todo.done);
   $http({
   method: 'POST',
-  url: '/a',
-  data: { id: $scope.list.todos[a].id }
+  url: '/update',
+  data: {
+    id: $scope.list.todos[a].id,
+    done : $scope.list.todos[a].done
+   }
   }
   )
   // 通信成功時の処理
