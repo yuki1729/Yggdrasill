@@ -30,14 +30,15 @@ router.post('/', function(req, res, next) {
   console.log("-------------------post-------------------")
   console.log(req.body)
   var query =
-    'INSERT INTO something (subject, start_date, finish_date, created_by_user_id, created_on, primary_limit,memo) VALUES ('
+    'INSERT INTO something (subject, start_date, finish_date, created_by_user_id, created_on, primary_limit,memo, done) VALUES ('
     + subject
     + start_date + ','
     + finish_date + ','
     + '3, '
     + 'NOW(), '
     + finish_date + ','
-    + memo
+    + memo + ','
+    + '0'
     + ')';
 
   connection.query(query, function(err, rows) {
