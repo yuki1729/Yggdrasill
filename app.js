@@ -4,12 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session'); // 追加
+var session = require('express-session');
 
-var routes = require('./routes/index');
+var routes = require('./routes/session/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
-
+var logout = require('./routes/logout');
 
 var app = express();
 
@@ -33,7 +33,7 @@ app.use(session({
 app.use('/', routes);
 app.use('/register', register);
 app.use('/login', login);
-
+app.use('/logout', logout);
 
 var domain = require('express-domain-middleware');
 app.use(domain);

@@ -261,6 +261,12 @@
                     <li><a class="text-success" href="#">カレンダー</a></li>
                     <li><a class="text-success" href="#">グループ</a></li>
                     <li><a class="text-success" href="#">プロジェクト</a></li>
+                    <li><a class="text-success" href="/logout">ログアウト</a></li>
+                    <li>  <% if (typeof userId == 'undefined') { %>
+                          <p class="ログインしていません"><%= noUser %></p>
+                      <% } %>
+                    </li>
+
                 </ul>
             </div>
 

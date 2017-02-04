@@ -1,7 +1,32 @@
 var express = require('express');
 var router = express.Router();
 var moment = require('moment');
-var connection = require('../mysqlConnection'); // è¿½åŠ
+var connection = require('../../mysqlConnection');
+
+module.exports = function() {
+    var router = express.Router();
+    router.get("/", function(req, res, next) {
+        res.send(req.session.user); //
+    });
+    return router;
+};
+
+module.exports = function() {
+    var router = express.Router();
+
+    router.all("/*", function(req, res, next) {
+        if (req.session.user) {
+            // ログイン済みの場合はスルー
+            next();
+        } else {
+            // 未ログインの場合はログイン画面へリダイレクト
+            res.redirect("/login");
+        }
+    });
+    return router;
+};
+
+
 
 router.get('/', function(req, res, next) {
   var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something';
