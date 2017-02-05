@@ -3,6 +3,7 @@ angular.module('myApp', [])
 var todoList=this;
 todoList.todos = taskList;
 
+// ホーム画面上部のタスク登録部分の表示を一部隠す/全て表示を切り替え
 $scope.task = '';
 $scope.focus = function(e) {
   $(".task-detail").show();
@@ -13,6 +14,7 @@ $scope.blur = function(e) {
   }
 };
 
+// Taskの完了状態を切替
 $scope.onCheckBoxChange = function (taskIndex) {
   taskIndex
   console.log("onCheckBoxChange start");
