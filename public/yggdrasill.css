@@ -25,7 +25,11 @@
   display: none;
 }
 
-.done-1 {
+.hidden {
+  display: none;
+}
+
+.show{
   text-decoration: line-through;
   color: grey;
 }

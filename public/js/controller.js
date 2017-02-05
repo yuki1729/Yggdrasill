@@ -43,6 +43,7 @@ $scope.onCheckBoxChange = function (taskIndex) {
 
 };
 
+
 var module = angular.module('myApp');
 
 module.config(function ($httpProvider) {

@@ -354,14 +354,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="todo in list.todos">
+                        <tr ng-repeat="todo in list.todos"  ng-class="done-{{todo.done}}">
                           <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange({{$index}})" ng-true-value="1" ng-false-value="0"></td>
-                          <td class="done-{{todo.done}}">{{todo.subject}}</td>
+                          <td>{{todo.subject}}</td>
                           <td>{{todo.start_date}}</td>
                           <td>{{todo.finish_date}}</td>
                           <td>{{todo.memo}}</td>
                           <td>{{todo.done}}</td>
                         </tr>
+                        <form>
+                          <label><input id="style1" name="style" type="radio"
+                            ng-click="done-1='hidden'" />
+                            非表示</label>
+                          <label><input id="style2" name="style" type="radio"
+                            ng-click="done-1='show'" />
+                            表示</label>
+                      </form>
                       </tbody>
                     </table>
                     </div>
