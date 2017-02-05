@@ -11,6 +11,7 @@ var routes = require('./routes/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
 var sessioncheck = require('./routes/sessioncheck');
+//var logout = require('./routes/logout');
 
 var app = express();
 
@@ -38,7 +39,7 @@ app.use('/register', register);
 app.use('/login', login);
 app.use('/', sessioncheck);
 app.use('/', routes);
-
+//app.use('/logout', logout);
 
 var domain = require('express-domain-middleware');
 app.use(domain);
