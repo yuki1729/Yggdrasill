@@ -28,15 +28,15 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
+//  cookie: {
+//    maxAge: 30 * 60 * 1000
+//  }
 }));
 
 app.use('/', routes);
 app.use('/register', register);
 app.use('/login', login);
 
-
-var domain = require('express-domain-middleware');
-app.use(domain);
 
 // exception handlers
 app.use(function(err, req, res, next) {

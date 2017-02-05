@@ -3,6 +3,8 @@ var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ
 
+//↓/にアクセスされたらDBからタスクリストを呼び出してきてソート
+
 router.get('/', function(req, res, next) {
   var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something';
   connection.query(query, function(err, rows) {
@@ -16,6 +18,8 @@ router.get('/', function(req, res, next) {
   });
   console.log("index.html page session user id: " + req.session.user_id);
 });
+
+//↓タスクの新規登録
 
 router.post('/', function(req, res, next) {
   var subject = '"' + req.body.title + '", ';
@@ -45,6 +49,8 @@ router.post('/', function(req, res, next) {
   });
 });
 
+//↓タスクの完了状態を切り替える。controller.jsの24行目参照
+
 router.post('/update', function(req, res, next) {
   console.log("----------post----------");
   console.log(req.body.id);
@@ -54,5 +60,6 @@ router.post('/update', function(req, res, next) {
   });
 
 });
+
 
 module.exports = router;
