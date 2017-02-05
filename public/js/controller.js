@@ -16,18 +16,17 @@ $scope.blur = function(e) {
 
 // Taskの完了状態を切替
 $scope.onCheckBoxChange = function (taskIndex) {
-  taskIndex
   console.log("onCheckBoxChange start");
   console.log(taskIndex);
   console.log($scope.list.todos[taskIndex].subject);
-  console.log($scope.list.todos[taskIndex].id);
+  console.log($scope.list.todos[taskIndex].something_id);
   // console.log($scope.list.todos[a].done);
   // $scope.onCheckBoxChangeResult = "Check1 is " + ($scope.todo.done);
   $http({
   method: 'POST',
-  url: '/update',
+  url: '/changeSomethingState',
   data: {
-    id: $scope.list.todos[taskIndex].id,
+    id: $scope.list.todos[taskIndex].something_id,
     done : $scope.list.todos[taskIndex].done
    }
   }
