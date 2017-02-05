@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" ng-app="myApp">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Yggdrasill</title>
@@ -8,403 +9,449 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
-  </head>
+    <script type="text/javascript">
+    //画面側JSでroutes側から渡されたデータを扱えるように変更
+    var taskList = <%- JSON.stringify(taskList) %>
+    </script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
+</head>
 
-  <body ng-controller="MyController">
-      <div id="header" class="container">
-          <nav class="navbar navbar-default navbar-fixed-top">
-              <div class="navbar-header">
-                  <button class="navbar-toggle" data-toggle="collapse" data-target=".target">
+<body ng-controller="MyController as list">
+    <div id="header" class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".target">
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="">Yggdrasill</a>
-              </div>
-              <div class="collapse navbar-collapse target">
-              <ul class="nav navbar-nav">
-                  <li class="active"><a href="">Docs</a></li>
-              </ul>
-              <ul class="nav navbar-nav" style="margin-left:20px;">
-                  <form action="/search" id="topbar_search" class="form pull-left enable-incremental-lesson-search" onsubmit="if ($(this).find('.q').val() === '') { return false; }">
-                      <div class="input-append" style="padding:8px 0 0 0;">
-                          <div class="btn-group">
-                              <input type="text" class="btn" placeholder="today, weekly, ..."  value="" autocomplete="off">
-                              <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
-                          </div>
-                      </div>
-                  </form>
-              </ul>
-              <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
-                  <li>
-                      <a data-toggle="modal" href="#myModal1">Add Task</a>
-                      <div class="modal fade" id="myModal1">
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                              <div class="modal-header">
-                                  <button class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">Something</h4>
-                              </div>
-                              <div class="modal-body">
-                                  <ul class="nav nav-tabs">
-                                  <li><a href="#Action" data-toggle="tab">Action</a></li>
-                                  <li class="active"><a href="#Session" data-toggle="tab">Session</a></li>
-                                    <li><a href="#Transaction" data-toggle="tab">Transaction</a></li>
-                                  </ul>
-                                  <!-- タブ内容 -->
-                                  <div class="tab-content">
-                                        <div class="tab-pane" id="Action">
-                                            <br>
-                                             <form id="aForm" action="/"  method="post">
-                                                <ul class="form-group">
-                                                  <label class="control-label" for="task">アクションの内容</label>
-                                                  <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required></li>
-                                                  <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
-                                                <!-- <div class="row">
-                                                <div class="col-sm-4">
-                                                <div class="form-group">
-                                                  <label class="control-label" for="limit0">期限</label>
-                                                  <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                </div> -->
-                                                <!-- <div class="col-sm-8"> -->
-                                                <div class="form-group">
-                                                <label class="control-label" for="limit1">期限</label>
-                                                  <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name = "start_date"></li>
-                                                  <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name = "finish_date"></li><br>
-                                                </div>
-                                                <!-- </div>
-                                                </div> -->
-                                                <div class="form-group">
-                                                <label class="control-label" for="limit1">繰り返し設定</label>
-                                                    <div class="col-sm-offset-2 col-sm-10">
-                                                        <div class="checkbox">
-                                                            <label>
+                <a class="navbar-brand" href="">Yggdrasill</a>
+            </div>
+            <div class="collapse navbar-collapse target">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="">Docs</a></li>
+                </ul>
+                <ul class="nav navbar-nav" style="margin-left:20px;">
+                    <form action="/search" id="topbar_search" class="form pull-left enable-incremental-lesson-search" onsubmit="if ($(this).find('.q').val() === '') { return false; }">
+                        <div class="input-append" style="padding:8px 0 0 0;">
+                            <div class="btn-group">
+                                <input type="text" class="btn" placeholder="today, weekly, ..." value="" autocomplete="off">
+                                <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
+                    <li>
+                        <a data-toggle="modal" href="#myModal1">Something</a>
+                        <div class="modal fade" id="myModal1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Something</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="nav nav-tabs">
+                                            <li><a href="#Action" data-toggle="tab">Action</a></li>
+                                            <li class="active"><a href="#Session" data-toggle="tab">Session</a></li>
+                                            <li><a href="#Transaction" data-toggle="tab">Transaction</a></li>
+                                        </ul>
+                                        <!-- タブ内容 -->
+                                        <div class="tab-content">
+                                            <div class="tab-pane" id="Action">
+                                                <br>
+                                                <form id="aForm" action="/" method="post">
+                                                    <ul class="form-group">
+                                                        <label class="control-label" for="task">アクションの内容</label>
+                                                        <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required></li>
+                                                        <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="limit1">期限</label>
+                                                            <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name="start_date"></li>
+                                                            <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name="finish_date"></li><br>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="limit1">繰り返し設定</label>
+                                                            <div class="col-sm-offset-2 col-sm-10">
+                                                                <div class="checkbox">
+                                                                    <label>
                                                                 <input type="checkbox" value="checkboxA"> 毎月
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkboxB"> 毎週
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkboxC"> 毎日
                                                             </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
+                                                                </div>
+                                                                <div class="checkbox">
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox1"> 月曜
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox2"> 火曜
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox3"> 水曜
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox4"> 木曜
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox5"> 金曜
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox6"> 土曜
                                                             </label>
-                                                            <label>
+                                                                    <label>
                                                                 <input type="checkbox" value="checkbox7"> 日曜
                                                             </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="incharge">担当者</label>
+                                                            <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name="assigned_to_user">
+                                                            <input type="hidden" name="done" value="0">
+                                                            <!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label" for="incharge">メモ</label><br>
+                                                            <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea"></textarea>
+                                                            <!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) -->
+                                                        </div>
+                                                        <center>
+                                                            <div class="form-group">
+                                                                <input type="submit" value="この内容で追加する" class="btn btn-primary">
+                                                            </div>
+                                                        </center>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane active" id="Session">
+                                                <br>
+                                                <form id="aForm" action="/" method="post">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="task">セッションのゴール</label>
+                                                        <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="limit0">期限</label>
+                                                                <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <ul class="form-group">
+                                                                <label class="control-label" for="limit1">期間</label>
+                                                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
+                                                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                <label class="control-label" for="incharge">担当者</label>
-                                                  <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name = "assigned_to_user">
-                                                  <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
-                                                </div>
-                                                <div class="form-group">
-                                                <label class="control-label" for="incharge">メモ</label><br>
-                                                  <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) -->
-                                                </div>
-                                                <center>
-                                                <div class="form-group">
-                                                  <input type="submit" value="この内容で追加する" class="btn btn-primary">
-                                                </div>
-                                                </center>
-                                              </form>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="incharge">責任者</label>
+                                                        <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
+                                                    </div>
+
+                                                    <center>
+                                                        <div class="form-group">
+                                                            <input type="submit" value="この内容で追加する" class="btn btn-primary">
+                                                        </div>
+                                                    </center>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane" id="Transaction">
+                                                <br>
+                                                <form id="aForm" action="/" method="post">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="task">トランザクションのビジョン</label>
+                                                        <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label class="control-label" for="limit0">期限</label>
+                                                                <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-8">
+                                                            <ul class="form-group">
+                                                                <label class="control-label" for="limit1">期間</label>
+                                                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
+                                                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="incharge">統括責任者</label>
+                                                        <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
+                                                    </div>
+
+                                                    <center>
+                                                        <div class="form-group">
+                                                            <input type="submit" value="この内容で追加する" class="btn btn-primary">
+                                                        </div>
+                                                    </center>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <div class="tab-pane active" id="Session">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary">OK!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a data-toggle="modal" href="#myModal2">Concerned</a>
+                        <div class="modal fade" id="myModal2">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Concerned</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form id="concerned_form" action="/concerned"  method="post">
+                                          <div class="form-group">
+                                            <label class="control-label" for="concern">あなたの関係者のメンション設定更新</label>
+                                            <li><input type="text" id="user_nickname" class="form-control" placeholder="Nickname" ng-model="task" name ="title" required></li>
+                                            <li><input type="text" id="user_mension" class="form-control" placeholder="@name" ng-model="target" name="action_to"></li>
                                             <br>
-                                             <form id="aForm" action="/"  method="post">
+                                            <center>
                                                 <div class="form-group">
-                                                  <label class="control-label" for="task">セッションのゴール</label>
-                                                  <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
+                                                    <input type="submit" value="更新" class="btn btn-primary">
                                                 </div>
-                                                <div class="row">
-                                                <div class="col-sm-4">
-                                                <div class="form-group">
-                                                  <label class="control-label" for="limit0">期限</label>
-                                                  <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                </div>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                <ul class="form-group">
-                                                <label class="control-label" for="limit1">期間</label>
-                                                  <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
-                                                  <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
-                                                </ul>
-                                                </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                <label class="control-label" for="incharge">責任者</label>
-                                                  <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
-                                                </div>
-
-                                                <center>
-                                                <div class="form-group">
-                                                  <input type="submit" value="この内容で追加する" class="btn btn-primary">
-                                                </div>
-                                                </center>
-                                              </form>
-                                        </div>
-                                        <div class="tab-pane" id="Transaction">
-                                            <br>
-                                             <form id="aForm" action="/"  method="post">
-                                                <div class="form-group">
-                                                  <label class="control-label" for="task">トランザクションのビジョン</label>
-                                                  <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required>
-                                                </div>
-
-                                                <div class="row">
-                                                <div class="col-sm-4">
-                                                <div class="form-group">
-                                                  <label class="control-label" for="limit0">期限</label>
-                                                  <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                </div>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                <ul class="form-group">
-                                                <label class="control-label" for="limit1">期間</label>
-                                                  <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
-                                                  <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
-                                                </ul>
-                                                </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                <label class="control-label" for="incharge">統括責任者</label>
-                                                  <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
-                                                </div>
-
-                                                <center>
-                                                <div class="form-group">
-                                                  <input type="submit" value="この内容で追加する" class="btn btn-primary">
-                                                </div>
-                                                </center>
-                                              </form>
-                                        </div>
-                                  </div>
-                              </div>
-                              <div class="modal-footer">
-                                  <button class="btn btn-primary">OK!</button>
-                              </div>
-                              </div>
-                          </div>
-                      </div>
-                  </li>
-                  <li>
-                      <a data-toggle="modal" href="#myModal2">Add Project</a>
-                      <div class="modal fade" id="myModal2">
-                          <div class="modal-dialog">
-                              <div class="modal-content">
-                              <div class="modal-header">
-                                  <button class="close" data-dismiss="modal">&times;</button>
-                                  <h4 class="modal-title">My Modal</h4>
-                              </div>
-                              <div class="modal-body">
-                                  aaaaa
-                              </div>
-                              <div class="modal-footer">
-                                  <button class="btn btn-primary">OK!</button>
-                              </div>
-                              </div>
-                          </div>
-                      </div>
-                  </li>
-                  <li><a href="" class="dropdown-toggle" data-toggle="dropdown">Notification <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                              <li><a href="">Action</a></li>
-                              <li><a href="">Action</a></li>
-                              <li class="divider"></li>
-                              <li><a href="">Action</a></li>
-                          </ul>
-                  </li>
-                  <li><a href="" class="dropdown-toggle" data-toggle="dropdown">User <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                              <li><a href="">Action</a></li>
-                              <li><a href="">Action</a></li>
-                              <li class="divider"></li>
-                              <li><a href="">Action</a></li>
-                          </ul>
-                  </li>
-                  <li><a href="" class="dropdown-toggle" data-toggle="dropdown">Setting <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                              <li><a href="">Action</a></li>
-                              <li><a href="">Action</a></li>
-                              <li class="divider"></li>
-                              <li><a href="">Action</a></li>
-                          </ul>
-                  </li>
-              </ul>
-              </div>
-          </nav>
-      </div>
+                                            </center>
+                                            <br><br>
+                                            <label class="control-label" for="concern">あなたの関係者のメンション設定一覧</label>
+                                          </div>
+                                          <div>
+                                            <table class="table">
+                                              <thead class="thead-inverse">
+                                                <tr>
+                                                  <!-- <th>#</th> -->
+                                                  <th>名前（Nickname）</th>
+                                                  <th>メンション（@name）</th>
+                                                  <th>ステータス</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                              <% if (typeof taskList != 'undefined') { %>
+                                              <% taskList.forEach(function(taskItem) { %>
+                                                <tr class="concerned_table">
+                                                  <!-- <th scope="row"><div class="checkbox"><label><input type="checkbox" value=""></label></div></th> -->
+                                                  <td>井垣</td>
+                                                  <td>@igaki</td>
+                                                  <td>ログイン中</td>
+                                                </tr>
+                                              <% })}; %>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                      </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary">OK!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="" class="dropdown-toggle" data-toggle="dropdown">Notification <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">Action</a></li>
+                            <li><a href="">Action</a></li>
+                            <li class="divider"></li>
+                            <li><a href="">Action</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="" class="dropdown-toggle" data-toggle="dropdown">User <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">Action</a></li>
+                            <li><a href="">Action</a></li>
+                            <li class="divider"></li>
+                            <li><a href="">Action</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="" class="dropdown-toggle" data-toggle="dropdown">Setting <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">Action</a></li>
+                            <li><a href="">Action</a></li>
+                            <li class="divider"></li>
+                            <li><a href="">Action</a></li>
+                        </ul>
+                    </li>
+                    </ul>
+            </div> <!-- class="collapse navbar-collapse target" -->
+        </nav>
+    </div> <!-- id="header" -->
     <div class="container" style="padding-top:80px;">
-      <div class="row">
-        <div class="col-sm-2 hidden-xs">
-          <ul class="nav nav-pills nav-stacked">
-            <li><a class="text-success" href="#">カレンダー</a></li>
-            <li><a class="text-success" href="#">グループ</a></li>
-            <li><a class="text-success" href="#">プロジェクト</a></li>
-          </ul>
-        </div>
+        <div class="row">
+            <div class="col-sm-2 hidden-xs">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a class="text-success" href="#">カレンダー</a></li>
+                    <li><a class="text-success" href="#">グループ</a></li>
+                    <li><a class="text-success" href="#">プロジェクト</a></li>
+                </ul>
+            </div>
 
-        <div class="col-sm-10">
-        <div>
-          <h4>タスク登録</h4>
-          <form id="aForm" action="/"  method="post">
-             <div class="form-group">
-               <label class="control-label" for="task">アクションの内容</label>
-               <li><input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name ="title" required></li>
-               <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
-             <div class="form-group">
-             <label class="control-label" for="limit1">期限</label>
-               <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name = "start_date"></li>
-               <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name = "finish_date"></li><br>
-             </div>
-             <div class="form-group">
-             <label class="control-label" for="limit1">繰り返し設定</label>
-                 <div class="col-sm-offset-2 col-sm-10">
-                     <div class="checkbox">
-                         <label>
+            <div class="col-sm-10">
+                <div>
+                    <h4>タスク登録</h4>
+                    <form id="aForm" action="/" method="post">
+                        <div class="form-group">
+                            <label class="control-label" for="task">アクションの内容</label>
+                            <li><input ng-focus="focus($event)" ng-blur="blur($event)" type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required></li>
+                            <li><input type="text" id="target" class="form-control" placeholder="相手先" ng-model="target" name="action_to"></li><br>
+                            <div class="task-detail">
+                            <div class="form-group">
+                                <label class="control-label" for="limit1">期限</label>
+                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name="start_date"></li>
+                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name="finish_date"></li><br>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="limit1">繰り返し設定</label>
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
                              <input type="checkbox" value="checkboxA"> 毎月
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkboxB"> 毎週
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkboxC"> 毎日
                          </label>
-                     </div>
-                     <div class="checkbox">
-                         <label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
                              <input type="checkbox" value="checkbox1"> 月曜
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkbox2"> 火曜
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkbox3"> 水曜
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkbox4"> 木曜
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkbox5"> 金曜
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkbox6"> 土曜
                          </label>
-                         <label>
+                                        <label>
                              <input type="checkbox" value="checkbox7"> 日曜
                          </label>
-                     </div>
-                 </div>
-             </div>
+                                    </div>
+                                </div>
+                            </div>
 
-             <div class="form-group">
-             <label class="control-label" for="incharge">担当者</label>
-               <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name = "assigned_to_user">
-               <input type="hidden" name="done" value="0"><!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
-             </div>
+                            <div class="form-group">
+                                <label class="control-label" for="incharge">担当者</label>
+                                <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name="assigned_to_user">
+                                <input type="hidden" name="done" value="0">
+                                <!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
+                            </div>
 
-             <div class="form-group">
-             <label class="control-label" for="memo">メモ</label><br>
-               <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea" name = "memo"></textarea><!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) -->
-             </div>
+                            <div class="form-group">
+                                <label class="control-label" for="memo">メモ</label><br>
+                                <textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control" id="InputTextarea" name="memo"></textarea>
+                                <!-- メモの入力欄；rowsで行数指定、colsで１行の字数指定できる(SO) -->
+                            </div>
 
 
-            <div class="form-group">
-              <input type="submit" value="登録" class="btn btn-primary">
+                            <div class="form-group">
+                                <input type="submit" value="登録" class="btn btn-primary">
+                            </div>
+                          </div>
+                    </form>
+                    </div>
+
+                    <div><br>
+                      <h4>タスク一覧</h4>
+                      <table class="table">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>#</th>
+                                <th>タスク</th>
+                                <th>開始可能日時</th>
+                                <th>延期不能日時</th>
+                                <th>担当</th>
+                                <th>メモ</th>
+                                <th>状態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="todo in list.todos">
+                          <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange({{$index}})" ng-true-value="1" ng-false-value="0"></td>
+                          <td class="done-{{todo.done}}">{{todo.subject}}</td>
+                          <td>{{todo.start_date}}</td>
+                          <td>{{todo.finish_date}}</td>
+                          <td>{{todo.memo}}</td>
+                          <td>{{todo.done}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+
+                </div>
             </div>
-          </form>
-          </div>
-
-          <div><br>
-           <h4>タスク一覧</h4>
-            <table class="table">
-                <thead class="thead-inverse">
-                  <tr>
-                    <th>#</th>
-                    <th>タスク</th>
-                    <th>開始可能日時</th>
-                    <th>延期不能日時</th>
-                    <th>担当</th>
-                    <th>メモ</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <% taskList.forEach(function(taskItem) { %>
-                  <tr class="checkdone">
-                    <th scope="row"><div class="checkbox"><label><input type="checkbox" value=""></label></div></th>
-                    <td><%= taskItem.subject %></td>
-                    <td><%= taskItem.start_date %></td>
-                    <td><%= taskItem.finish_date %></td>
-                    <td>担当者</td>
-                    <td><%= taskItem.memo %></td>
-                  </tr>
-                <% }); %>
-                </tbody>
-              </table>
-          </div>
-
+        </div> <!-- id="row" -->
+        <div id="footer" class="container">
+            <center class="text-success">© 2016 Yggdrasill</center>
         </div>
-      </div>
-    </div>
-    <div id="footer" class="container"><center class="text-success">© 2016 Yggdrasill</center></div>
 
-    <script src="js/jquery.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <script src="js/jquery.datetimepicker.full.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/controller.js"></script>
-    <!-- <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
-    <script src="js/date.js"></script>
-    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script src="js/calendar.js"></script>
-    <script src="js/moment-with-locales.js"></script>
-    <script type="text/javascript" charset="UTF-8">
-        $(document).ready(function() {
-            $('.navbar .container .btn.btn-navbar').sidr({
-                source: '.navbar .container .nav-collapse.collapse'
+        <!-- 以下必要なjsファイルの読み込み -->
+        <script src="js/jquery.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+        <script src="js/jquery.datetimepicker.full.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/controller.js"></script>
+        <!-- <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+        <script src="js/date.js"></script>
+        <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+        <script src="js/calendar.js"></script>
+        <script src="js/moment-with-locales.js"></script>
+        <script type="text/javascript" charset="UTF-8">
+            $(document).ready(function() {
+                $('.navbar .container .btn.btn-navbar').sidr({
+                    source: '.navbar .container .nav-collapse.collapse'
+                });
             });
-        });
-    </script>
+        </script>
 
 
-<script type="text/javascript">
-$(function(){
-$('.form0').datetimepicker({ dateFormat: 'yy-mm-dd' });
-$('.form1').datetimepicker({ dateFormat: 'yy-mm-dd' });
-$('.form2').datetimepicker({ dateFormat: 'yy-mm-dd' });
+        <script type="text/javascript">
+            $(function() {
+                $('.form0').datetimepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+                $('.form1').datetimepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+                $('.form2').datetimepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
 
-    });
+            });
 
-$(window).on("load", function() {
-  $("div.checkbox").on("click", function() {
-    $(this).parents(".checkdone").hide();
-  });
-});
+            $(window).on("load", function() {
+                $("div.checkbox").on("click", function() {
+                    $(this).parents(".checkdone").hide();
+                });
+            });
+        </script>
+</body>
 
-</script>
-  </body>
 </html>
