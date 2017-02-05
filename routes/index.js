@@ -5,6 +5,7 @@ var connection = require('../mysqlConnection'); // è¿½åŠ
 
 router.get('/', function(req, res, next) {
   var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something';
+  console.log(query);
   connection.query(query, function(err, rows) {
     //完了状態のタスクを下方にソート
     rows.sort(function(a,b){
@@ -40,8 +41,28 @@ router.post('/', function(req, res, next) {
     + finish_date + ','
     + memo
     + ')';
+  // var listValue ={
+  //   subject : subject,
+  //   start_date :
+  // }
 
-  connection.query(query, function(err, rows) {
+    console.log(query);
+  // assignment_relationテーブルへの登録
+  connection.query(query, function(err, result) {
+  var post_value = {
+    assigned_by_user: req.session.user_id,
+    something_id: result.insertId,
+    assigned_to_user: Number(req.body.assigned_to_user),
+    time_assigned_by: 'NOW()'
+    };
+
+    console.log(post_value);
+    var query = connection.query('INSERT INTO assignment_relation SET ?', post_value, function (error, results, fields) {
+    if (error) throw error;
+    // Neat!
+    console.log(query.sql);
+    });
+
     res.redirect('/');
   });
 });
