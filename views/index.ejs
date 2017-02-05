@@ -391,6 +391,7 @@
                                 <th>担当</th>
                                 <th>メモ</th>
                                 <th>状態</th>
+                                <th>割当先</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -399,8 +400,10 @@
                           <td class="done-{{todo.done}}">{{todo.subject}}</td>
                           <td>{{todo.start_date}}</td>
                           <td>{{todo.finish_date}}</td>
+                          <td>{{todo.action_to}}</td>
                           <td>{{todo.memo}}</td>
                           <td>{{todo.done}}</td>
+                          <td>{{todo.assigned_to_user}}</td>
                         </tr>
                       </tbody>
                     </table>
