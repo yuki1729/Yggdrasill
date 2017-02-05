@@ -55,4 +55,14 @@ router.post('/update', function(req, res, next) {
 
 });
 
+/**
+* ログアウト
+*/
+exports.logout = function(req, res, next) {
+  console.log('logout');
+  // セッション情報削除
+  delete req.session.user_id;
+  next();
+};
+
 module.exports = router;

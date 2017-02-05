@@ -9,7 +9,7 @@ var session = require('express-session'); // 追加
 var routes = require('./routes/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
-
+var logout = require('./routes/logout');
 
 var app = express();
 
@@ -30,9 +30,10 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use('/', routes);
+app.get('/', routes);
 app.use('/register', register);
 app.use('/login', login);
+app.use('/logout', logout);
 
 
 var domain = require('express-domain-middleware');
