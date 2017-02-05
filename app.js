@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session'); // 追加
 
+//ルーティング追加するときはここに追加する
 var routes = require('./routes/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
-
+var sessioncheck = require('./routes/sessioncheck');
 
 var app = express();
 
@@ -24,15 +25,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//cookieの設定
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 }));
 
-app.use('/', routes);
+//ルーティング追加するときはここに追加する
+
 app.use('/register', register);
 app.use('/login', login);
+app.use('/', sessioncheck);
+app.use('/', routes);
 
 
 var domain = require('express-domain-middleware');
