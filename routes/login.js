@@ -23,7 +23,8 @@ router.post('/', function(req, res, next) {
   SELECT id FROM mydb.user WHERE user_name = 'igaki' OR mail = 'gymtaka@gmail.com' AND password =  '7e953ce6ce197ab31f16facdc3f403f4' LIMIT 1;
   */
 
-
+//ログイン時の処理。ユーザーネームとメールアドレスの重複のチェックが不十分なので作り込む必要がある
+//三項演算子で、user_idを取得している。rows[0].idに値が入っていればtrue、そうでなければfalse
   connection.query(query, function(err, rows) {
     var userId = rows.length? rows[0].id: false;
     console.log(userId + '**************');
