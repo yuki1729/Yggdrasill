@@ -39,40 +39,10 @@ router.post('/', function(req, res, next) {
       });
     }
 
-    var getUserIdQuery = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" LIMIT 1';
-    connection.query(getUserIdQuery, function(err, result) {
-      var sessionUserId =  result[0].id;
-      req.session.user_id = sessionUserId;
-      console.log("---sessionUserId---")
-      console.dir(result);
-      console.log(result[0].id);
-
-
-      var emailExistsQuery = 'SELECT * FROM mydb.user WHERE id = "' + sessionUserId + '" LIMIT 1';
-      connection.query(emailExistsQuery, function(err, mail) {
-        var emailExists = mail.length === 1;
-        if (emailExists) {
-          console.log(emailExists + 'errrrrrrrrrrrrrrrrrrrrr');
-
-          res.redirect('/');
-          return;
-        } else {
-    //      connection.query(query, function(err, rows) {
-    //      });
-        res.render('login', {
-          title: 'ログイン',
-          emailExists: 'セッションユーザー ID' + sessionUserId + 'です'
-        });
-
-        }
-      });
-
 
   });
 
-  });
-
-   });
+});
 
 
 
