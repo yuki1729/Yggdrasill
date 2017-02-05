@@ -1,3 +1,3 @@
 mysql.server start
 cd $(dirname $0)
-nodemon ./bin/www
+./init0.sh & nodemon ./bin/www open
