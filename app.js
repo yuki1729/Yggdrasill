@@ -41,7 +41,7 @@ app.use('/login', login);
 app.use('/', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
-app.use('/', logout);
+app.use('/welcome', welcome);
 
 //ここで失敗している
 //app.use('/welcome', welcome);
