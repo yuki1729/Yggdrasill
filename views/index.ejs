@@ -112,7 +112,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label" for="incharge">担当者</label>
-                                                            <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge" name="assigned_to_user">
+                                                            <input type="text" id="incharge" class="form-control" placeholder="@member" ng-model="incharge" name="assigned_to_user">
                                                             <input type="hidden" name="done" value="0">
                                                             <!-- タスクの完了状態についてのデータ；未完了が0で完了が1（SO） -->
                                                         </div>
@@ -123,7 +123,7 @@
                                                         </div>
                                                         <center>
                                                             <div class="form-group">
-                                                                <input type="submit" value="この内容で追加する" class="btn btn-primary">
+                                                                <button type="submit" class="btn btn-primary" name="actionbtn" value="action">Actionを追加する</button>
                                                             </div>
                                                         </center>
                                                 </form>
@@ -132,33 +132,29 @@
                                                 <br>
                                                 <form id="aForm" action="/" method="post">
                                                     <div class="form-group">
+                                                        <label class="control-label" for="task">セッション名</label>
+                                                        <input type="text" id="task" class="form-control" placeholder="セミナーの期間限定Webマーケティング" ng-model="task" name="session_subject" required>
                                                         <label class="control-label" for="task">セッションのゴール</label>
-                                                        <input type="text" id="task" class="form-control" placeholder="タスク" ng-model="task" name="title" required>
+                                                        <input type="text" id="task" class="form-control" placeholder="販売数１００件" ng-model="task" name="session_goal" required>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-sm-4">
-                                                            <div class="form-group">
-                                                                <label class="control-label" for="limit0">期限</label>
-                                                                <input type="text" ng-model="myLimit0" id="limit0" class="form-control form0" placeholder="実行日" ng-model="end">
-                                                            </div>
-                                                        </div>
                                                         <div class="col-sm-8">
                                                             <ul class="form-group">
                                                                 <label class="control-label" for="limit1">期間</label>
-                                                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
-                                                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
+                                                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始予定日時" ng-model="start" name = "session_start"></li>
+                                                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了予定日時" ng-model="end" name = "session_finish"></li>
                                                             </ul>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label" for="incharge">責任者</label>
-                                                        <input type="text" id="incharge" class="form-control" placeholder="割当先" ng-model="incharge">
+                                                        <label class="control-label" for="incharge">関係メンバー</label>
+                                                        <input type="text" id="incharge" class="form-control" placeholder="@member" ng-model="incharge" name = "session_member">
                                                     </div>
 
                                                     <center>
                                                         <div class="form-group">
-                                                            <input type="submit" value="この内容で追加する" class="btn btn-primary">
+                                                            <button type="submit" class="btn btn-primary" name="sessionbtn" value="session">Sessionを追加する</button>
                                                         </div>
                                                     </center>
                                                 </form>
@@ -200,9 +196,6 @@
                                                 </form>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button class="btn btn-primary">OK!</button>
                                     </div>
                                 </div>
                             </div>
