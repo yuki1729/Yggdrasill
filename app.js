@@ -12,6 +12,7 @@ var register = require('./routes/register');
 var login = require('./routes/login');
 var sessioncheck = require('./routes/sessioncheck');
 var logout = require('./routes/logout');
+var welcome = require('./routes/welcome');
 
 var app = express();
 
@@ -40,6 +41,10 @@ app.use('/login', login);
 app.use('/', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
+app.use('/', logout);
+
+//ここで失敗している
+//app.use('/welcome', welcome);
 
 var domain = require('express-domain-middleware');
 app.use(domain);
