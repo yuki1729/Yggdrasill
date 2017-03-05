@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Yggdrasill</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css" />
+</head>
+
+<body ng-controller="MyController as list">
+      <div class="modal-header">
+          <button class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Concerned</h4>
+      </div>
+      <div class="modal-body">
+        <form id="concerned_form" action="/"  method="post">
+            <div class="form-group">
+              <label class="control-label" for="concern">あなたの関係者のメンション設定更新</label>
+              <li><input type="text" id="user_nickname" class="form-control" placeholder="Nickname" ng-model="task" name ="nickname" required></li>
+              <li><input type="text" id="user_mension" class="form-control" placeholder="@name" ng-model="target" name="mension"></li>
+              <br>
+              <center>
+                  <div class="form-group">
+                      <input type="submit" value="追加 / 更新" class="btn btn-primary">
+                  </div>
+              </center>
+              <br><br>
+              <label class="control-label" for="concern">あなたの関係者のメンション設定一覧</label>
+            </div>
+            <div>
+              <table class="table">
+                <thead class="thead-inverse">
+                  <tr>
+                    <!-- <th>#</th> -->
+                    <th>名前（Nickname）</th>
+                    <th>メンション（@name）</th>
+                    <th>ステータス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% if (typeof taskList != 'undefined') { %>
+                <% taskList.forEach(function(taskItem) { %>
+                  <tr class="concerned_table">
+                    <!-- <th scope="row"><div class="checkbox"><label><input type="checkbox" value=""></label></div></th> -->
+                    <td>井垣</td>
+                    <td>@igaki</td>
+                    <td>ログイン中</td>
+                  </tr>
+                <% })}; %>
+                </tbody>
+              </table>
+            </div>
+        </form>
+      </div>
+        <!-- 以下必要なjsファイルの読み込み -->
+        <script src="js/jquery.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+        <script src="js/jquery.datetimepicker.full.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/controller.js"></script>
+        <!-- <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+        <script src="js/date.js"></script>
+        <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+        <script src="js/calendar.js"></script>
+        <script src="js/moment-with-locales.js"></script>
+        <script type="text/javascript" charset="UTF-8">
+            $(document).ready(function() {
+                $('.navbar .container .btn.btn-navbar').sidr({
+                    source: '.navbar .container .nav-collapse.collapse'
+                });
+            });
+        </script>
+</body>
+
+</html>

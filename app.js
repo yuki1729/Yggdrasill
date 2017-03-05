@@ -9,7 +9,7 @@ var session = require('express-session'); // 追加
 var routes = require('./routes/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
-
+var concerned = require('./routes/concerned');
 
 var app = express();
 
@@ -33,6 +33,7 @@ app.use(session({
 app.use('/', routes);
 app.use('/register', register);
 app.use('/login', login);
+app.use('/concerned', concerned)
 
 
 var domain = require('express-domain-middleware');
