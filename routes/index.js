@@ -22,10 +22,12 @@ router.get('/', function(req, res, next) {
 });
 
 
-//モーダルウインドウのアクションのタブから入力された内容をDBに送信
+
   router.post('/', function(req, res, next) {
     var action = req.body.actionbtn
     var session = req.body.sessionbtn
+
+    //モーダルウインドウのアクションのタブから入力された内容をDBに送信
     if (action==="action") {
       console.log("**********"+req.body.actionbtn);
       console.log("-------------------Actionのpost-------------------")
