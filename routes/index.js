@@ -20,8 +20,11 @@ router.get('/', function(req, res, next) {
     console.log("index.html page session user id: " + req.session.user_id);
 });
 
-/*
+
 //モーダルウインドウのアクションのタブから入力された内容をDBに送信
+if (req.body.actionbtn) {
+
+
   router.post('/', function(req, res, next) {
     console.log("-------------------Actionのpost-------------------")
     console.log(req.body)
@@ -64,7 +67,9 @@ router.get('/', function(req, res, next) {
     console.log(query.sql);
 
   });
-*/
+
+}
+
 
 //モーダルウインドウのセッションのタブから登録された内容をDBに送信
 router.post('/', function(req, res, next) {
