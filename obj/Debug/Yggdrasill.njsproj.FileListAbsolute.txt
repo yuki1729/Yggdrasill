@@ -1,2 +1,0 @@
-V:\Users\user\Source\Repos\Yggdrasill\obj\Debug\Yggdrasill.njsprojResolveAssemblyReference.cache
-V:\Users\user\Source\Repos\Yggdrasill\bin\Microsoft.NodejsTools.WebRole.dll
