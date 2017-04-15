@@ -47,12 +47,21 @@ $scope.onCheckBoxChange = function (taskIndex) {
 $scope.taskEdit = function (taskIndex) {
   console.log("task clicked: "+ taskIndex);
   $scope.subject = $scope.list.todos[taskIndex].subject;
+  $scope.taskIndex = taskIndex;
 
 };
 
-$scope.editTaskHandleKeydown = function(e){
+$scope.editTaskHandleKeydown = function(e,subject){
   if (e.which === 13) {
-    console.log("task edit form enter");
+    console.log("task edit form enter:" + subject);
+    $http({
+    method: 'POST',
+    url: '/update',
+    data: {
+      id: $scope.list.todos[$scope.taskIndex].something_id,
+      subject : subject
+     }
+   })
  }
 }
 

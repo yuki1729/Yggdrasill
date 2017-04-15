@@ -62,15 +62,29 @@ router.post('/', function(req, res, next) {
 
 });
 
-//タスクを変更
-// router.post('/update', function(req, res, next) {
-//   console.log("----------task update----------");
-//   var query = "UPDATE `something` SET `done`='" + req.body.done +"' WHERE `id`='" + req.body.id +"'";
-//   connection.query(query, function(err, rows) {
-//
-//   });
-//
-// });
+// タスクを変更
+router.post('/update', function(req, res, next) {
+  // var m1 = moment(req.body.start_date,"YYYY/MM/DD HH:mm");
+  // var m2 = moment(req.body.finish_date,"YYYY/MM/DD HH:mm");
+  var updateValue = {
+    subject: req.body.subject,
+    // start_date: m1.format('YYYY-MM-DD HH:mm:ss'),
+    // finish_date: m2.format('YYYY-MM-DD HH:mm:ss'),
+    // primary_limit: m2.format('YYYY-MM-DD HH:mm:ss'),
+    // memo: req.body.memo
+  }
+  var query = connection.query('UPDATE `something` SET ? WHERE id = ?', [updateValue,req.body.id], function (error, results, fields) {
+  if (error) throw error;
+  // Neat!
+  });
+
+  //
+  // var query = "UPDATE `something` SET `subject`='" + req.body.subject +"' WHERE `id`='" + req.body.id +"'";
+  // connection.query(query, function(err, rows) {
+  //
+  // });
+
+});
 
 router.post('/changeSomethingState', function(req, res, next) {
   console.log("----------post----------");
