@@ -5,6 +5,28 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session'); // 追加
+//var socket = require('./routes/socket.js');
+var _server = require('ws').Server;
+var _ws = new _server({
+    host: '0.0.0.0',
+    port: 9999
+});
+
+publish();
+
+function publish(){
+  setInterval (function(){
+
+    var _now = new Date();
+    var _data = new Object();
+    _time = _now.getHours() + ':' + _now.getMinutes() + ':' + _now.getSeconds()
+    _data['now'] = _time;
+
+    _ws.clients.forEach(function(client) {
+      client.send(JSON.stringify(_data));
+    });
+  }, 1000);
+}
 
 //ルーティング追加するときはここに追加する
 var routes = require('./routes/index');
