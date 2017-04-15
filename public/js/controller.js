@@ -46,9 +46,15 @@ $scope.onCheckBoxChange = function (taskIndex) {
 
 $scope.taskEdit = function (taskIndex) {
   console.log("task clicked: "+ taskIndex);
-  $scope.subject = $scope.list.todos[taskIndex].subject;
+  something = $scope.list.todos[taskIndex];
+  $scope.subject = something.subject;
+  $scope.assigned_to_user = something.assigned_to_user
+  $scope.start_date = something.start_date;
+  $scope.finish_date = something.finish_date;
+  $scope.primary_limit = something.primary_limit;
+  $scope.memo = something.memo;
   $scope.taskIndex = taskIndex;
-
+  $("#sidebarTaskEdit").removeClass("hidden");
 };
 
 $scope.editTaskHandleKeydown = function(e,subject){

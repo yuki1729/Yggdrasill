@@ -412,11 +412,19 @@
 
                 </div>
             </div>
-            <div class="col-sm-2 hidden-xs">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a class="text-success" href="#">タスク名</a></li>
-                    <input id="name" name="name" type="text" ng-model="subject" ng-keydown="editTaskHandleKeydown($event,subject)" />
-                </ul>
+            <div class="col-sm-2 hidden-xs hidden" id="sidebarTaskEdit">
+              <form id="aForm" action="/update" method="post">
+                <label class="text-success">タスク名</label>
+                <input id="name" name="name" type="text" ng-model="subject" ng-keydown="editTaskHandleKeydown($event,subject)" />
+                <label class="control-label" for="incharge">担当者</label>
+                <input type="text" class="form-control" placeholder="割当先" ng-model="assigned_to_user">
+                <label class="control-label li" for="limit1">期限</label>
+                <input type="text" class="form-control limit" placeholder="開始可能日時" ng-model="start_date" name="start_date">
+                <input type="text" class="form-control limit" placeholder="完了期限" ng-model="finish_date" name="finish_date"><br>
+                <label class="text-success">メモ</label>
+                <input name="memo" type="text" ng-model="memo"/>
+                <input type="submit" value="更新" class="btn btn-primary">
+            </form>
             </div>
         </div> <!-- id="row" -->
         <div id="footer" class="container">
