@@ -50,6 +50,12 @@ $scope.taskEdit = function (taskIndex) {
 
 };
 
+$scope.editTaskHandleKeydown = function(e){
+  if (e.which === 13) {
+    console.log("task edit form enter");
+ }
+}
+
 var module = angular.module('myApp');
 
 module.config(function ($httpProvider) {
