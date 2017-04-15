@@ -44,6 +44,12 @@ $scope.onCheckBoxChange = function (taskIndex) {
 
 };
 
+$scope.taskEdit = function (taskIndex) {
+  console.log("task clicked: "+ taskIndex);
+  $scope.subject = $scope.list.todos[taskIndex].subject;
+
+};
+
 var module = angular.module('myApp');
 
 module.config(function ($httpProvider) {
