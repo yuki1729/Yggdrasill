@@ -62,31 +62,23 @@ router.post('/', function(req, res, next) {
 
 });
 
-// タスクを変更
+// タスクをアップデート
 router.post('/update', function(req, res, next) {
-  var m1 = moment(req.body.start_date,"YYYY/MM/DD HH:mm");
-  var m2 = moment(req.body.finish_date,"YYYY/MM/DD HH:mm");
+  console.log("req.body");
+  console.log(req.body);
   var updateValue = {
     subject: req.body.subject,
-    start_date: m1.format('YYYY-MM-DD HH:mm:ss'),
-    finish_date: m2.format('YYYY-MM-DD HH:mm:ss'),
-    primary_limit: m2.format('YYYY-MM-DD HH:mm:ss'),
+    start_date: req.body.start_date,
+    finish_date: req.body.end_date,
+    primary_limit: req.body.end_date,
     memo: req.body.memo
   }
-  console.log("updateValue");
-  console.log(updateValue);
-  var query = connection.query('UPDATE `something` SET ? WHERE id = ?', [updateValue,req.body.id], function (error, results, fields) {
+  var query = connection.query('UPDATE `something` SET ? WHERE id = ?', [updateValue,req.body.taskId], function (error, results, fields) {
   if (error) throw error;
-  console.log("query.sql");
-  console.log(query.sql);
   // console.log(error);
   // Neat!
   });
 
-  //
-  // var query = "UPDATE `something` SET `subject`='" + req.body.subject +"' WHERE `id`='" + req.body.id +"'";
-  // connection.query(query, function(err, rows) {
-  //
   // });
 
 });

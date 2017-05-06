@@ -396,7 +396,7 @@
                         </thead>
                         <tbody>
                         <!-- <tr ng-repeat="todo in list.todos"> -->
-                        <tr ng-repeat="todo in list.todos" ng-click="taskEdit($index)">
+                        <tr ng-repeat="todo in list.todos" ng-click="selectTask($index)">
                           <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange({{$index}})" ng-true-value="1" ng-false-value="0"></td>
                           <td class="done-{{todo.done}}">{{todo.subject}}</td>
                           <td>{{todo.start_date}}</td>
@@ -413,7 +413,7 @@
                 </div>
             </div>
             <div class="col-sm-2 hidden-xs hidden" id="sidebarTaskEdit">
-              <form id="aForm" action="/update" method="post">
+              <form id="aForm" ng-submit="taskUpdate()">
                 <label class="text-success">タスク名</label>
                 <input id="name" name="name" type="text" ng-model="subject" ng-keydown="editTaskHandleKeydown($event,subject)" />
                 <label class="control-label" for="incharge">担当者</label>

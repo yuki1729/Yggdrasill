@@ -44,7 +44,8 @@ $scope.onCheckBoxChange = function (taskIndex) {
 
 };
 
-$scope.taskEdit = function (taskIndex) {
+//Taskを選択状態に
+$scope.selectTask = function (taskIndex) {
   console.log("task clicked: "+ taskIndex);
   something = $scope.list.todos[taskIndex];
   $scope.subject = something.subject;
@@ -54,21 +55,34 @@ $scope.taskEdit = function (taskIndex) {
   $scope.primary_limit = something.primary_limit;
   $scope.memo = something.memo;
   $scope.taskIndex = taskIndex;
+  $scope.taskId = $scope.list.todos[$scope.taskIndex].something_id;
   $("#sidebarTaskEdit").removeClass("hidden");
 };
 
+// Subject内でEnterを押下時に更新を掛ける
 $scope.editTaskHandleKeydown = function(e,subject){
   if (e.which === 13) {
     console.log("task edit form enter:" + subject);
-    $http({
-    method: 'POST',
-    url: '/update',
-    data: {
-      id: $scope.list.todos[$scope.taskIndex].something_id,
-      subject : subject
-     }
-   })
+    taskUpdate();
  }
+}
+
+//更新ボタンを押すことで現在選択しているタスクをアップデート
+$scope.taskUpdate = function() {
+console.log("task update run from submit " + $scope.taskIndex );
+console.log(this);
+$http({
+method: 'POST',
+url: '/update',
+data: {
+  taskId: this.taskId,
+  subject : this.subject,
+  start_date: this.start_date,
+  finish_date: this.finish_date,
+  primary_limit: this.primary_limit,
+  memo: this.memo
+ }
+})
 }
 
 var module = angular.module('myApp');
