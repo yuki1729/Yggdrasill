@@ -17,6 +17,49 @@
 </head>
 
 <body ng-controller="MyController as list">
+
+  <!-- 以下必要なjsファイルの読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+  <script src="js/jquery.datetimepicker.full.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/controller.js"></script>
+  <!-- <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+  <script src="js/date.js"></script>
+  <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script type="text/javascript" charset="UTF-8">
+      $(document).ready(function() {
+          $('.navbar .container .btn.btn-navbar').sidr({
+              source: '.navbar .container .nav-collapse.collapse'
+          });
+      });
+  </script>
+
+
+  <script type="text/javascript">
+      $(function() {
+          $('.form0').datetimepicker({
+              dateFormat: 'yy-mm-dd'
+          });
+          $('.form1').datetimepicker({
+              dateFormat: 'yy-mm-dd'
+          });
+          $('.form2').datetimepicker({
+              dateFormat: 'yy-mm-dd'
+          });
+
+      });
+
+      $(window).on("load", function() {
+          $("div.checkbox").on("click", function() {
+              $(this).parents(".checkdone").hide();
+          });
+      });
+  </script>
+
     <div id="header" class="container">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
@@ -294,6 +337,26 @@
                     <li><a class="text-success" href="#">プロジェクト</a></li>
                     <li><a class="text-success" href="/logout">ログアウト</a></li>
 
+
+
+                    <div id="tgCountupTimer">
+                        <p class="time">00:00:00:0</p>
+                        <form>
+                            <input type="button" value="Start" id="startButton">
+                            <input type="button" value="Stop" id="stopButton" disabled>
+                            <input type="button" value="Restart" id="restartButton" disabled>
+                            <input type="button" value="Clear" id="clearButton" disabled>
+                        </form>
+                    </div>
+
+                    <script type ="text/javascript" src="/stopwatch.js"></script>
+
+
+
+
+
+
+
                 </ul>
             </div>
 
@@ -424,47 +487,7 @@
             <center class="text-success">© 2016 Yggdrasill</center>
         </div>
 
-        <!-- 以下必要なjsファイルの読み込み -->
-        <script src="js/jquery.js"></script>
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-        <script src="js/jquery.datetimepicker.full.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/controller.js"></script>
-        <!-- <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
-        <script src="js/date.js"></script>
-        <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-        <script src="js/calendar.js"></script>
-        <script src="js/moment-with-locales.js"></script>
-        <script type="text/javascript" charset="UTF-8">
-            $(document).ready(function() {
-                $('.navbar .container .btn.btn-navbar').sidr({
-                    source: '.navbar .container .nav-collapse.collapse'
-                });
-            });
-        </script>
 
-
-        <script type="text/javascript">
-            $(function() {
-                $('.form0').datetimepicker({
-                    dateFormat: 'yy-mm-dd'
-                });
-                $('.form1').datetimepicker({
-                    dateFormat: 'yy-mm-dd'
-                });
-                $('.form2').datetimepicker({
-                    dateFormat: 'yy-mm-dd'
-                });
-
-            });
-
-            $(window).on("load", function() {
-                $("div.checkbox").on("click", function() {
-                    $(this).parents(".checkdone").hide();
-                });
-            });
-        </script>
 </body>
 
 </html>
