@@ -13,6 +13,7 @@ var login = require('./routes/login');
 var sessioncheck = require('./routes/sessioncheck');
 var logout = require('./routes/logout');
 var welcome = require('./routes/welcome');
+var setting = require('./routes/setting');
 
 var app = express();
 
