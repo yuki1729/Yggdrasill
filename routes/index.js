@@ -73,10 +73,13 @@ router.post('/update', function(req, res, next) {
     primary_limit: m2.format('YYYY-MM-DD HH:mm:ss'),
     memo: req.body.memo
   }
+  console.log("updateValue");
   console.log(updateValue);
   var query = connection.query('UPDATE `something` SET ? WHERE id = ?', [updateValue,req.body.id], function (error, results, fields) {
   if (error) throw error;
-  console.log(error);
+  console.log("query.sql");
+  console.log(query.sql);
+  // console.log(error);
   // Neat!
   });
 
