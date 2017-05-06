@@ -297,7 +297,7 @@
                 </ul>
             </div>
 
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <div>
                     <h4>タスク登録</h4>
                     <form id="aForm" action="/" method="post">
@@ -308,8 +308,8 @@
                             <div class="task-detail">
                             <div class="form-group">
                                 <label class="control-label" for="limit1">期限</label>
-                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start" name="start_date"></li>
-                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了期限" ng-model="end" name="finish_date"></li><br>
+                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1 limit" placeholder="開始可能日時" ng-model="start" name="start_date"></li>
+                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2 limit" placeholder="完了期限" ng-model="end" name="finish_date"></li><br>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="limit1">繰り返し設定</label>
@@ -388,7 +388,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="todo in list.todos">
+                        <!-- <tr ng-repeat="todo in list.todos"> -->
+                        <tr ng-repeat="todo in list.todos" ng-click="selectTask($index)">
                           <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange({{$index}})" ng-true-value="1" ng-false-value="0"></td>
                           <td class="done-{{todo.done}}">{{todo.subject}}</td>
                           <td>{{todo.start_date}}</td>
@@ -403,6 +404,20 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="col-sm-2 hidden-xs hidden" id="sidebarTaskEdit">
+              <form id="aForm" ng-submit="taskUpdate()">
+                <label class="text-success">タスク名</label>
+                <input id="name" name="name" type="text" ng-model="subject" ng-keydown="editTaskHandleKeydown($event,subject)" />
+                <label class="control-label" for="incharge">担当者</label>
+                <input type="text" class="form-control" placeholder="割当先" ng-model="assigned_to_user">
+                <label class="control-label li" for="limit1">期限</label>
+                <input type="text" class="form-control limit" placeholder="開始可能日時" ng-model="start_date" name="start_date">
+                <input type="text" class="form-control limit" placeholder="完了期限" ng-model="finish_date" name="finish_date"><br>
+                <label class="text-success">メモ</label>
+                <input name="memo" type="text" ng-model="memo"/>
+                <input type="submit" value="更新" class="btn btn-primary">
+            </form>
             </div>
         </div> <!-- id="row" -->
         <div id="footer" class="container">

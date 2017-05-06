@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
     var crypto_password = cipher.update(register_password, 'utf8', 'hex');
     crypto_password +=  cipher.final('hex') ;
 
-  console.log(register_mail + '*=*=*=*=*=*=*=*=*');
+  console.log("register_username: " + register_username);
 
     var query = 'SELECT id FROM mydb.user WHERE user_name = "' + register_username + '" OR mail = "' + register_mail +'" AND password = "' + crypto_password + '" LIMIT 1';
 
@@ -27,7 +27,7 @@ router.post('/', function(req, res, next) {
 //三項演算子で、user_idを取得している。rows[0].idに値が入っていればtrue、そうでなければfalse
   connection.query(query, function(err, rows) {
     var userId = rows.length? rows[0].id: false;
-    console.log(userId + '**************');
+    console.log("login user id :" + userId);
     if (userId) {
       req.session.user_id = userId;
       res.redirect('/');
