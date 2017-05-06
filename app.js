@@ -43,6 +43,7 @@ app.use('/welcome', welcome);
 app.use('/', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
+app.use('/setting', setting);
 
 //ここで失敗している
 //app.use('/welcome', welcome);
