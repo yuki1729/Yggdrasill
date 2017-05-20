@@ -5,4 +5,8 @@ router.get('/', function(req, res, next) {
   res.render('vue',"");
 });
 
+router.post('/', function(req, res, next) {
+
+});
+
 module.exports = router;
