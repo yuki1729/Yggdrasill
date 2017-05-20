@@ -1,5 +1,5 @@
 var addTask = new Vue({
-	el: '#addTask',
+	el: '#addSomething',
 	data: {
 		subject: "testAAA",
 		target: "",
@@ -14,7 +14,7 @@ var addTask = new Vue({
 			// メソッド内の `this` は、 Vue インスタンスを参照します
 			console.log('Hello ' + this.subject + '!')
 			// `event` は、ネイティブ DOM イベントです
-			axios.post('/', {
+			axios.post('/vue/something', {
 			subject: this.subject,
 			start_date: this.deadline,
 			actionbtn: "action",
