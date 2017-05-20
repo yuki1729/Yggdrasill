@@ -29,7 +29,7 @@
             </div>
             <div class="collapse navbar-collapse target">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/docs">Docs</a></li>
+                    <li class="active"><a href="">Docs</a></li>
                 </ul>
                 <ul class="nav navbar-nav" style="margin-left:20px;">
                     <form action="/search" id="topbar_search" class="form pull-left enable-incremental-lesson-search" onsubmit="if ($(this).find('.q').val() === '') { return false; }">
@@ -296,6 +296,21 @@
 
                 </ul>
             </div>
+
+            <div id="tgCountupTimer">
+                <p class="time">00:00:00</p>
+                <form>
+                    <button type="submit" class="btn btn-primary" name="startButton">▶</button>
+                    <button type="submit" class="btn btn-primary" name="pauseButton">❚❚</button>
+                    <button type="submit" class="btn btn-primary" name="stopButton">⬜</button>
+                </form>
+            </div>
+
+            <div id="addtask">
+              <p>{{ message }}</p>
+              <input v-model="message">
+            </div>
+
 
             <div class="col-sm-8">
                 <div>
