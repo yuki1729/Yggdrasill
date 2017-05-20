@@ -14,6 +14,7 @@ var sessioncheck = require('./routes/sessioncheck');
 var logout = require('./routes/logout');
 var welcome = require('./routes/welcome');
 var docs = require('./routes/docs'); //菊池追加
+var vue = require('./routes/vue');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use('/', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
 app.use('/docs', docs); // 菊池追加
+app.use('/vue', vue);
 
 //ここで失敗している
 //app.use('/welcome', welcome);
