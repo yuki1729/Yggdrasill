@@ -45,22 +45,23 @@ router.post('/', function(req, res, next) {
 });
 
 //ユーザー情報
-var userQuery = 'SELECT * FROM mydb.user WHERE user_id = "' + 9 + '" LIMIT 1';
-sqlQuery = connection.query(userQuery, function(err, rows) {
-  var user_name = 'user_name'
+var userQuery = 'SELECT user_name FROM user WHERE user_id = "' + 9 + '" LIMIT 1';
+
+var sqlQuery = connection.query(userQuery, function(err, rows) {
 });
 console.log("sqlQuery.sql");
 console.log(sqlQuery.sql);
 
-  var user_name = 'user_name'
+var username = 'testname';
+var usermail = 'test@mail.com';
 router.get('/', function(req, res, next) {
   res.render('setting',
   { title: 'setting',
     task:'setting',
     test: 'hello',
     user_id: req.session.user_id,
-    user_name: user_name,
-
+    user_name: username,
+    user_mail: usermail,
   }
   //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
 );
