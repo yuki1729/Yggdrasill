@@ -9,14 +9,11 @@
     <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <script src="https://unpkg.com/vue"></script>
-  <!-- 必ずpublic/jsフォルダの中にあるvue.jsを書いたファイルをインポートすること -->
-    <script src="vue.js"></script>
-
-
 		<div id="app">
 		  {{ message }}
 		</div>
-
+    <script src="https://unpkg.com/vue"></script>
+  <!-- 必ずpublic/jsフォルダの中にあるvue.jsを書いたファイルをインポートすること。また、bodyタグの中でかつvue.jsのコードを書いた後ろでないと何故か動かない -->
+    <script src="js/vue.js"></script>
   </body>
   </html>
