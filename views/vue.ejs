@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Yggdrasill</title>
+</head>
+
+<body>
+	<div id="addTask">
+		<input v-model="subject" placeholder="タスク">
+    <input v-model="target" placeholder="相手先">
+    <input v-model="earliest_start_time" placeholder="開始可能日時">
+    <input v-model="deadline" placeholder="完了期限">
+    <input v-model="assigned_to_user" placeholder="担当者">
+	</div>
+
+<!-- load script -->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="app.js"></script>
+<!-- load script -->
+</body>
+
+
+</html>
