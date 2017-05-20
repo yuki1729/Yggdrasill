@@ -338,14 +338,21 @@
                     <li><a class="text-success" href="/logout">ログアウト</a></li>
 
 
+<!--
+<input type="button" value="Start" id="startButton">
+<input type="button" value="Stop" id="stopButton" disabled>
+<input type="button" value="Restart" id="restartButton" disabled>
+<input type="button" value="Clear" id="clearButton" disabled>
+-->
+
 
                     <div id="tgCountupTimer">
-                        <p class="time">00:00:00:0</p>
+                        <p class="time">00:00:00</p>
                         <form>
-                            <input type="button" value="Start" id="startButton">
-                            <input type="button" value="Stop" id="stopButton" disabled>
-                            <input type="button" value="Restart" id="restartButton" disabled>
-                            <input type="button" value="Clear" id="clearButton" disabled>
+                            <input type="button" value="▶" id="startButton" onclick="function btnchange{stopButton visible}">
+                            <input type="button" value="||" id="stopButton" hidden>
+                            <input type="button" value="Restart" id="restartButton" hidden>
+                            <input type="button" value="Clear" id="clearButton" hidden>
                         </form>
                     </div>
 

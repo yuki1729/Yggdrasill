@@ -3,7 +3,7 @@ $(function() {
     // スタートボタン
     $('#tgCountupTimer #startButton').click(function() {
         // 00:00:00:0からスタート
-        $('#tgCountupTimer .time').html('00:00:00:0');
+        $('#tgCountupTimer .time').html('00:00:00');
 
         timer = setInterval("countUp()", 100);
 
