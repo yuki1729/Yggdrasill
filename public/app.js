@@ -22,7 +22,7 @@ Vue.component('my-component', {
 	methods: {
 		postTask: function(event) {
 			// メソッド内の `this` は、 Vue インスタンスを参照します
-			console.log('Hello ' + this.subject + '!')
+			console.log('post task ' + this.subject)
 			// `event` は、ネイティブ DOM イベントです
 			axios.post('/vue/something', {
 					subject: this.subject,
