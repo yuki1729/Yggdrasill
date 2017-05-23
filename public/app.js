@@ -1,3 +1,14 @@
+// 登録する
+Vue.component('addTask', {
+  template: '<div>A custom component!' +
+    '<div>B custom component!</div>'
+    + '</div>'
+})
+// root インスタンスを作成する
+new Vue({
+  el: '#example'
+})
+
 var addTask = new Vue({
 	el: '#addSomething',
 	data: {
