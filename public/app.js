@@ -1,13 +1,13 @@
 // 登録する
 Vue.component('my-component', {
-	template: `<div>
+	template: `<form class="form-group" v-on:submit="updateUser">
 <input v-model="subject" placeholder="タスク">
 <input v-model="target" placeholder="相手先">
 <input v-model="earliest_start_time" placeholder="開始可能日時">
 <input v-model="deadline" placeholder="完了期限">
 <input v-model="assigned_to_user" placeholder="担当者">
-<button v-on:click="postTask">post</button>
-</div>`,
+<input type="submit" value="送信">
+</form>`,
 	data: function() {
 		return {
 			subject: "testAAA",
@@ -37,6 +37,10 @@ Vue.component('my-component', {
 					console.log(error);
 				});
 
+		},
+		updateUser: function (e) {
+			console.log(e);
+
 		}
 	}
 })
@@ -45,6 +49,6 @@ new Vue({
 	el: '#example'
 })
 
-new Vue({
-	el: '#example2'
-})
+// new Vue({
+// 	el: '#example2'
+// })
