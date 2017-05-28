@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 var session = require('express-session'); // 追加
 
 //ルーティング追加するときはここに追加する
+var sessioncheck = require('./routes/sessioncheck');
 var routes = require('./routes/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
-var sessioncheck = require('./routes/sessioncheck');
 var logout = require('./routes/logout');
 var welcome = require('./routes/welcome');
 var docs = require('./routes/docs'); //菊池追加
@@ -43,7 +43,7 @@ app.use(session({
 app.use('/register', register);
 app.use('/login', login);
 app.use('/welcome', welcome);
-app.use('/', sessioncheck);
+app.use('*', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
 app.use('/docs', docs); // 菊池追加
