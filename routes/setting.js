@@ -45,22 +45,48 @@ router.post('/', function(req, res, next) {
 });
 
 //ユーザー情報
-var userQuery = 'SELECT user_name FROM user WHERE user_id = "' + 9 + '" LIMIT 1';
+/*var userQuery = 'SELECT user_name FROM user WHERE user_id = "' + 9 + '" LIMIT 1';
 
 var sqlQuery = connection.query(userQuery, function(err, rows) {
 });
 console.log("sqlQuery.sql");
 console.log(sqlQuery.sql);
-
+*/
 var username = 'testname';
 var usermail = 'test@mail.com';
+
+var query = 'SELECT user_name FROM user WHERE id = "' + 9 + '" LIMIT 1';
+var sqlQuery = connection.query(query, function(err, rows) {
+});
+console.log("sqlQuery.sql");
+console.log(sqlQuery.sql);
+
+
+module.exports = function(req, res, next) {
+  var userId = req.session.user_id;
+  if (userId) {
+    var query = 'SELECT user_name FROM user WHERE id = "' + 9 + '" LIMIT 1';
+    connection.query(query, function(err, rows) {
+      if (!err) {
+        var user_name = rows.length? rows[0].use_name: false;
+
+          req.session.user_name = user_name;
+          res.redirect('/');
+          return;
+
+      }
+    });
+  }
+  next();
+};
+
 router.get('/', function(req, res, next) {
   res.render('setting',
   { title: 'setting',
     task:'setting',
     test: 'hello',
     user_id: req.session.user_id,
-    user_name: username,
+    user_name: req.session.user_name,
     user_mail: usermail,
   }
   //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
