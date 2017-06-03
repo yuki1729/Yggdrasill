@@ -11,6 +11,9 @@
   </head>
   <body>
 
+    <div id="app">
+      <p>{{ message }}</p>
+    </div>
     <li><%= user_id %></li>
     <li><%= user_name %></li>
     <li><%= user_mail %></li>
@@ -22,7 +25,8 @@
   <% if (typeof noUser !== 'undefined') { %>
       <p class="error"><%= noUser %></p>
   <% } %>
-
+    <script src="https://unpkg.com/vue"></script>
+    <script src="js/vue.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.datetimepicker.full.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
