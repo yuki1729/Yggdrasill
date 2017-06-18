@@ -133,16 +133,14 @@
                                                 <form id="aForm" action="/" method="post">
                                                     <div class="form-group">
                                                         <label class="control-label" for="task">セッション名</label>
-                                                        <input type="text" id="task" class="form-control" placeholder="セミナーの期間限定Webマーケティング" ng-model="task" name="session_subject" required>
-                                                        <label class="control-label" for="task">セッションのゴール</label>
-                                                        <input type="text" id="task" class="form-control" placeholder="販売数１００件" ng-model="task" name="session_goal" required>
+                                                        <input type="text" id="task" class="form-control" placeholder="セミナーの期間限定Webマーケティング" ng-model="task1" name="session_subject" required>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-8">
                                                             <ul class="form-group">
                                                                 <label class="control-label" for="limit1">期間</label>
-                                                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始予定日時" ng-model="start" name = "session_start"></li>
-                                                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="完了予定日時" ng-model="end" name = "session_finish"></li>
+                                                                <li><input type="text" ng-model="myLimit1" id="limit3" class="form-control form0" placeholder="開始予定日時" ng-model="start" name = "session_start"></li>
+                                                                <li><input type="text" ng-model="myLimit2" id="limit4" class="form-control form2" placeholder="完了予定日時" ng-model="end" name = "session_finish"></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -177,8 +175,8 @@
                                                         <div class="col-sm-8">
                                                             <ul class="form-group">
                                                                 <label class="control-label" for="limit1">期間</label>
-                                                                <li><input type="text" ng-model="myLimit1" id="limit1" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
-                                                                <li><input type="text" ng-model="myLimit2" id="limit2" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
+                                                                <li><input type="text" ng-model="myLimit1" id="limit5" class="form-control form1" placeholder="開始可能日時" ng-model="start"></li>
+                                                                <li><input type="text" ng-model="myLimit2" id="limit6" class="form-control form2" placeholder="延期不能日時" ng-model="end"></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -454,6 +452,9 @@
                     dateFormat: 'yy-mm-dd'
                 });
                 $('.form2').datetimepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+                $('.form3').datetimepicker({
                     dateFormat: 'yy-mm-dd'
                 });
 
