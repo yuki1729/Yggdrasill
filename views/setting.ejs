@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>test</title>
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  </head>
+  <body>
+
+    <div id="app">
+      <p>vue:{{ message }}</p>
+    </div>
+    <div id="app-5">
+      <p>vue:{{ message }}</p>
+      <button v-on:click="reverseMessage">Reverse Message</button>
+    </div>
+
+    <div id="user-data">
+       <li>vue:{{ user_id }}</li>
+       <li>vue:{{ user_name }}</li>
+       <li>vue:{{ user_mail }}</li>
+    </div>
+
+
+
+    <li><%= user_id %></li>
+    <li><%= user_name %></li>
+    <li><%= user_mail %></li>
+    <li></li>
+
+
+
+
+  <% if (typeof noUser !== 'undefined') { %>
+      <p class="error"><%= noUser %></p>
+  <% } %>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.datetimepicker.full.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/controller.js"></script>
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script type="text/javascript" charset="UTF-8">
+        $(document).ready(function() {
+            $('.navbar .container .btn.btn-navbar').sidr({
+                source: '.navbar .container .nav-collapse.collapse'
+            });
+        });
+    </script>
+</body>
+</html>
