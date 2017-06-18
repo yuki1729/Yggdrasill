@@ -58,12 +58,13 @@ var usermail = 'test@mail.com';
 var query = 'SELECT user_name FROM user WHERE id = "' + 9 + '" LIMIT 1';
 var sqlQuery = connection.query(query, function(err, rows) {
 });
-console.log("sqlQuery.sql");
-console.log(sqlQuery.sql);
+//console.log("sqlQuery.sql");
+//console.log(sqlQuery.sql);
 
 
 module.exports = function(req, res, next) {
   var userId = req.session.user_id;
+
   if (userId) {
     var query = 'SELECT user_name FROM user WHERE id = "' + 9 + '" LIMIT 1';
     connection.query(query, function(err, rows) {
@@ -81,6 +82,27 @@ module.exports = function(req, res, next) {
 };
 
 router.get('/', function(req, res, next) {
+  var userId = req.session.user_id;
+            console.log('test1');
+  if (userId) {
+    var query = 'SELECT user_name FROM user WHERE id = "' + 9 + '" LIMIT 1';
+    connection.query(query, function(err, rows) {
+      if (!err) {
+        var util = require('util');
+                  console.log("util");
+        console.log(util.inspect(rows[0]));
+          console.log("rows1:" + rows.length);
+          console.log("rows2:" + results[0].use_name);
+        var user_name = rows.length? rows[0].use_name: false;
+          console.log('test');
+          console.log(user_name);
+          req.session.user_name = user_name;
+
+
+
+      }
+    });
+  }
   res.render('setting',
   { title: 'setting',
     task:'setting',
