@@ -26,13 +26,14 @@ router.post('/', function(req, res, next) {
     + ')';
     var post_value = {
       nickname: req.body.nickname,
+      at_name: "@name",
       self_user_id: 2,
       partner_user_id: 2
     };
 
 
   var query = connection.query('INSERT INTO concerned SET ?', post_value, function(err, rows) {
-    // res.redirect('/concerned');
+    res.redirect('/concerned');
   });
 });
 
