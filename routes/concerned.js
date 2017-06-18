@@ -16,17 +16,23 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var nickname = '"' + req.body.nickname + '"';
   // var mension = '"' + req.body.mension + '"';
-  console.log("-------------------post-------------------")
+  console.log("----------concernd post-------------------")
   console.log(req.body)
   var query =
-    'INSERT INTO mydb.concerned (name,self_user_id,partner_user_id) VALUES ('
+    'INSERT INTO concerned (nickname,self_user_id,partner_user_id) VALUES ('
     + nickname
     + 2
     + 2
     + ')';
+    var post_value = {
+      nickname: req.body.nickname,
+      self_user_id: 2,
+      partner_user_id: 2
+    };
 
-  connection.query(query, function(err, rows) {
-    res.redirect('/concerned');
+
+  var query = connection.query('INSERT INTO concerned SET ?', post_value, function(err, rows) {
+    // res.redirect('/concerned');
   });
 });
 
