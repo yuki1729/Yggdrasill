@@ -8,13 +8,13 @@ temp =
 	<ul class="form-group">
 		<label class="control-label">期限</label>
 		<li><input v-model="earliest_start_time" class="form-control" placeholder="開始可能日時"></li>
-		<li><input v-model="deadline" class="form-control" placeholder="完了期限"></li><br>
+		<li><input v-model="x" class="form-control" placeholder="完了期限"></li><br>
 	</ul>
 	<ul class="form-group">
 		<input v-model="assigned_to_user" placeholder="担当者">
 		<div class="form-group">
 				<label class="control-label" for="incharge">メモ</label><br>
-				<textarea name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control"></textarea>
+				<textarea  v-model="memo" name="memo" rows="4" cols="40" placeholder="アクションの補足などを入力します" class="form-control"></textarea>
 		</div>
 		<input type="button" value="送信" v-on:click="postTask()">
 	</ul>
@@ -26,16 +26,17 @@ Vue.component('my-component', {
 	data: function() {
 		var subject = "dev" + moment().format('MMMDo h:mm:ss');
 		var now = moment();
-		var deadline = moment({ hour:17, minute:00 });
-
+		var m_deadline = moment({ hour:17, minute:00 });
+		console.log("define " + m_deadline);
 		return {
 			subject: subject,
 			target: "井垣さん",
 			earliest_start_time: now.format('MMMDo h:mm:ss'),
-			deadline: deadline.format('kk:mm'),
+			deadline: m_deadline.format('kk:mm'),
 			start_date: "",
 			assigned_to_user: "",
-			counter: 0
+			counter: 0,
+			memo:""
 		}
 	},
 	methods: {
@@ -43,13 +44,15 @@ Vue.component('my-component', {
 			// メソッド内の `this` は、 Vue インスタンスを参照します
 			console.log('post task ' + this.subject)
 			// `event` は、ネイティブ DOM イベントです
-			post_deadline = moment(this.deadline);
+			post_deadline = this.m_deadline;
+			console.log("post_deadline:" + post_deadline)
 			axios.post('/vue/something', {
 					subject: this.subject,
 					earliest_start_time: this.now,
 					deadline: post_deadline,
 					actionbtn: "action",
-					assigned_to_user: 2
+					assigned_to_user: 2,
+					memo: this.memo
 				})
 				.then(function(response) {
 					console.log(response);
