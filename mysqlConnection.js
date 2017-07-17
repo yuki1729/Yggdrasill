@@ -1,9 +1,9 @@
 var mysql = require('mysql');
 
 var dbConfig = {
-  host: 'mydb.cdzqam9fqkpc.us-west-2.rds.amazonaws.com',
-  user: 'root',
-  password: 'password08',
+  host: 'yggdrasill.mysql.database.azure.com',
+  user: 'geniusroots@yggdrasill',
+  password: 'Yggdrasill170717',
   database: 'mydb',
   debug: false
 };
