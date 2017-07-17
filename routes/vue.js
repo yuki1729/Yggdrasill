@@ -17,15 +17,15 @@ router.post('/something', function(req, res, next) {
 	//something 追加
 	if (action === "action") { //somethingがactionとして登録される場合
 		console.log("-------------------post action -------------------")
-		var m1 = moment(req.body.start_date, "YYYY/MM/DD HH:mm:ss");
-		var m2 = moment(req.body.finish_date, "YYYY/MM/DD HH:mm:ss");
-
 		var listValue = {
 			subject: req.body.subject,
-			start_date: m1.format('YYYY-MM-DD HH:mm:ss'),
-			finish_date: m2.format('YYYY-MM-DD HH:mm:ss'),
+			due_date:req.body.deadline,
+			start_date: req.body.earliest_start_time,
+			finish_date: null,
 			created_by_user_id: req.session.user_id,
-			primary_limit: m2.format('YYYY-MM-DD HH:mm:ss'),
+			updated_by: null,
+			done: 0,
+			primary_limit: req.body.deadline,
 			memo: req.body.memo
 		}
 		console.log(listValue);

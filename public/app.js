@@ -8,7 +8,7 @@ temp =
 	<ul class="form-group">
 		<label class="control-label">期限</label>
 		<li><input v-model="earliest_start_time" class="form-control" placeholder="開始可能日時"></li>
-		<li><input v-model="x" class="form-control" placeholder="完了期限"></li><br>
+		<li><input v-model="deadline" class="form-control" placeholder="完了期限"></li><br>
 	</ul>
 	<ul class="form-group">
 		<input v-model="assigned_to_user" placeholder="担当者">
@@ -31,8 +31,9 @@ Vue.component('my-component', {
 		return {
 			subject: subject,
 			target: "井垣さん",
-			earliest_start_time: now.format('MMMDo h:mm:ss'),
-			deadline: m_deadline.format('kk:mm'),
+			earliest_start_time: now.format("YYYY-MM-DD HH:mm:ss"),
+			deadline: m_deadline.format("YYYY-MM-DD HH:mm:ss"),
+			deadline_m: m_deadline,
 			start_date: "",
 			assigned_to_user: "",
 			counter: 0,
@@ -43,13 +44,12 @@ Vue.component('my-component', {
 		postTask: function(event) {
 			// メソッド内の `this` は、 Vue インスタンスを参照します
 			console.log('post task ' + this.subject)
+			console.log("this.deadline:" + this.deadline)
 			// `event` は、ネイティブ DOM イベントです
-			post_deadline = this.m_deadline;
-			console.log("post_deadline:" + post_deadline)
 			axios.post('/vue/something', {
 					subject: this.subject,
-					earliest_start_time: this.now,
-					deadline: post_deadline,
+					earliest_start_time: this.earliest_start_time,
+					deadline: this.deadline,
 					actionbtn: "action",
 					assigned_to_user: 2,
 					memo: this.memo
@@ -69,7 +69,7 @@ Vue.component('my-component', {
 	}
 })
 // root インスタンスを作成する
-new Vue({
+var vm = new Vue({
 	el: '#example'
 })
 
