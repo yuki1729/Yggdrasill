@@ -16,7 +16,7 @@ var welcome = require('./routes/welcome');
 var docs = require('./routes/docs'); //菊池追加
 
 var app = express();
-
+//１７０７１７上山　テスト　update
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
