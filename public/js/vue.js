@@ -24,3 +24,20 @@ var userdata = new Vue({
     user_mail: 'testmail'
   }
 })
+
+var userdata2 = new Vue({
+  el: '#user-data2',
+
+  data: {
+    user_id: 'testid',
+    user_name: 'testname',
+    user_mail: 'testmail'
+  }
+})
+axios.get('/setting/userdate')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
