@@ -1,7 +1,11 @@
 
-axios.get('/vue_test'),{
-  console.log(getQuery + '=================================');
-}
+axios.get('/vue_test')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 
 /*
 temp =
