@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   // 割当先ユーザーIDを取得
   var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something inner join assignment_relation on something.id = assignment_relation.something_id';
   sqlQuery = connection.query(query, function(err, rows) {
+    console.log(query);
     //完了状態のタスクを下方にソート // 順番もDATE_FORMATもangularjsにそのままの値渡してそちらで処理したほうが良いかも
     rows.sort(function(a,b){
       if(a.done<b.done) return -1;
