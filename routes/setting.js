@@ -117,31 +117,9 @@ router.get('/', function(req, res, next) {
 });
 //vue用test(getメソッド確認)
 router.get('/userdate', function(req, res, next) {
-  var userId = req.session.user_id;
-            console.log('test1');
-  if (userId) {
-    var query = 'SELECT user_name FROM user WHERE id = "' + 9 + '" LIMIT 1';
-    connection.query(query, function(err, rows) {
-      if (!err) {
-        var util = require('util');
-        var user_name = rows.length? rows[0].user_name: false;
-          req.session.user_name = user_name;
-
-          res.render('setting',
-          { title: 'setting',
-            task:'setting',
-            test: 'hello',
-            user_id: req.session.user_id,
-            user_name: req.session.user_name,
-            user_mail: usermail,
-          }
-          //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
-        );
-
-      }
-    });
-  }
-
-});
+    console.log("----------userdate----------");
+    var userId = req.session.user_id;
+    res.send({ userId: 'userId' });
+  });
 
 module.exports = router;

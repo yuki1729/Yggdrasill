@@ -1,4 +1,6 @@
-new Vue({
+
+
+  new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue.js!'
@@ -37,7 +39,16 @@ var userdata2 = new Vue({
 axios.get('/setting/userdate')
   .then(function (response) {
     console.log(response);
+    var userdata3 = new Vue({
+      el: '#user-data3',
+
+      data: {
+        user_id: userId,
+        user_name: 'testname',
+        user_mail: 'testmail'
+      }
+    })
   })
   .catch(function (error) {
     console.log(error);
-  });
+  })

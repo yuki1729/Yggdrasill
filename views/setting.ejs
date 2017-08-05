@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" ng-app="myApp">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,15 +42,14 @@
   <% if (typeof noUser !== 'undefined') { %>
       <p class="error"><%= noUser %></p>
   <% } %>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="js/vue.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.datetimepicker.full.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/controller.js"></script>
     <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" charset="UTF-8">
         $(document).ready(function() {
             $('.navbar .container .btn.btn-navbar').sidr({
