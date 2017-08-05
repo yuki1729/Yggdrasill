@@ -14,6 +14,7 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var welcome = require('./routes/welcome');
 var docs = require('./routes/docs'); //菊池追加
+var test = require('./routes/test');
 
 var app = express();
 
@@ -47,6 +48,7 @@ app.use('*', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
 app.use('/docs', docs); // 菊池追加
+app.use('/test', test);
 
 //ここで失敗している
 //app.use('/welcome', welcome);
