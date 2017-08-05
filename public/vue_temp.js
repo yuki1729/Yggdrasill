@@ -1,3 +1,8 @@
+
+axios.get('/vue_test'),{
+  console.log(getQuery + '=================================');
+}
+
 /*
 temp =
 `<form class="form-group">
