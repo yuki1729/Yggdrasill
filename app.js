@@ -6,14 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session'); // 追加
 
-//ルーティング追加するときはここに追加する
-var sessioncheck = require('./routes/sessioncheck');
 var routes = require('./routes/index');
 var register = require('./routes/register');
 var login = require('./routes/login');
-var logout = require('./routes/logout');
-var welcome = require('./routes/welcome');
-var docs = require('./routes/docs'); //菊池追加
+var concerned = require('./routes/concerned');
 
 var app = express();
 
@@ -23,33 +19,22 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-//ログ出力にステータスコード400以下(通常の読み込み成功等)を表示させないようスキップ
-app.use(logger('combined', {
-  skip: function (req, res) { return res.statusCode < 400 }
-}));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//cookieの設定
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 }));
 
-//ルーティング追加するときはここに追加する
-
+app.use('/', routes);
 app.use('/register', register);
 app.use('/login', login);
-app.use('/welcome', welcome);
-app.use('*', sessioncheck);
-app.use('/', routes);
-app.use('/logout', logout);
-app.use('/docs', docs); // 菊池追加
+app.use('/concerned', concerned)
 
-//ここで失敗している
-//app.use('/welcome', welcome);
 
 var domain = require('express-domain-middleware');
 app.use(domain);
