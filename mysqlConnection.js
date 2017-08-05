@@ -5,7 +5,10 @@ var dbConfig = {
   user: 'geniusroots@yggdrasill',
   password: 'Yggdrasill170717',
   database: 'mydb',
-  debug: false
+  Port: 3306,
+  ssl:{ca:fs.readFileSync({ca-cert filename})},
+  debug: false,
+  insecureAuth: true
 };
 
 var connection = mysql.createConnection(dbConfig);
