@@ -8,7 +8,7 @@ var session = require('express-session'); // 追加
 
 //ルーティング追加するときはここに追加する
 var routes = require('./routes/index');
-var vue = require('./routes/vue');
+var vue = require('./routes/vue_test');
 var register = require('./routes/register');
 var login = require('./routes/login');
 var sessioncheck = require('./routes/sessioncheck');
@@ -45,7 +45,7 @@ app.use('/login', login);
 app.use('/welcome', welcome);
 app.use('/', sessioncheck);
 app.use('/', routes);
-app.use('/vue', vue);
+app.use('/vue_test', vue);
 app.use('/logout', logout);
 
 //ここで失敗している

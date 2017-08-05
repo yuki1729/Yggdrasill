@@ -46,7 +46,7 @@ Vue.component('my-component', {
 			console.log('post task ' + this.subject)
 			console.log("this.deadline:" + this.deadline)
 			// `event` は、ネイティブ DOM イベントです
-			axios.post('/vue/something', {
+			axios.post('/vue_test/something', {
 					subject: this.subject,
 					earliest_start_time: this.earliest_start_time,
 					deadline: this.deadline,
