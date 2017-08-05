@@ -14,6 +14,7 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var welcome = require('./routes/welcome');
 var docs = require('./routes/docs'); //菊池追加
+var vuetest = require('./routes/vuetest');
 
 var app = express();
 
@@ -43,6 +44,8 @@ app.use(session({
 app.use('/register', register);
 app.use('/login', login);
 app.use('/welcome', welcome);
+app.use('/vuetest', vuetest);
+
 app.use('*', sessioncheck);
 app.use('/', routes);
 app.use('/logout', logout);
