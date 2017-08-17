@@ -1,4 +1,4 @@
-temp =
+element_template =
 `<form class="form-group">
 	<ul class="form-group">
 		<label class="control-label" for="task">アクションの内容</label></li>
@@ -22,7 +22,7 @@ temp =
 
 // 登録する
 Vue.component('my-component', {
-	template: temp,
+	template: element_template,
 	data: function() {
 		var subject = "dev" + moment().format('MMMDo h:mm:ss');
 		var now = moment();
