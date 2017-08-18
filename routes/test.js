@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ
-var debug = true; // debugモードの切り替え
+var debug = false; // debugモードの切り替え
 router.get('/', function(req, res, next) {
   res.render('test',
   { title: 'test',
