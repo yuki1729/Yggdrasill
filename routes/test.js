@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ
-
+var debug = true; // debugモードの切り替え
 router.get('/', function(req, res, next) {
   res.render('test',
   { title: 'test',
@@ -13,10 +13,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/testpost', function(req, res, next) {
-
+console.log("-------------------post action start-------------------")
   if (debug){ //デバッグモード時はログインしていなくてもid1でログインしたことにする
     if (req.session.user_id == null ) req.session.user_id =1;
   }
+console.log("-------------------post action if(debug)end-------------------")
 	var action = req.body.actionbtn
 	// var session = req.body.sessionbtn
 	//something 追加
