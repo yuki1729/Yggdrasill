@@ -15,9 +15,7 @@ axios.get('vuetest/getquery')
     console.log(error);
   });
 
-Vue.component('task-list',{
-  template: rows,
-})
+
 
 /*
 temp =
