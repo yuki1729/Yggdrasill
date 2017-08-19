@@ -1,5 +1,5 @@
 
-axios.get('/vue_test')
+axios.get('/getquery')
   .then(function (response) {
     console.log(response);
   })
