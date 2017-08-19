@@ -89,5 +89,13 @@ router.post('/something', function(req, res, next) {
   */
 });
 
+router.get('/userList', function(req, res, next) {
+	console.log("start user list");
+	var query = 'SELECT id, user_name FROM user';
+  sqlQuery = connection.query(query, function(err, rows) {
+		console.dir(rows);
+		res.send(rows);
+  });
 
+});
 module.exports = router;
