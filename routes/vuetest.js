@@ -5,7 +5,6 @@ var connection = require('../mysqlConnection');
 
 router.get('/', function(req, res, next) {
   // 割当先ユーザーIDを取得
-
     res.render('vuetest', {
 
     });
@@ -13,11 +12,15 @@ router.get('/', function(req, res, next) {
   // console.log(sqlQuery.sql);
 });
 
-router.post('/getquery', function(req, res, next) {
+router.get('/getquery', function(req, res, next) {
+    console.log("------getquery-----");
   var query = 'SELECT *, DATE_FORMAT(start_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS start_date, DATE_FORMAT(finish_date, \'%Y年%m月%d日 %k時%i分%s秒\') AS finish_date FROM something inner join assignment_relation on something.id = assignment_relation.something_id';
   getQuery = connection.query(query, function(err, rows) {
-    console.log(getQuery + "*********************");
       });
+      res.render('vuetest', {
+
+      });
+
 /*
   if (debug){ //デバッグモード時はログインしていなくてもid1でログインしたことにする
     if (req.session.user_id == null ) req.session.user_id =1;
