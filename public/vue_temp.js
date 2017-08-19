@@ -1,12 +1,12 @@
 
-axios.get('/getquery')
+axios.get('vuetest/getquery')
   .then(function (rows) {
     console.log(rows);
     var app = new Vue({
       el: '#taskList',
       data: {
         todos: [
-          { text: response },
+          { text: rows },
         ]
       }
     })
@@ -14,6 +14,7 @@ axios.get('/getquery')
   .catch(function (error) {
     console.log(error);
   });
+
 
 
 /*
