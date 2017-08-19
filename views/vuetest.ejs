@@ -8,10 +8,16 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="./yggdrasill.css" rel="stylesheet" type="text/css">
   </head>
-  <body>
-    <div id="example">
-    <my-component></my-component>
+
+  <div id="taskList">
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
   </div>
+
+
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/vue_temp.js"></script>

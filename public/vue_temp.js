@@ -1,11 +1,20 @@
 
 axios.get('/getquery')
-  .then(function (response) {
-    console.log(response);
+  .then(function (rows) {
+    console.log(rows);
+    var app = new Vue({
+      el: '#taskList',
+      data: {
+        todos: [
+          { text: response },
+        ]
+      }
+    })
   })
   .catch(function (error) {
     console.log(error);
   });
+
 
 /*
 temp =
