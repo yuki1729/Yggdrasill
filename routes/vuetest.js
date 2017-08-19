@@ -6,7 +6,7 @@ var connection = require('../mysqlConnection');
 router.get('/', function(req, res, next) {
   // 割当先ユーザーIDを取得
 
-    res.render('/', {
+    res.render('vuetest', {
 
     });
 
@@ -185,3 +185,4 @@ router.post('/getquery', function(req, res, next) {
 
 
 module.exports = router;
+exports.login = require('./vuetest');
