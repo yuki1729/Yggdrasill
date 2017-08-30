@@ -14,13 +14,15 @@ Vue.component('user-suggest', {
 	},
 	methods: {
 		loadUserList: function(){
+			console.log("before axios");
+			var self = this;
 			axios.get('/vue_test/userList', {
 				})
 				.then(function(response) {
 					console.log("get response data");
 					console.log(response.data[0].user_name);
 					console.log(this);
-					user1 = response.data[0].user_name;
+					self.userList = response.data[0].user_name;
 					// window.foo = "bar";
 					// console.log(this);
 					// console.log(this.foo);
@@ -43,6 +45,8 @@ Vue.component('user-suggest', {
 		console.log("create user list");
 		this.loadUserList();
 		this.userList = "created"
+		console.log("created log ");
+		console.dir(this);
 	},
 	mounted: function () {
 		console.log("mounted");
