@@ -2,7 +2,7 @@ element_template =
 `
 <form class="form-group">
 	<ul class="form-group">
-		<li><input v-model="user" class="form-control" placeholder="タスク" autocomplete="on" list="user-list"></li>
+		<li><input v-model="user" class="form-control" placeholder="user nickname" autocomplete="on" list="user-list"></li>
 		<datalist id="user-list">
 			<option v-for="user in userList" v-bind:value="user.user_name"  v-bind:label="user.user_name"></option>
 		</datalist>
