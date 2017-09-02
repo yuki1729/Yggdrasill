@@ -31,7 +31,8 @@ tempfetchtask =
 `<form class="form-group">
    <ul class="form-group">
      <li><input v-model="userList" class="form-control" placeholder="タスク"></li>
-   </ul><p>{{userList}}</p>
+   </ul><p>ユーザーネーム{{userList}}</p>
+   </ul><p>ユーザーID{{idList}}</p>
 </form>`;
 
 
@@ -92,7 +93,8 @@ Vue.component('fetchtask', {
   template: tempfetchtask,
   data: function() {
 		return{
-			 userList : ""
+			 userList : "",
+       idList : ""
 		}
 	},
 	methods: {
@@ -102,7 +104,8 @@ Vue.component('fetchtask', {
 				})
 				.then(function(response) {
 					console.log(response);
-          self.userList = response.data[0].user_name;
+          self.userList = response.data[6].user_name;
+          self.idList = response.data[6].id;
 				})
 				.catch(function(error) {
 					console.log(error);
