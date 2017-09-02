@@ -2,19 +2,20 @@ element_template =
 `
 <form class="form-group">
 	<ul class="form-group">
-		<li><input v-model="userList" class="form-control" placeholder="タスク" autocomplete="on" list="user-list"></li>
+		<li><input v-model="user" class="form-control" placeholder="タスク" autocomplete="on" list="user-list"></li>
 		<datalist id="user-list">
-			<option v-for="source in sources" v-bind:value="source.name"  v-bind:label="source.name"></option>
+			<option v-for="user in userList" v-bind:value="user.user_name"  v-bind:label="user.user_name"></option>
 		</datalist>
-	</ul><p>{{userList}}</p>
+	</ul>
 </form>
-`;
+`; // datalistのIDが固定のため2箇所以上で使用すると問題が生じる可能性あり
 
 Vue.component('user-suggest', {
 	template: element_template,
 	data: function() {
 		return{
-			 userList : ""
+			 userList : "",
+			 user : ""
 		}
 	},
 	methods: {
@@ -24,7 +25,7 @@ Vue.component('user-suggest', {
 					// request parameter
 				})
 				.then(function(response) {
-					self.userList = response.data[0].user_name;
+					self.userList = response.data;
 				})
 				.catch(function(error) {
 					console.log(error);
