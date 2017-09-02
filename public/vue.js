@@ -31,11 +31,16 @@ tempfetchtask =
 `<form class="form-group">
    <ul class="form-group">
      <li><input v-model="userList" class="form-control" placeholder="タスク"></li>
-   </ul><p>ユーザーネーム{{userList}}</p>
-   </ul><p>ユーザーID{{idList}}</p>
+   </ul><p>ユーザーネーム{{userList}}</p><p>ユーザーID{{idList}}</p>
 </form>`;
 
 
+tempfetchuserlist =
+`<form class="form-group">
+   <ul class="form-group">
+     <li v-repeat="user">{{user_name}}</li>
+   </ul>
+</form>`;
 
 Vue.component('testform', {
   template: temphtml,
@@ -119,4 +124,38 @@ Vue.component('fetchtask', {
 })
 var task = new Vue({
 	el: '#task'
+})
+
+//リスト表示test
+Vue.component('userlist', {
+  template: tempfetchuserlist,
+  data: function() {
+		return{
+			 user : "",
+       id : ""
+		}
+	},
+	methods: {
+		postFetchUserList: function() {
+			var self = this; // axiosのthen内でこのvue componentにアクセスするためthisを代入
+			axios.post('/test/userlistpost', {
+				})
+				.then(function(response) {
+					console.log(response);
+          self.user = response.data.response;
+          self.id = response.data;
+          					console.log(self.user);
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		}
+	},
+  created: function(){
+		// vue component 生成時に実行
+		this.postFetchUserList();
+	}
+})
+var task = new Vue({
+	el: '#user_list'
 })

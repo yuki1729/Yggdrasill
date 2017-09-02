@@ -113,5 +113,14 @@ console.log("-------------------fetchtask action if(debug)end-------------------
 */
 });
 
+//userlist一覧取得postメソッド
+router.post('/userlistpost', function(req, res, next) {
+  console.log("-------------------userlistpost action start-------------------")
+  var query = 'SELECT user_name FROM user';
+  sqlQuery = connection.query(query, function(err, rows) {
+    console.dir(rows);
+    res.send(rows);
+  });
+});
 
 module.exports = router;
