@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
         var m2 = moment(req.body.finish_date, "YYYY/MM/DD HH:mm");
 
         var listValue = {
-            subject: req.body.title,
+            subject: req.body.subject,
             start_date: m1.format('YYYY-MM-DD HH:mm:ss'),
             finish_date: m2.format('YYYY-MM-DD HH:mm:ss'),
             created_by_user_id: req.session.user_id,
