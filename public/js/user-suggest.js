@@ -1,9 +1,14 @@
 element_template =
-`<form class="form-group">
+`
+<form class="form-group">
 	<ul class="form-group">
-		<li><input v-model="userList" class="form-control" placeholder="タスク"></li>
+		<li><input v-model="userList" class="form-control" placeholder="タスク" autocomplete="on" list="user-list"></li>
+		<datalist id="user-list">
+			<option v-for="source in sources" v-bind:value="source.name"  v-bind:label="source.name"></option>
+		</datalist>
 	</ul><p>{{userList}}</p>
-</form>`;
+</form>
+`;
 
 Vue.component('user-suggest', {
 	template: element_template,
