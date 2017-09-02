@@ -93,3 +93,11 @@ var vm = new Vue({
 		</div>
 	</div>
 */
+
+//index用追加
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})

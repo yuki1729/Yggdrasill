@@ -421,6 +421,9 @@
         <div id="footer" class="container">
             <center class="text-success">© 2016 Yggdrasill</center>
         </div>
+        <div id="app">
+          {{ message }}
+        </div>
 
         <!-- 以下必要なjsファイルの読み込み -->
         <script src="js/jquery.js"></script>
@@ -441,6 +444,13 @@
                 });
             });
         </script>
+
+
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/locale/ja.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/vue_app.js"></script>
 
 
         <script type="text/javascript">
