@@ -95,12 +95,6 @@ var vm = new Vue({
 */
 
 //index用追加
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
 
 taskformhtml =
 `<form class="form-group">
