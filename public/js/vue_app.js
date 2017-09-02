@@ -165,10 +165,10 @@ Vue.component('taskform-vue', {
 		}
 	}
 })
-var taskpost = new Vue({
+new Vue({
 	el: '#taskform'
 })
 
-var taskpost = new Vue({
+new Vue({
 	el: '#tabtaskform'
 })
