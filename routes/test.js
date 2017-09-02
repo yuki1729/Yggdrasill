@@ -70,6 +70,13 @@ console.log("-------------------post action if(debug)end-------------------")
 });
 //task一覧取得postメソッド
 router.post('/taskpost', function(req, res, next) {
+  console.log("-------------------fetchtask action start-------------------")
+  var query = 'SELECT id, user_name FROM user';
+  sqlQuery = connection.query(query, function(err, rows) {
+    console.dir(rows);
+    res.send(rows);
+  });
+/*
 console.log("-------------------fetchtask action start-------------------")
   if (debug){ //デバッグモード時はログインしていなくてもid1でログインしたことにする
     if (req.session.user_id == null ) req.session.user_id =1;
@@ -103,6 +110,7 @@ console.log("-------------------fetchtask action if(debug)end-------------------
 		console.log(sqlQuery.sql);
 
 	}
+*/
 });
 
 
