@@ -1,4 +1,6 @@
 # Yggdrasill
+2017/09/02 developをAngularJSからVueに切り替えるため、ファイル整理を実行。
+AngularJS時の動作や実装を確認するため別ブランチで保存
 GeniusRoots Project: Yggdrasill
 
 Yggdrasill Projectのリポジトリです。  
