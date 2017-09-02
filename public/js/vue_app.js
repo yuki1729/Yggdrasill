@@ -149,7 +149,7 @@ Vue.component('taskform-vue', {
 			console.log('post task ' + this.subject)
 			console.log("this.deadline:" + this.deadline)
 			// `event` は、ネイティブ DOM イベントです
-			axios.post('/test/testpost', {
+			axios.post('/inputtaskpost', {
 					subject: this.subject,
 					earliest_start_time: this.earliest_start_time,
 					deadline: this.deadline,
