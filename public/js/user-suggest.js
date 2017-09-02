@@ -1,8 +1,8 @@
 element_template =
 `<form class="form-group">
 	<ul class="form-group">
-		<li><input v-model="userList" class="form-control" placeholder="タスク"></li>
-	</ul><p>{{userList}}</p>
+		<li><input v-model="userList[0].user_name" class="form-control" placeholder="タスク"></li>
+	</ul><p style="margin-left:60px;" v-for="user in userList">{{user.user_name}}</p>
 </form>`;
 
 Vue.component('user-suggest', {
@@ -19,7 +19,7 @@ Vue.component('user-suggest', {
 					// request parameter
 				})
 				.then(function(response) {
-					self.userList = response.data[0].user_name;
+					self.userList = response.data;
 				})
 				.catch(function(error) {
 					console.log(error);
