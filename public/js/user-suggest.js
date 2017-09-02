@@ -1,9 +1,9 @@
 element_template =
 `<form class="form-group">
 	<ul class="form-group">
-		<li><input v-model="userList[0].user_name" class="form-control" placeholder="タスク"></li>
+
 	</ul>
-	<p style="margin-left:60px;" v-for="id in taskList">{{something.subject}}</p>
+	<li v-for = "task in taskList" {{task.subject}} </li>
 </form>`;
 
 Vue.component('task-list', {
