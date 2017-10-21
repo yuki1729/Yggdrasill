@@ -10,15 +10,14 @@
 <body>
 <br><br>
 <div class="container">
-<div class="row">
   <form id="concerned_form" action="/concernedList"  method="post">
-    <div class="form-group col-md-10">
+    <div class="form-group">
       <label class="control-label" for="concern">あなたの関係者のメンション設定更新</label>
-      <li><input type="text" id="user_nickname" class="form-control" placeholder="Nickname" ng-model="task" name ="title" required></li>
+      <center><br><br>
+      <li><input type="text" id="nickname" class="form-control" placeholder="Nickname" ng-model="task" name ="title" required></li>
       <li><input type="text" id="partner_user_id" class="form-control" placeholder="関係者のID" ng-model="task" name ="title" required></li>
-      <li><input type="text" id="user_mension" class="form-control" placeholder="@name" ng-model="target" name="action_to"></li>
+      <li><input type="text" id="at_name" class="form-control" placeholder="@name" ng-model="target" name="action_to"></li>
       <br>
-      <center>
         <div class="form-group">
           <input type="submit" value="更新" class="btn btn-primary">
         </div>
@@ -26,35 +25,11 @@
       <br><br>
       <label class="control-label" for="concern">あなたの関係者のメンション設定一覧</label>
     </div>
-    <div>
-      <table class="table col-md-10">
-        <thead class="thead-inverse">
-          <tr>
-            <!-- <th>#</th> -->
-            <th>名前（Nickname）</th>
-            <th>メンション（@name）</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% if (typeof taskList != 'undefined') { %>
-        <% taskList.forEach(function(taskItem) { %>
-          <tr class="concerned_table">
-            <!-- <th scope="row"><div class="checkbox"><label><input type="checkbox" value=""></label></div></th> -->
-            <td>井垣</td>
-            <td>@igaki</td>
-            <td>ログイン中</td>
-          </tr>
-        <% })}; %>
-        </tbody>
-      </table>
+    <div id="concerned">
+      <concerned></concerned>
     </div>
   </form>
 </div>
-</div>
-  <div id="concerned">
-    <concerned></concerned>
-  </div>
 
 <!-- load files -->
   <script src="https://unpkg.com/vue"></script>

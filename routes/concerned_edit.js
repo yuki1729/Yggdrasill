@@ -3,26 +3,20 @@ var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection'); // è¿½åŠ
 
-/* GET home page. */
 
+// 関係者アップデートページを表示
 router.get('/', function(req, res, next) {
-  res.render('concerned',
-  { title: '関係者のメンション設定',
-  }
-  //renderでテンプレートエンジンを指定、受け渡し数値をその中に記載
-);
+  res.render('concerned_edit');
 });
 
-router.get('/concernedList', function(req, res, next) {
-  console.log("start concernedList");
+// 関係者アップデートページを表示
+router.get('/:id', function(req, res, next) {
   var query = 'SELECT id, nickname, at_name FROM concerned where self_user_id = ' + req.session.user_id + ';'
   sqlQuery = connection.query(query, function(err, rows) {
     console.dir(rows);
     res.send(rows);
   });
-
 });
-
 
 // 関係者をアップデート
 router.post('/concernedList/edit/:id', function(req, res, next) {

@@ -69,9 +69,9 @@ Vue.component('my-component', {
 	}
 })
 // root インスタンスを作成する
-var vm = new Vue({
-	el: '#example'
-})
+// var vm = new Vue({
+// 	el: '#example'
+// })
 
 
 /* α版では使用しない
