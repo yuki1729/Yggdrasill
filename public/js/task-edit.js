@@ -29,11 +29,10 @@ Vue.component('task-edit', {
 		var m_deadline = moment({ hour:17, minute:00 });
 		console.log("define " + m_deadline);
 		return {
-			subject: subject,
-			target: "井垣さん",
-			earliest_start_time: now.format("YYYY-MM-DD HH:mm:ss"),
-			deadline: m_deadline.format("YYYY-MM-DD HH:mm:ss"),
-			deadline_m: m_deadline,
+			subject: "",
+			target: "",
+			earliest_start_time: "",
+			deadline: "",
 			start_date: "",
 			assigned_to_user: "",
 			counter: 0,
@@ -41,13 +40,20 @@ Vue.component('task-edit', {
 		}
 	},
 	methods: {
-		getSomething: function(event) {
-			var something_id =100;
+		getSomething: function(something_id) {
+			var something_id =291;
+			var self = this; // axiosのthen内でこのvue componentにアクセスするためthisを代入する。
+			
 			// メソッド内の `this` は、 Vue インスタンスを参照します
 			// `event` は、ネイティブ DOM イベントです
 			axios.get('/vue_test/something/'+something_id, )
 				.then(function(response) {
-					console.log(response);
+					res = response.data[0];
+					self.subject = res.subject;
+					self.earliest_start_time = res.start_date;
+					self.deadline = res.due_date;
+					self.memo = res.memo;
+
 				})
 				.catch(function(error) {
 					console.log(error);
