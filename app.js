@@ -7,14 +7,9 @@ var bodyParser = require('body-parser');
 var session = require('express-session'); // 追加
 
 //ルーティング追加するときはここに追加する
-var sessioncheck = require('./routes/sessioncheck');
 var routes = require('./routes/index');
 var vue = require('./routes/vue_test');
-var register = require('./routes/register');
-var login = require('./routes/login');
-var logout = require('./routes/logout');
-var welcome = require('./routes/welcome');
-var docs = require('./routes/docs'); //菊池追加
+
 
 var app = express();
 
@@ -41,14 +36,8 @@ app.use(session({
 
 //ルーティング追加するときはここに追加する
 
-app.use('/register', register);
-app.use('/login', login);
-app.use('/welcome', welcome);
-app.use('*', sessioncheck);
 app.use('/', routes);
 app.use('/vue_test', vue);
-app.use('/logout', logout);
-app.use('/docs', docs); // 菊池追加
 
 //ここで失敗している
 //app.use('/welcome', welcome);

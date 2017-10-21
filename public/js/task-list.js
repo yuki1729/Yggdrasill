@@ -1,11 +1,12 @@
-element_template2 =
-`<p style="margin-left:60px;" v-for="task in taskList">{{task.subject}}</p>`;
+element_template =
+`<form class="form-group"><p style="margin-left:60px;" v-for="task in taskList">{{task.subject}}</p></form>`;
 
 Vue.component('task-list', {
-  template: element_template2,
+  template: element_template,
   data: function() {
     return{
        taskList : ""
+       // taskList2 : ""
     }
   },
   methods: {
@@ -16,6 +17,8 @@ Vue.component('task-list', {
         })
         .then(function(response) {
           self.taskList = response.data;
+          console.log(response);
+          // self.taskList2 = response.data[0];
         })
         .catch(function(error) {
           console.log(error);
