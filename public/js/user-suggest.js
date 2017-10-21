@@ -19,13 +19,19 @@ element_template =
 
 
 </table>
-
-<li v-for = "task in taskList" {{task.subject}} </li>
-<li v-for = "task in taskList" {{task.start_date}} </li>
-<li v-for = "task in taskList" {{task.finish_date}} </li>
-<li v-for = "task in taskList" {{task.action_to}} </li>
-<li v-for = "task in taskList" {{task.memo}} </li>
-<li v-for = "task in taskList" {{task.assigned_to_user}} </li>
+<table>
+<tr>
+<th>#</th>
+<th><div v-for="task in taskList"> {{task.id}} </div></th>
+<th><div v-for = "task in taskList"> {{task.subject}}</div></th>
+<th><div v-for = "task in taskList"> {{task.start_date}}</div></th>
+<th><div v-for = "task in taskList"> {{task.finish_date}}</div></th>
+<th><div v-for = "task in taskList"> {{task.action_to}}</div></th>
+<th><div v-for = "task in taskList"> {{task.memo}}</div></th>
+<th><div v-for = "task in taskList"> {{task.done}}</div></th>
+<th><div v-for = "task in taskList"> {{task.assigned_to_user}}</div></th>
+</tr>
+</table>
 
 
 </form>`;
