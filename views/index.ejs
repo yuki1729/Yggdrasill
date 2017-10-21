@@ -8,7 +8,6 @@
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/yggdrasill.css" rel="stylesheet" type="text/css">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
     <script type="text/javascript">
     //画面側JSでroutes側から渡されたデータを扱えるように変更
     var taskList = <%- JSON.stringify(taskList) %>
@@ -372,33 +371,9 @@
 
                     <div><br>
                       <h4>タスク一覧</h4>
-                      <table class="table">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th>#</th>
-                                <th>タスク</th>
-                                <th>開始可能日時</th>
-                                <th>延期不能日時</th>
-                                <th>担当</th>
-                                <th>メモ</th>
-                                <th>状態</th>
-                                <th>割当先</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <!-- <tr ng-repeat="todo in list.todos"> -->
-                        <tr ng-repeat="todo in list.todos" ng-click="selectTask($index)">
-                          <td><input type="checkbox" ng-model="todo.done" ng-change="onCheckBoxChange({{$index}})" ng-true-value="1" ng-false-value="0"></td>
-                          <td class="done-{{todo.done}}">{{todo.subject}}</td>
-                          <td>{{todo.start_date}}</td>
-                          <td>{{todo.finish_date}}</td>
-                          <td>{{todo.action_to}}</td>
-                          <td>{{todo.memo}}</td>
-                          <td>{{todo.done}}</td>
-                          <td>{{todo.assigned_to_user}}</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <div id="task-list">
+                      	<task-list></task-list>
+                    	</div>
                     </div>
 
                 </div>
@@ -423,6 +398,8 @@
         </div>
 
         <!-- 以下必要なjsファイルの読み込み -->
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="js/jquery.js"></script>
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
         <script src="js/jquery.datetimepicker.full.min.js"></script>
@@ -434,6 +411,7 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
         <script src="js/calendar.js"></script>
         <script src="js/moment-with-locales.js"></script>
+        <script src="js/tasklist_app.js"></script>
         <script type="text/javascript" charset="UTF-8">
             $(document).ready(function() {
                 $('.navbar .container .btn.btn-navbar').sidr({

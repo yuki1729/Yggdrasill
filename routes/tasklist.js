@@ -3,9 +3,11 @@ var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection');
 var debug = true; // debugモードの切り替え
+/*
 router.get('/', function(req, res, next) {
 	res.render('vue_test', "");
 });
+*/
 
 router.post('/something', function(req, res, next) {
 

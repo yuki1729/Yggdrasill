@@ -15,18 +15,20 @@ element_template =
 						<th>状態</th>
 						<th>割当先</th>
 				</tr>
+
+				<tr v-for="task in taskList">
+				<td>{{task.id}}</td>
+				<td>{{task.subject}}</td>
+				<td>{{task.start_date}}</td>
+				<td>{{task.finish_date}}</td>
+				<td>{{task.action_to}}</td>
+				<td>{{task.memo}}</td>
+				<td>{{task.done}}</td>
+				<td>{{task.assigned_to_user}}</td>
+				</tr>
+
 		</thead>
 
-<tr v-for="task in taskList">
-<td>{{task.id}}</td>
-<td>{{task.subject}}</td>
-<td>{{task.start_date}}</td>
-<td>{{task.finish_date}}</td>
-<td>{{task.action_to}}</td>
-<td>{{task.memo}}</td>
-<td>{{task.done}}</td>
-<td>{{task.assigned_to_user}}</td>
-</tr>
 </table>
 
 
@@ -37,16 +39,18 @@ Vue.component('task-list', {
 	data: function() {
 		return{
 			 taskList : ""
+
 		}
 	},
 	methods: {
 		loadtaskList: function(){
 			var self = this; // axiosのthen内でこのvue componentにアクセスするためthisを代入する。
-			axios.get('/vue_test/taskList', {
+			axios.get('/tasklist/taskList', {
 					// request parameter
 				})
 				.then(function(response) {
 					self.taskList = response.data;
+						console.log(self.taskList);
 				})
 				.catch(function(error) {
 					console.log(error);
