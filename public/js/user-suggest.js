@@ -3,7 +3,29 @@ element_template =
 	<ul class="form-group">
 
 	</ul>
-	<li v-for = "task in taskList" {{task.subject}} </li>
+	<table class="table">
+		<thead class="thead-inverse">
+				<tr>
+						<th>#</th>
+						<th>タスク</th>
+						<th>開始可能日時</th>
+						<th>延期不能日時</th>
+						<th>担当</th>
+						<th>メモ</th>
+						<th>状態</th>
+						<th>割当先</th>
+				</tr>
+		</thead>
+		<tbody>
+		<li v-for = "task in taskList" {{task.subject}} </li>
+		<li v-for = "task in taskList" {{task.start_date}} </li>
+		<li v-for = "task in taskList" {{task.finish_date}} </li>
+		<li v-for = "task in taskList" {{task.action_to}} </li>
+		<li v-for = "task in taskList" {{task.memo}} </li>
+		<li v-for = "task in taskList" {{task.assigned_to_user}} </li>
+	</tbody>
+</table>
+
 </form>`;
 
 Vue.component('task-list', {
