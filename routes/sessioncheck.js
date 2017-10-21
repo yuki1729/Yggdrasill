@@ -6,11 +6,14 @@ var router = express.Router();
 router.get('/' , function(req, res, next) {
 // console.log("ifの前");
   if (!req.session.user_id) {
-    res.redirect('/login');
-    return
+    req.session.user_id =1;// セッションなければテスト用ユーザー1でログイン
+    //res.redirect('/login');
+    next();
+    
+    //return
 
   } else {
-    next();
+   next();
   }
 });
 

@@ -41,19 +41,11 @@ Vue.component('task-edit', {
 		}
 	},
 	methods: {
-		postTask: function(event) {
+		getSomething: function(event) {
+			var something_id =100;
 			// メソッド内の `this` は、 Vue インスタンスを参照します
-			console.log('post task ' + this.subject)
-			console.log("this.deadline:" + this.deadline)
 			// `event` は、ネイティブ DOM イベントです
-			axios.post('/vue_test/something', {
-					subject: this.subject,
-					earliest_start_time: this.earliest_start_time,
-					deadline: this.deadline,
-					actionbtn: "action",
-					assigned_to_user: 2,
-					memo: this.memo
-				})
+			axios.get('/vue_test/something/'+something_id, )
 				.then(function(response) {
 					console.log(response);
 				})
@@ -66,6 +58,10 @@ Vue.component('task-edit', {
 			console.log(e);
 
 		}
+	},
+	created: function(){
+		// vue component 生成時に実行
+		this.getSomething();
 	}
 })
 // root インスタンスを作成する
