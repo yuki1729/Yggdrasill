@@ -3,9 +3,11 @@ var router = express.Router();
 var moment = require('moment');
 var connection = require('../mysqlConnection');
 var debug = true; // debugモードの切り替え
+/*
 router.get('/', function(req, res, next) {
 	res.render('vue_test', "");
 });
+*/
 
 router.post('/something', function(req, res, next) {
 
@@ -98,4 +100,16 @@ router.get('/userList', function(req, res, next) {
   });
 
 });
+
+router.get('/taskList', function(req, res, next) {
+	console.log("start task list");
+
+	var query = 'SELECT id, subject, memo, due_date, created_on, created_by_user_id, done, created_by_user_id, start_date, finish_date, primary_limit from something';
+  sqlQuery = connection.query(query, function(err, rows) {
+		console.dir(rows);
+		res.send(rows);
+  });
+
+});
+
 module.exports = router;
