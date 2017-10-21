@@ -15,6 +15,7 @@ var login = require('./routes/login');
 var logout = require('./routes/logout');
 var welcome = require('./routes/welcome');
 var docs = require('./routes/docs'); //菊池追加
+var concerned = require('./routes/concerned'); //関係者一覧ページ
 
 var app = express();
 
@@ -49,6 +50,7 @@ app.use('/', routes);
 app.use('/vue_test', vue);
 app.use('/logout', logout);
 app.use('/docs', docs); // 菊池追加
+app.use('/concerned', concerned); //関係者一覧ページ
 
 //ここで失敗している
 //app.use('/welcome', welcome);
