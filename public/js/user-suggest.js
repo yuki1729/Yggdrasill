@@ -16,15 +16,17 @@ element_template =
 						<th>割当先</th>
 				</tr>
 		</thead>
-		<tbody>
-		<li v-for = "task in taskList" {{task.subject}} </li>
-		<li v-for = "task in taskList" {{task.start_date}} </li>
-		<li v-for = "task in taskList" {{task.finish_date}} </li>
-		<li v-for = "task in taskList" {{task.action_to}} </li>
-		<li v-for = "task in taskList" {{task.memo}} </li>
-		<li v-for = "task in taskList" {{task.assigned_to_user}} </li>
-	</tbody>
+
+
 </table>
+
+<li v-for = "task in taskList" {{task.subject}} </li>
+<li v-for = "task in taskList" {{task.start_date}} </li>
+<li v-for = "task in taskList" {{task.finish_date}} </li>
+<li v-for = "task in taskList" {{task.action_to}} </li>
+<li v-for = "task in taskList" {{task.memo}} </li>
+<li v-for = "task in taskList" {{task.assigned_to_user}} </li>
+
 
 </form>`;
 
