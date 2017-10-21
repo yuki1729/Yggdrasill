@@ -18,7 +18,6 @@ element_template =
 		</thead>
 
 <tr v-for="task in taskList">
-<td>#</td>
 <td>{{task.id}}</td>
 <td>{{task.subject}}</td>
 <td>{{task.start_date}}</td>
