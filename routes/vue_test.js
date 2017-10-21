@@ -7,6 +7,16 @@ router.get('/', function(req, res, next) {
 	res.render('vue_test', "");
 });
 
+router.get('/something/:id', function(req, res, next) {
+ console.log("something detail id"+ req.params.id);
+ var query = 'SELECT * FROM something where id = '  + req.params.id;
+ sqlQuery = connection.query(query, function(err, rows) {
+	   console.dir(rows);
+	   res.send(rows);
+ });
+
+});	
+
 router.post('/something', function(req, res, next) {
 
   if (debug){ //デバッグモード時はログインしていなくてもid1でログインしたことにする
