@@ -62,6 +62,30 @@ Vue.component('task-list', {
 	}
 })
 
+Vue.component('task-list', {
+	template: element_template,
+	data: function() {
+		var checkbox = this.checkbox;
+		return {
+			done: checkbox
+		}
+	},
+	methods: {
+		posttaskList: function(){
+			console.log("checkbox");
+			axios.post('/tasklist/taskList', {
+				done: checkbox
+					// request parameter
+				})
+				.then(function(response) {
+					console.log(response);
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		}
+	},
+})
 
 var vt = new Vue({
 	el: '#task-list'
