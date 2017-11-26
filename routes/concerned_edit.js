@@ -22,7 +22,7 @@ router.get('/edit/:id', function(req, res, next) {
 
 // 関係者をアップデート
 router.post('/update/:id', function(req, res, next) {
-  console.log("アップデート内容", req.params.id);
+  console.log("アップデート内容 for ID：", req.params.id);
   console.log(req.body);
   var updateValue = {
     nickname: req.body.nickname,
@@ -30,6 +30,14 @@ router.post('/update/:id', function(req, res, next) {
     at_name: req.body.at_name
   }
   var query = connection.query('UPDATE `concerned` SET ? WHERE id = ?', [updateValue,req.params.id], function (error, results, fields) {
+  if (error) throw error;
+  });
+});
+
+// 関係者をデリート
+router.post('/delete/:id', function(req, res, next) {
+  console.log("デリート対象ID：", req.params.id);
+  var query = connection.query('DELETE from concerned WHERE id = '+req.params.id+';', function (error, results, fields) {
   if (error) throw error;
   });
 });
