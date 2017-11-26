@@ -17,7 +17,7 @@ element_template =
 				</tr>
 
 				<tr v-for="task in taskList">
-				<td>{{task.id}}</td>
+				<input type="checkbox" v-model="task.done" td>{{task.id}}</td>
 				<td>{{task.subject}}</td>
 				<td>{{task.start_date}}</td>
 				<td>{{task.finish_date}}</td>
@@ -50,7 +50,6 @@ Vue.component('task-list', {
 				})
 				.then(function(response) {
 					self.taskList = response.data;
-						console.log(self.taskList);
 				})
 				.catch(function(error) {
 					console.log(error);
