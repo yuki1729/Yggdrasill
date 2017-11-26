@@ -23,7 +23,6 @@ router.get('/concernedList', function(req, res, next) {
 
 });
 
-
 // 関係者をアップデート
 router.post('/concernedList/edit/:id', function(req, res, next) {
   console.log("req.body");

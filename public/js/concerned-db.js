@@ -1,5 +1,6 @@
 element_template =
-`<div><table class="table col-md-12">
+`<div>
+<table class="table col-md-12">
         <thead class="thead-inverse">
           <tr>
             <!-- <th>#</th> -->
