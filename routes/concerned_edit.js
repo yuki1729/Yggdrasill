@@ -12,8 +12,8 @@ router.get('/', function(req, res, next) {
 
 // 関係者アップデートページを表示
 router.get('/edit/:id', function(req, res, next) {
-  console.log('ID:', req.params.id);
-  var query = 'SELECT partner_user_id, nickname, at_name FROM concerned where id = ' + req.params.id + ';'
+  console.log('詳細検索用ID:', req.params.id);
+  var query = 'SELECT id, partner_user_id, nickname, at_name FROM concerned where id = ' + req.params.id + ';'
   sqlQuery = connection.query(query, function(err, rows) {
     console.dir(rows);
     res.send(rows);
@@ -22,7 +22,7 @@ router.get('/edit/:id', function(req, res, next) {
 
 // 関係者をアップデート
 router.post('/update/:id', function(req, res, next) {
-  console.log("req.body");
+  console.log("アップデート内容", req.params.id);
   console.log(req.body);
   var updateValue = {
     nickname: req.body.nickname,
