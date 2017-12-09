@@ -31,7 +31,6 @@ element_template =
 
 </table>
 
-
 </form>`;
 
 Vue.component('task-list', {
@@ -46,6 +45,18 @@ Vue.component('task-list', {
 		loadtaskList: function(){
 			var self = this; // axiosのthen内でこのvue componentにアクセスするためthisを代入する。
 			axios.get('/tasklist/taskList', {
+					// request parameter
+				})
+				.then(function(response) {
+					self.taskList = response.data;
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		},
+		reverseCheckBox: function(){
+			var self = this; // axiosのthen内でこのvue componentにアクセスするためthisを代入する。
+			axios.post('/tasklist/checkbox', {
 					// request parameter
 				})
 				.then(function(response) {
