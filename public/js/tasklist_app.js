@@ -17,7 +17,7 @@ element_template =
 				</tr>
 
 				<tr v-for="task in taskList">
-				<td>{{task.id}}</td>
+				<td><input v-bind:id="task.id" v-bind:value="task.done" type="checkbox" v-model="task.done" v-on:click="reverseCheckBox">{{task.id}}</td>
 				<td>{{task.subject}}</td>
 				<td>{{task.start_date}}</td>
 				<td>{{task.finish_date}}</td>
@@ -30,7 +30,6 @@ element_template =
 		</thead>
 
 </table>
-
 
 </form>`;
 
@@ -50,11 +49,17 @@ Vue.component('task-list', {
 				})
 				.then(function(response) {
 					self.taskList = response.data;
-						console.log(self.taskList);
 				})
 				.catch(function(error) {
 					console.log(error);
 				});
+		},
+		reverseCheckBox: function(e){
+			console.log(e.srcElement.id);
+			console.log(e.srcElement.value);
+			axios.post('/tasklist/checkbox/'+e.srcElement.id+'/'+e.srcElement.value, {
+					// request parameter
+				})
 		}
 	},
 	created: function(){

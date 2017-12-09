@@ -112,4 +112,20 @@ router.get('/taskList', function(req, res, next) {
 
 });
 
+// 関係者をアップデート
+router.post('/checkbox/:id/:value', function(req, res, next) {
+  console.log("クリックしたタスクのID：", req.params.id);
+  console.log("チェックボックスの中身：",req.params.value);
+  if (req.params.value == 0 || req.params.value == "false") {
+  	req.params.value = 1
+  } else {
+  	req.params.value = 0
+  }
+  console.log("チェックボックスの中身",req.params.value);
+  var updateValue = { done: req.params.value};
+  var query = connection.query('UPDATE `something` SET ? WHERE id = ?', [updateValue,req.params.id], function (error, results, fields) {
+  if (error) throw error;
+  });
+});
+
 module.exports = router;
