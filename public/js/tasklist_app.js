@@ -17,7 +17,7 @@ element_template =
 				</tr>
 
 				<tr v-for="task in taskList">
-				<input type="checkbox" v-model="task.done" td>{{task.id}}</td>
+				<td><input v-bind:id="task.id" v-bind:value="task.done" type="checkbox" v-model="task.done" v-on:click="reverseCheckBox">{{task.id}}</td>
 				<td>{{task.subject}}</td>
 				<td>{{task.start_date}}</td>
 				<td>{{task.finish_date}}</td>
@@ -54,17 +54,12 @@ Vue.component('task-list', {
 					console.log(error);
 				});
 		},
-		reverseCheckBox: function(){
-			var self = this; // axiosのthen内でこのvue componentにアクセスするためthisを代入する。
-			axios.post('/tasklist/checkbox', {
+		reverseCheckBox: function(e){
+			console.log(e.srcElement.id);
+			console.log(e.srcElement.value);
+			axios.post('/tasklist/checkbox/'+e.srcElement.id+'/'+e.srcElement.value, {
 					// request parameter
 				})
-				.then(function(response) {
-					self.taskList = response.data;
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
 		}
 	},
 	created: function(){
